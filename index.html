@@ -1,37 +1,45 @@
-html {
-  height: 100%;
-  background: 50% 50% no-repeat
-    url('data:image/svg+xml,<svg viewBox="-20 -5 60 40" width="140" xmlns="http://www.w3.org/2000/svg" opacity="0.2"><path d="M1 8l11-7 11 7v8l-11 7-11-7zm0 0l11 8 11-8m0 8L12 8 1 16M12 1v7m0 8v7" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"/><text x="-12" y="32" font-size="5" font-family="monospace" fill="currentColor">Built on CodePen</text></svg>');
-}
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Hospital Infectious Waste Management Services in Tertiary-Care / Teaching Hospitals of Punjab — Digital Learning Portal">
-<title>Hospital Infectious Waste Management | Punjab Tertiary-Care Portal</title>
+<meta name="description" content="Hospital Infectious Waste Management Services in Tertiary-Care / Teaching Hospitals of Punjab — Complete Digital Learning Portal">
+<title>Hospital Infectious Waste Management | Punjab Tertiary-Care Digital Portal</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Nastaliq+Urdu:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
+/* ═══════════════════════════════════════════════════════════
+   DESIGN SYSTEM
+   ═══════════════════════════════════════════════════════════ */
 :root{
   --navy:#16324F;--navy-dark:#0a1a2a;--navy-mid:#1e4468;--navy-light:#2d5a85;
-  --teal:#168C8C;--teal-dark:#0d6666;--teal-light:#20b2b2;
+  --teal:#168C8C;--teal-dark:#0d6666;--teal-light:#20b2b2;--teal-glow:rgba(22,140,140,0.4);
   --gold:#D9A441;--gold-dark:#b8892e;--gold-light:#e8c06a;
   --off:#F7F9FA;--charcoal:#25313C;
-  --red:#B42318;--green:#1a7f37;--purple:#8b5cf6;--blue:#0ea5e9;
-  --white:#fff;--g50:#f8fafc;--g100:#f1f4f6;--g200:#e1e7ec;--g300:#c7d1da;
-  --g500:#6b7c8c;--g600:#4a5a68;--g700:#3d4a56;
-  --sh-sm:0 1px 3px rgba(22,50,79,.08);
-  --sh-md:0 4px 16px rgba(22,50,79,.10);
-  --sh-lg:0 12px 40px rgba(22,50,79,.14);
-  --sh-xl:0 24px 64px rgba(22,50,79,.18);
-  --r-sm:8px;--r-md:14px;--r-lg:20px;--r-xl:28px;
+  --red:#B42318;--red-light:#e8503f;
+  --green:#1a7f37;--green-light:#2ea44f;
+  --purple:#8b5cf6;--blue:#0ea5e9;--orange:#f59e0b;--pink:#ec4899;
+  --white:#fff;
+  --g50:#f8fafc;--g100:#f1f4f6;--g200:#e1e7ec;--g300:#c7d1da;--g400:#94a3b8;
+  --g500:#6b7c8c;--g600:#4a5a68;--g700:#3d4a56;--g800:#25313C;
+  --sh-xs:0 1px 2px rgba(22,50,79,.05);
+  --sh-sm:0 1px 3px rgba(22,50,79,.08),0 1px 2px rgba(22,50,79,.04);
+  --sh-md:0 4px 16px rgba(22,50,79,.10),0 2px 6px rgba(22,50,79,.06);
+  --sh-lg:0 12px 40px rgba(22,50,79,.14),0 4px 12px rgba(22,50,79,.08);
+  --sh-xl:0 24px 64px rgba(22,50,79,.18),0 8px 20px rgba(22,50,79,.10);
+  --r-sm:8px;--r-md:14px;--r-lg:20px;--r-xl:28px;--r-2xl:36px;
   --t:all .3s cubic-bezier(.4,0,.2,1);
+  --t-slow:all .6s cubic-bezier(.4,0,.2,1);
+  --t-bounce:all .5s cubic-bezier(.34,1.56,.64,1);
   --fs:1;
 }
+
+/* ═══════════════════════════════════════════════════════════
+   RESET & BASE
+   ═══════════════════════════════════════════════════════════ */
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
 body{
-  font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
   background:var(--off);color:var(--charcoal);line-height:1.65;
   overflow-x:hidden;-webkit-font-smoothing:antialiased;
   font-size:calc(16px * var(--fs));min-height:100vh;
@@ -44,20 +52,45 @@ img{max-width:100%;display:block}
 button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
 a{color:var(--teal);text-decoration:none;transition:var(--t)}
 a:hover{color:var(--teal-dark)}
-:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:4px}
-.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+input,textarea{font-family:inherit}
 
-/* ═══════════ HEADER ═══════════ */
+/* ═══════════════════════════════════════════════════════════
+   ACCESSIBILITY
+   ═══════════════════════════════════════════════════════════ */
+.skip-link{
+  position:absolute;top:-100px;left:16px;background:var(--navy);
+  color:#fff;padding:12px 24px;border-radius:var(--r-sm);
+  z-index:10000;transition:top .3s;font-weight:700;
+}
+.skip-link:focus{top:16px}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:4px}
+.sr-only{
+  position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.01ms!important;
+    scroll-behavior:auto!important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   HEADER
+   ═══════════════════════════════════════════════════════════ */
 .hdr{
   position:sticky;top:0;z-index:900;
   background:rgba(255,255,255,.94);
   backdrop-filter:blur(20px) saturate(180%);
   -webkit-backdrop-filter:blur(20px) saturate(180%);
   border-bottom:1px solid var(--g200);
+  transition:var(--t);
 }
+.hdr.scrolled{box-shadow:var(--sh-md);background:rgba(255,255,255,.97)}
 .hdr-in{
-  max-width:1500px;margin:0 auto;padding:0 20px;height:72px;
+  max-width:1500px;margin:0 auto;padding:0 20px;height:74px;
   display:flex;align-items:center;justify-content:space-between;gap:12px;
 }
 .logo{display:flex;align-items:center;gap:12px;cursor:pointer;flex-shrink:0}
@@ -65,7 +98,18 @@ a:hover{color:var(--teal-dark)}
   width:44px;height:44px;border-radius:13px;
   background:linear-gradient(135deg,var(--teal),var(--navy));
   display:flex;align-items:center;justify-content:center;
-  color:#fff;font-size:1.35rem;box-shadow:var(--sh-sm);
+  color:#fff;font-size:1.4rem;box-shadow:var(--sh-sm);
+  position:relative;overflow:hidden;
+}
+.logo-ic::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,transparent,rgba(255,255,255,.3),transparent);
+  transform:translateX(-100%);
+  animation:shine 4s ease infinite;
+}
+@keyframes shine{
+  0%,100%{transform:translateX(-100%)}
+  50%{transform:translateX(100%)}
 }
 .logo-tx .main{font-size:.92rem;font-weight:800;color:var(--navy);line-height:1.2}
 .logo-tx .sub{font-size:.66rem;color:var(--g500);font-weight:500}
@@ -75,13 +119,22 @@ a:hover{color:var(--teal-dark)}
   background:var(--g100);border:1px solid var(--g200);
   display:flex;align-items:center;justify-content:center;gap:6px;
   font-size:.82rem;color:var(--g600);font-weight:700;
-  transition:var(--t);white-space:nowrap;
+  transition:var(--t);white-space:nowrap;position:relative;
 }
 .hbtn:hover{background:var(--g200);color:var(--navy);transform:translateY(-1px)}
 .hbtn.active{background:var(--teal);color:#fff;border-color:var(--teal)}
-.lang-sw{display:flex;background:var(--g100);border-radius:50px;padding:3px;border:1px solid var(--g200)}
+.hbtn .badge{
+  position:absolute;top:-4px;right:-4px;background:var(--red);color:#fff;
+  font-size:.6rem;font-weight:800;min-width:16px;height:16px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;padding:0 4px;
+  border:2px solid #fff;
+}
+.lang-sw{
+  display:flex;background:var(--g100);border-radius:50px;padding:3px;
+  border:1px solid var(--g200);
+}
 .lang-sw button{
-  padding:6px 14px;border-radius:50px;font-size:.76rem;font-weight:800;
+  padding:6px 13px;border-radius:50px;font-size:.75rem;font-weight:800;
   color:var(--g500);transition:var(--t);
 }
 .lang-sw button.active{background:var(--navy);color:#fff;box-shadow:var(--sh-sm)}
@@ -95,9 +148,11 @@ a:hover{color:var(--teal-dark)}
 .menu-btn.open span:nth-child(2){opacity:0}
 .menu-btn.open span:nth-child(3){transform:rotate(-45deg) translate(4px,-4px)}
 
-/* ═══════════ MAIN NAV TABS ═══════════ */
+/* ═══════════════════════════════════════════════════════════
+   MAIN NAV TABS
+   ═══════════════════════════════════════════════════════════ */
 .nav{
-  position:sticky;top:72px;z-index:899;
+  position:sticky;top:74px;z-index:899;
   background:#fff;border-bottom:1px solid var(--g200);
   box-shadow:0 2px 8px rgba(0,0,0,.03);
 }
@@ -116,17 +171,25 @@ a:hover{color:var(--teal-dark)}
 .tab:hover{color:var(--teal);background:rgba(22,140,140,.04)}
 .tab.active{color:var(--navy);border-bottom-color:var(--teal);background:rgba(22,140,140,.05)}
 .tab.ppt-tab{color:var(--gold-dark)}
-.tab.ppt-tab.active{border-bottom-color:var(--gold)}
+.tab.ppt-tab.active{border-bottom-color:var(--gold);background:rgba(217,164,65,.08)}
 
-/* ═══════════ PAGE CONTAINER ═══════════ */
+/* ═══════════════════════════════════════════════════════════
+   PAGE CONTAINER
+   ═══════════════════════════════════════════════════════════ */
 .page-wrap{
   flex:1;max-width:1500px;margin:0 auto;width:100%;
   padding:32px 24px 80px;
 }
 .page{display:none}
 .page.active{display:block;animation:fadeUp .35s ease}
-@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(14px)}
+  to{opacity:1;transform:translateY(0)}
+}
 
+/* ═══════════════════════════════════════════════════════════
+   PAGE HEADER
+   ═══════════════════════════════════════════════════════════ */
 .page-hdr{text-align:center;max-width:820px;margin:0 auto 40px}
 .page-lbl{
   display:inline-flex;align-items:center;gap:8px;
@@ -142,22 +205,39 @@ a:hover{color:var(--teal-dark)}
 }
 .page-desc{font-size:.98rem;color:var(--g500);line-height:1.7}
 
-/* ═══════════ BUTTONS ═══════════ */
+/* ═══════════════════════════════════════════════════════════
+   BUTTONS
+   ═══════════════════════════════════════════════════════════ */
 .btn{
   display:inline-flex;align-items:center;gap:9px;
   padding:12px 22px;border-radius:50px;font-weight:700;
   font-size:.86rem;transition:var(--t);cursor:pointer;
-  border:2px solid transparent;
+  border:2px solid transparent;position:relative;overflow:hidden;
 }
-.btn-p{background:linear-gradient(135deg,var(--teal),var(--teal-light));color:#fff;box-shadow:0 6px 20px rgba(22,140,140,.35)}
+.btn::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,transparent,rgba(255,255,255,.2),transparent);
+  transform:translateX(-100%);transition:transform .6s;
+}
+.btn:hover::after{transform:translateX(100%)}
+.btn-p{
+  background:linear-gradient(135deg,var(--teal),var(--teal-light));
+  color:#fff;box-shadow:0 6px 20px rgba(22,140,140,.35);
+}
 .btn-p:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(22,140,140,.45);color:#fff}
-.btn-g{background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:var(--navy-dark);box-shadow:0 6px 20px rgba(217,164,65,.35)}
+.btn-g{
+  background:linear-gradient(135deg,var(--gold),var(--gold-dark));
+  color:var(--navy-dark);box-shadow:0 6px 20px rgba(217,164,65,.35);
+}
 .btn-g:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(217,164,65,.45);color:var(--navy-dark)}
 .btn-o{background:#fff;color:var(--navy);border-color:var(--g200)}
 .btn-o:hover{background:var(--g100);border-color:var(--teal);color:var(--teal)}
 .btn-sm{padding:9px 16px;font-size:.78rem}
+.btn:disabled{opacity:.5;cursor:not-allowed}
 
-/* ═══════════ HOME ═══════════ */
+/* ═══════════════════════════════════════════════════════════
+   HOME PAGE
+   ═══════════════════════════════════════════════════════════ */
 .hero{
   background:linear-gradient(135deg,var(--navy-dark) 0%,var(--navy) 45%,var(--teal-dark) 100%);
   border-radius:var(--r-xl);padding:60px 40px;color:#fff;
@@ -170,25 +250,83 @@ a:hover{color:var(--teal-dark)}
     radial-gradient(circle at 85% 75%,rgba(217,164,65,.2) 0%,transparent 45%);
   pointer-events:none;
 }
+.hero-grid{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
+  background-size:60px 60px;
+  mask-image:radial-gradient(circle at 50% 50%,black,transparent 70%);
+  -webkit-mask-image:radial-gradient(circle at 50% 50%,black,transparent 70%);
+  pointer-events:none;
+}
+.hero-particles{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.particle{
+  position:absolute;background:rgba(255,255,255,.12);
+  border-radius:50%;animation:floatUp linear infinite;
+}
+@keyframes floatUp{
+  0%{transform:translateY(100vh) rotate(0deg);opacity:0}
+  10%{opacity:1}
+  90%{opacity:1}
+  100%{transform:translateY(-100px) rotate(360deg);opacity:0}
+}
 .hero-c{position:relative;z-index:2;max-width:800px}
 .hero-bdg{
   display:inline-flex;align-items:center;gap:8px;
   background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
   padding:8px 16px;border-radius:50px;color:#a8e6e6;
   font-size:.74rem;font-weight:600;margin-bottom:20px;
+  backdrop-filter:blur(10px);
 }
-.hero-bdg .dot{width:8px;height:8px;background:#4ade80;border-radius:50%;animation:blink 2s ease infinite}
-@keyframes blink{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(74,222,128,.7)}50%{opacity:.5;box-shadow:0 0 0 8px rgba(74,222,128,0)}}
-.hero h1{font-size:clamp(1.8rem,4vw,2.9rem);font-weight:900;line-height:1.15;margin-bottom:18px;letter-spacing:-.02em}
+.hero-bdg .dot{
+  width:8px;height:8px;background:#4ade80;border-radius:50%;
+  animation:blink 2s ease-in-out infinite;
+}
+@keyframes blink{
+  0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(74,222,128,.7)}
+  50%{opacity:.5;box-shadow:0 0 0 8px rgba(74,222,128,0)}
+}
+.hero h1{
+  font-size:clamp(1.8rem,4vw,2.9rem);font-weight:900;line-height:1.15;
+  margin-bottom:18px;letter-spacing:-.02em;
+}
 .hero h1 .hl{
-  background:linear-gradient(135deg,#4ade80,var(--gold));
-  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  background:linear-gradient(135deg,#4ade80,var(--gold),#4ade80);
+  background-size:200% 200%;
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:gradShift 4s ease infinite;
 }
-.hero p{font-size:1rem;color:rgba(255,255,255,.82);max-width:640px;margin-bottom:28px;line-height:1.7}
+@keyframes gradShift{
+  0%,100%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+}
+.hero p{
+  font-size:1rem;color:rgba(255,255,255,.82);max-width:640px;
+  margin-bottom:28px;line-height:1.7;
+}
 .hero-cta{display:flex;gap:12px;flex-wrap:wrap}
 body.ur .hero-cta{flex-direction:row-reverse;justify-content:flex-end}
 
-.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-bottom:28px}
+.demo-bn{
+  background:linear-gradient(90deg,#fff3cd,#ffeaa7,#fff3cd);
+  background-size:200% 100%;border-left:4px solid var(--gold);
+  padding:12px 20px;border-radius:var(--r-md);
+  font-size:.82rem;font-weight:700;color:#856404;
+  display:flex;align-items:center;gap:10px;margin-bottom:24px;
+  animation:bnShift 6s ease infinite;
+}
+@keyframes bnShift{
+  0%,100%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+}
+body.ur .demo-bn{border-left:none;border-right:4px solid var(--gold)}
+
+.tiles{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:16px;margin-bottom:28px;
+}
 .tile{
   background:#fff;border-radius:var(--r-lg);padding:24px;
   border:1px solid var(--g200);box-shadow:var(--sh-sm);
@@ -212,43 +350,28 @@ body.ur .hero-cta{flex-direction:row-reverse;justify-content:flex-end}
 .tile h3{color:var(--navy);font-size:.98rem;margin-bottom:6px}
 .tile p{color:var(--g500);font-size:.82rem;line-height:1.6}
 
-.demo-bn{
-  background:linear-gradient(90deg,#fff3cd,#ffeaa7,#fff3cd);
-  background-size:200% 100%;border-left:4px solid var(--gold);
-  padding:12px 20px;border-radius:var(--r-md);
-  font-size:.82rem;font-weight:700;color:#856404;
-  display:flex;align-items:center;gap:10px;margin-bottom:24px;
-  animation:bnShift 6s ease infinite;
+.stats-strip{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:14px;margin-bottom:28px;
 }
-@keyframes bnShift{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
-body.ur .demo-bn{border-left:none;border-right:4px solid var(--gold)}
+.stat{
+  background:#fff;border-radius:var(--r-lg);padding:20px 16px;
+  box-shadow:var(--sh-md);border:1px solid var(--g200);
+  text-align:center;position:relative;overflow:hidden;
+}
+.stat::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--teal),var(--gold));
+}
+.stat .n{
+  font-size:1.9rem;font-weight:900;color:var(--navy);
+  line-height:1;margin-bottom:4px;font-variant-numeric:tabular-nums;
+}
+.stat .l{font-size:.72rem;color:var(--g500);font-weight:700;text-transform:uppercase;letter-spacing:.05em}
 
-/* ═══════════ CARDS ═══════════ */
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
-.card{
-  background:#fff;border-radius:var(--r-lg);padding:24px;
-  border:1px solid var(--g200);box-shadow:var(--sh-sm);
-  transition:var(--t);
-}
-.card:hover{transform:translateY(-4px);box-shadow:var(--sh-lg);border-color:var(--teal)}
-.card .ic{
-  width:56px;height:56px;border-radius:15px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:1.55rem;margin-bottom:14px;background:var(--g100);
-  transition:var(--t);
-}
-.card:hover .ic{transform:scale(1.08) rotate(-5deg)}
-.card h3{font-size:1.02rem;color:var(--navy);margin-bottom:8px}
-.card p{font-size:.83rem;color:var(--g500);line-height:1.6;margin-bottom:12px}
-.tag{
-  display:inline-block;font-size:.66rem;font-weight:800;
-  padding:4px 10px;border-radius:50px;text-transform:uppercase;
-  letter-spacing:.04em;background:rgba(22,140,140,.1);color:var(--teal-dark);
-}
-.tag.w{background:rgba(217,164,65,.2);color:#8a6414}
-.tag.d{background:rgba(180,35,24,.1);color:var(--red)}
-
-/* ═══════════ PPT PAGE ═══════════ */
+/* ═══════════════════════════════════════════════════════════
+   PPT PAGE
+   ═══════════════════════════════════════════════════════════ */
 .cfg-note{
   background:linear-gradient(135deg,#fff8e1,#fff3cd);
   border:2px dashed var(--gold);border-radius:var(--r-lg);
@@ -266,7 +389,8 @@ body.ur .demo-bn{border-left:none;border-right:4px solid var(--gold)}
   box-shadow:var(--sh-xl);position:relative;overflow:hidden;
 }
 .ppt-hero::before{
-  content:'';position:absolute;top:-50%;right:-20%;width:500px;height:500px;
+  content:'';position:absolute;top:-50%;right:-20%;
+  width:500px;height:500px;
   background:radial-gradient(circle,rgba(217,164,65,.15) 0%,transparent 70%);
   pointer-events:none;
 }
@@ -277,43 +401,93 @@ body.ur .demo-bn{border-left:none;border-right:4px solid var(--gold)}
   font-size:2.4rem;margin-bottom:18px;
   box-shadow:0 12px 32px rgba(217,164,65,.4);
 }
-.ppt-hero h2{font-size:clamp(1.4rem,2.5vw,1.9rem);font-weight:800;margin-bottom:10px}
-.ppt-hero p{font-size:.95rem;color:rgba(255,255,255,.78);line-height:1.7;margin-bottom:20px;max-width:640px}
-.ppt-meta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:22px}
+.ppt-hero h2{
+  font-size:clamp(1.4rem,2.5vw,1.9rem);font-weight:800;
+  margin-bottom:10px;position:relative;z-index:1;
+}
+.ppt-hero p{
+  font-size:.95rem;color:rgba(255,255,255,.78);line-height:1.7;
+  margin-bottom:20px;max-width:640px;position:relative;z-index:1;
+}
+.ppt-meta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:22px;position:relative;z-index:1}
 .ppt-meta-i{
   background:rgba(255,255,255,.08);padding:10px 16px;
   border-radius:50px;border:1px solid rgba(255,255,255,.12);
 }
-.ppt-meta-i .l{font-size:.62rem;color:rgba(255,255,255,.5);font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px}
-.ppt-meta-i .v{font-size:.85rem;font-weight:700;color:var(--teal-light);font-family:'JetBrains Mono',monospace}
-.ppt-actions{display:flex;gap:10px;flex-wrap:wrap;position:relative;z-index:2}
+.ppt-meta-i .l{
+  font-size:.62rem;color:rgba(255,255,255,.5);font-weight:700;
+  text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px;
+}
+.ppt-meta-i .v{
+  font-size:.85rem;font-weight:700;color:var(--teal-light);
+  font-family:'JetBrains Mono',monospace;
+}
+.ppt-actions{display:flex;gap:10px;flex-wrap:wrap;position:relative;z-index:1}
 body.ur .ppt-actions{flex-direction:row-reverse;justify-content:flex-end}
 
-/* ═══════════ TRACEABILITY ═══════════ */
-.tr-top{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap;align-items:center}
+.ppt-info-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:16px;margin-top:22px;
+}
+.ppt-info-card{
+  background:#fff;border-radius:var(--r-lg);padding:22px;
+  border:1px solid var(--g200);box-shadow:var(--sh-sm);
+  transition:var(--t);
+}
+.ppt-info-card:hover{transform:translateY(-4px);box-shadow:var(--sh-md);border-color:var(--teal)}
+.ppt-info-card .ic{
+  width:48px;height:48px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.4rem;margin-bottom:12px;
+  background:rgba(22,140,140,.1);
+}
+.ppt-info-card h4{color:var(--navy);font-size:.95rem;margin-bottom:6px}
+.ppt-info-card p{font-size:.8rem;color:var(--g500);line-height:1.55}
+
+/* ═══════════════════════════════════════════════════════════
+   TRACEABILITY
+   ═══════════════════════════════════════════════════════════ */
+.tr-top{
+  display:flex;gap:10px;margin-bottom:18px;
+  flex-wrap:wrap;align-items:center;
+}
 .tr-search{flex:1;min-width:200px;position:relative}
 .tr-search input{
   width:100%;padding:12px 18px 12px 44px;border-radius:50px;
-  border:2px solid var(--g200);font-size:.86rem;font-family:inherit;transition:var(--t);
+  border:2px solid var(--g200);font-size:.86rem;
+  transition:var(--t);background:#fff;
 }
 body.ur .tr-search input{padding:12px 44px 12px 18px;text-align:right}
-.tr-search input:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 4px rgba(22,140,140,.1)}
-.tr-search .ic{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--g500);pointer-events:none}
+.tr-search input:focus{
+  outline:none;border-color:var(--teal);
+  box-shadow:0 0 0 4px rgba(22,140,140,.1);
+}
+.tr-search .ic{
+  position:absolute;left:16px;top:50%;transform:translateY(-50%);
+  color:var(--g500);pointer-events:none;
+}
 body.ur .tr-search .ic{left:auto;right:16px}
 .tf{
   padding:10px 16px;border-radius:50px;font-size:.76rem;font-weight:700;
-  background:#fff;border:2px solid var(--g200);color:var(--g600);transition:var(--t);
+  background:#fff;border:2px solid var(--g200);color:var(--g600);
+  transition:var(--t);
 }
 .tf:hover{border-color:var(--teal);color:var(--teal)}
 .tf.active{background:var(--navy);color:#fff;border-color:var(--navy)}
-.tr-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.tr-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:12px;
+}
 .tr-c{
   background:#fff;border-radius:var(--r-md);padding:14px;
   border:1px solid var(--g200);border-left:4px solid var(--teal);
   transition:var(--t);cursor:pointer;
 }
 body.ur .tr-c{border-left:1px solid var(--g200);border-right:4px solid var(--teal)}
-.tr-c:hover{transform:translateY(-3px);box-shadow:var(--sh-md);border-left-color:var(--gold)}
+.tr-c:hover{
+  transform:translateY(-3px);box-shadow:var(--sh-md);
+  border-left-color:var(--gold);
+}
 body.ur .tr-c:hover{border-right-color:var(--gold)}
 .tr-c .n{
   display:inline-flex;align-items:center;justify-content:center;
@@ -331,32 +505,155 @@ body.ur .tr-c:hover{border-right-color:var(--gold)}
 .tr-c .s.pending{background:rgba(180,35,24,.1);color:var(--red)}
 .tr-c .m{font-size:.7rem;color:var(--g500);margin-top:8px}
 
-/* ═══════════ GAME ═══════════ */
+/* ═══════════════════════════════════════════════════════════
+   CATEGORIES
+   ═══════════════════════════════════════════════════════════ */
+.cat-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:18px;
+}
+.cat{
+  background:#fff;border-radius:var(--r-lg);padding:24px;
+  border:1px solid var(--g200);box-shadow:var(--sh-sm);
+  transition:var(--t);position:relative;overflow:hidden;
+}
+.cat::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:4px;
+  transform:scaleX(0);transition:transform .4s ease;transform-origin:left;
+}
+.cat[data-cat="general"]::after{background:#6b7280}
+.cat[data-cat="infectious"]::after{background:var(--gold)}
+.cat[data-cat="glass"]::after{background:var(--red)}
+.cat[data-cat="sharps"]::after{background:var(--navy)}
+.cat[data-cat="pathological"]::after{background:var(--purple)}
+.cat[data-cat="pharmaceutical"]::after{background:var(--blue)}
+.cat[data-cat="chemical"]::after{background:var(--orange)}
+.cat[data-cat="cytotoxic"]::after{background:var(--pink)}
+.cat:hover{transform:translateY(-4px);box-shadow:var(--sh-lg);border-color:transparent}
+.cat:hover::after{transform:scaleX(1)}
+.cat-ic{
+  width:56px;height:56px;border-radius:15px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.55rem;margin-bottom:14px;background:var(--g100);
+  transition:var(--t);
+}
+.cat:hover .cat-ic{transform:scale(1.08) rotate(-5deg)}
+.cat h3{font-size:1.02rem;color:var(--navy);margin-bottom:8px}
+.cat p{font-size:.83rem;color:var(--g500);line-height:1.6;margin-bottom:12px}
+.tag{
+  display:inline-block;font-size:.66rem;font-weight:800;
+  padding:4px 10px;border-radius:50px;text-transform:uppercase;
+  letter-spacing:.04em;background:rgba(22,140,140,.1);color:var(--teal-dark);
+}
+.tag.w{background:rgba(217,164,65,.2);color:#8a6414}
+.tag.d{background:rgba(180,35,24,.1);color:var(--red)}
+.cat-expand{
+  max-height:0;overflow:hidden;transition:max-height .4s ease,margin-top .3s;
+}
+.cat.expanded .cat-expand{max-height:300px;margin-top:14px}
+.cat-expand-inner{
+  padding-top:14px;border-top:1px solid var(--g200);
+}
+.cat-expand-inner h5{
+  font-size:.72rem;color:var(--g500);text-transform:uppercase;
+  letter-spacing:.05em;margin-bottom:8px;font-weight:800;
+}
+.cat-expand-inner ul{list-style:none}
+.cat-expand-inner li{
+  font-size:.78rem;color:var(--g700);padding:3px 0 3px 20px;
+  position:relative;
+}
+body.ur .cat-expand-inner li{padding:3px 20px 3px 0}
+.cat-expand-inner li::before{
+  content:'→';position:absolute;left:0;color:var(--teal);font-weight:700;
+}
+body.ur .cat-expand-inner li::before{content:'←';left:auto;right:0}
+
+/* ═══════════════════════════════════════════════════════════
+   HOSPITAL EXPLORER
+   ═══════════════════════════════════════════════════════════ */
+.exp-box{
+  background:#fff;border-radius:var(--r-xl);padding:28px;
+  box-shadow:var(--sh-lg);border:1px solid var(--g200);
+}
+.exp-map{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:12px;margin-bottom:22px;
+}
+.room-btn{
+  padding:16px 12px;border-radius:var(--r-md);
+  background:var(--g100);border:2px solid var(--g200);
+  text-align:center;cursor:pointer;transition:var(--t);
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+}
+.room-btn:hover{
+  border-color:var(--teal);background:rgba(22,140,140,.06);
+  transform:translateY(-2px);
+}
+.room-btn.active{background:var(--teal);border-color:var(--teal-dark);color:#fff}
+.room-btn .ic{font-size:1.6rem}
+.room-btn .nm{font-size:.76rem;font-weight:700}
+.room-detail{
+  background:linear-gradient(135deg,var(--g50),#fff);
+  border-radius:var(--r-lg);padding:22px;
+  border:1px solid var(--g200);min-height:180px;
+}
+.room-detail h4{
+  color:var(--navy);font-size:1.05rem;
+  margin-bottom:14px;display:flex;align-items:center;gap:10px;
+}
+.room-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:12px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SEGREGATION GAME
+   ═══════════════════════════════════════════════════════════ */
 .game{
   background:#fff;border-radius:var(--r-xl);padding:28px;
-  box-shadow:var(--sh-lg);border:1px solid var(--g200);max-width:900px;margin:0 auto;
+  box-shadow:var(--sh-lg);border:1px solid var(--g200);
+  max-width:900px;margin:0 auto;
 }
 .game-top{
   display:flex;justify-content:space-between;align-items:center;
   gap:14px;flex-wrap:wrap;margin-bottom:22px;padding-bottom:18px;
   border-bottom:2px dashed var(--g200);
 }
-.diff-tabs{display:flex;gap:4px;background:var(--g100);padding:4px;border-radius:50px}
+.diff-tabs{
+  display:flex;gap:4px;background:var(--g100);
+  padding:4px;border-radius:50px;
+}
 .diff-tabs button{
   padding:7px 14px;border-radius:50px;font-size:.72rem;font-weight:700;
   color:var(--g500);transition:var(--t);
 }
 .diff-tabs button.active{background:#fff;color:var(--navy);box-shadow:var(--sh-sm)}
 .gstats{display:flex;gap:10px}
-.gstat{text-align:center;padding:8px 14px;border-radius:var(--r-md);background:var(--g100);min-width:66px}
+.gstat{
+  text-align:center;padding:8px 14px;border-radius:var(--r-md);
+  background:var(--g100);min-width:66px;
+}
 .gstat .n{font-size:1.15rem;font-weight:800;color:var(--navy);line-height:1}
-.gstat .l{font-size:.6rem;color:var(--g500);font-weight:700;text-transform:uppercase;margin-top:2px}
-.gstat.ok{background:rgba(26,127,55,.1)}.gstat.ok .n{color:var(--green)}
-.gstat.no{background:rgba(180,35,24,.08)}.gstat.no .n{color:var(--red)}
-.gstat.st{background:rgba(217,164,65,.15)}.gstat.st .n{color:var(--gold-dark)}
-.timer-wrap{height:6px;background:var(--g100);border-radius:10px;overflow:hidden;margin-bottom:20px;display:none}
+.gstat .l{
+  font-size:.6rem;color:var(--g500);font-weight:700;
+  text-transform:uppercase;margin-top:2px;
+}
+.gstat.ok{background:rgba(26,127,55,.1)}
+.gstat.ok .n{color:var(--green)}
+.gstat.no{background:rgba(180,35,24,.08)}
+.gstat.no .n{color:var(--red)}
+.gstat.st{background:rgba(217,164,65,.15)}
+.gstat.st .n{color:var(--gold-dark)}
+.timer-wrap{
+  height:6px;background:var(--g100);border-radius:10px;
+  overflow:hidden;margin-bottom:20px;display:none;
+}
 .timer-wrap.on{display:block}
-.timer-fill{height:100%;background:linear-gradient(90deg,var(--green),var(--gold),var(--red));width:100%;transition:width 1s linear}
+.timer-fill{
+  height:100%;background:linear-gradient(90deg,var(--green),var(--gold),var(--red));
+  width:100%;transition:width 1s linear;
+}
 .item-area{text-align:center;margin-bottom:22px}
 .item-c{
   display:inline-flex;flex-direction:column;align-items:center;gap:8px;
@@ -364,11 +661,20 @@ body.ur .tr-c:hover{border-right-color:var(--gold)}
   border-radius:var(--r-xl);border:2px solid var(--g200);
   min-width:240px;animation:itemPop .5s cubic-bezier(.34,1.56,.64,1);
 }
-@keyframes itemPop{0%{transform:scale(.85);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes itemPop{
+  0%{transform:scale(.85);opacity:0}
+  100%{transform:scale(1);opacity:1}
+}
 .item-c .em{font-size:3rem}
 .item-c .nm{font-size:1.05rem;font-weight:800;color:var(--navy)}
-.item-c .hn{font-size:.74rem;color:var(--g500);max-width:240px;text-align:center}
-.bins{display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:12px;margin-bottom:18px}
+.item-c .hn{
+  font-size:.74rem;color:var(--g500);
+  max-width:240px;text-align:center;
+}
+.bins{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));
+  gap:12px;margin-bottom:18px;
+}
 .bin{
   padding:18px 12px;border-radius:var(--r-lg);border:3px solid;
   text-align:center;cursor:pointer;background:#fff;transition:var(--t);
@@ -383,11 +689,25 @@ body.ur .tr-c:hover{border-right-color:var(--gold)}
 .bin[data-bin="red"]{border-color:var(--red);color:var(--red)}
 .bin[data-bin="sharps"]{border-color:var(--navy);color:var(--navy)}
 .bin[data-bin="pharma"]{border-color:var(--blue);color:var(--blue)}
-.bin[data-bin="chem"]{border-color:#f59e0b;color:#b45309}
-.bin.correct{animation:cp .6s;box-shadow:0 0 0 4px rgba(26,127,55,.3)!important;border-color:var(--green)!important}
-.bin.wrong{animation:shX .5s;box-shadow:0 0 0 4px rgba(180,35,24,.3)!important;border-color:var(--red)!important}
+.bin[data-bin="chem"]{border-color:var(--orange);color:#b45309}
+.bin.correct{
+  animation:cp .6s;
+  box-shadow:0 0 0 4px rgba(26,127,55,.3)!important;
+  border-color:var(--green)!important;
+}
+.bin.wrong{
+  animation:shX .5s;
+  box-shadow:0 0 0 4px rgba(180,35,24,.3)!important;
+  border-color:var(--red)!important;
+}
 @keyframes cp{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
-@keyframes shX{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+@keyframes shX{
+  0%,100%{transform:translateX(0)}
+  20%{transform:translateX(-10px)}
+  40%{transform:translateX(10px)}
+  60%{transform:translateX(-6px)}
+  80%{transform:translateX(6px)}
+}
 .fb{
   padding:16px 20px;border-radius:var(--r-md);margin-bottom:14px;
   display:none;animation:fadeUp .35s ease;
@@ -403,7 +723,9 @@ body.ur .fb.bd{border-left:none;border-right:4px solid var(--red)}
 .fb p{font-size:.82rem;color:var(--g700);line-height:1.6}
 .cent-act{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 
-/* ═══════════ JOURNEY ═══════════ */
+/* ═══════════════════════════════════════════════════════════
+   JOURNEY
+   ═══════════════════════════════════════════════════════════ */
 .jrn{
   background:#fff;border-radius:var(--r-xl);padding:28px;
   box-shadow:var(--sh-lg);border:1px solid var(--g200);
@@ -433,43 +755,80 @@ body.ur .fb.bd{border-left:none;border-right:4px solid var(--red)}
 }
 .jttl{font-size:1.2rem;font-weight:800;color:var(--navy);margin-bottom:4px}
 .jsub{font-size:.8rem;color:var(--g500)}
-.jgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
-.jcard{padding:14px;background:var(--g50);border-radius:var(--r-md);border:1px solid var(--g200)}
-.jcard .l{font-size:.64rem;font-weight:800;color:var(--g500);text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px}
+.jgrid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:12px;
+}
+.jcard{
+  padding:14px;background:var(--g50);
+  border-radius:var(--r-md);border:1px solid var(--g200);
+}
+.jcard .l{
+  font-size:.64rem;font-weight:800;color:var(--g500);
+  text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px;
+}
 .jcard .v{font-size:.84rem;color:var(--navy);font-weight:600;line-height:1.5}
 .jcard.risk{border-left:3px solid var(--red)}
 .jcard.risk .v{color:var(--red)}
 body.ur .jcard.risk{border-left:1px solid var(--g200);border-right:3px solid var(--red)}
 
-/* ═══════════ DASHBOARD ═══════════ */
+/* ═══════════════════════════════════════════════════════════
+   DASHBOARD
+   ═══════════════════════════════════════════════════════════ */
 .dash{
   background:#fff;border-radius:var(--r-xl);padding:28px;
   box-shadow:var(--sh-lg);border:1px solid var(--g200);
 }
-.dash-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;margin-bottom:22px}
+.dash-top{
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:14px;margin-bottom:22px;
+}
 .dash-top h3{color:var(--navy);font-size:1.15rem}
 .dash-fl{display:flex;gap:6px;flex-wrap:wrap}
 .df{
   padding:8px 14px;border-radius:50px;font-size:.74rem;font-weight:700;
-  background:var(--g100);color:var(--g600);border:1px solid var(--g200);transition:var(--t);
+  background:var(--g100);color:var(--g600);border:1px solid var(--g200);
+  transition:var(--t);
 }
 .df:hover{background:var(--g200)}
 .df.active{background:var(--navy);color:#fff;border-color:var(--navy)}
-.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:12px;margin-bottom:22px}
+.kpis{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));
+  gap:12px;margin-bottom:22px;
+}
 .kpi{
   padding:18px;border-radius:var(--r-md);
   background:linear-gradient(135deg,var(--g50),#fff);
   border:1px solid var(--g200);transition:var(--t);
+  position:relative;overflow:hidden;
+}
+.kpi::before{
+  content:'';position:absolute;top:0;left:0;width:3px;height:100%;
+  background:var(--teal);transform:scaleY(0);transform-origin:top;
+  transition:transform .4s ease;
 }
 .kpi:hover{transform:translateY(-3px);box-shadow:var(--sh-md)}
-.kpi .l{font-size:.66rem;color:var(--g500);font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
-.kpi .v{font-size:1.55rem;font-weight:900;color:var(--navy);line-height:1;margin-bottom:4px;font-variant-numeric:tabular-nums}
+.kpi:hover::before{transform:scaleY(1)}
+.kpi .l{
+  font-size:.66rem;color:var(--g500);font-weight:700;
+  text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px;
+}
+.kpi .v{
+  font-size:1.55rem;font-weight:900;color:var(--navy);
+  line-height:1;margin-bottom:4px;font-variant-numeric:tabular-nums;
+}
 .kpi .c{font-size:.7rem;font-weight:700}
 .kpi .c.up{color:var(--green)}
 .kpi .c.down{color:var(--red)}
 .chart{position:relative;height:240px;margin-bottom:14px}
-.bar-chart{display:flex;align-items:flex-end;gap:8px;height:100%;padding:18px 0;border-bottom:2px solid var(--g200)}
-.bw{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;gap:5px}
+.bar-chart{
+  display:flex;align-items:flex-end;gap:8px;height:100%;
+  padding:18px 0;border-bottom:2px solid var(--g200);
+}
+.bw{
+  flex:1;display:flex;flex-direction:column;align-items:center;
+  justify-content:flex-end;height:100%;gap:5px;
+}
 .bar{
   width:100%;max-width:52px;border-radius:8px 8px 0 0;
   transition:height .8s cubic-bezier(.4,0,.2,1);
@@ -482,26 +841,112 @@ body.ur .jcard.risk{border-left:1px solid var(--g200);border-right:3px solid var
   font-weight:700;white-space:nowrap;z-index:10;
 }
 .blbl{font-size:.64rem;color:var(--g500);font-weight:700}
-.legend{display:flex;gap:18px;flex-wrap:wrap;justify-content:center;margin-top:10px}
-.legend-i{display:flex;align-items:center;gap:8px;font-size:.76rem;color:var(--g700);font-weight:600}
+.legend{
+  display:flex;gap:18px;flex-wrap:wrap;
+  justify-content:center;margin-top:10px;
+}
+.legend-i{
+  display:flex;align-items:center;gap:8px;
+  font-size:.76rem;color:var(--g700);font-weight:600;
+}
 .legend-d{width:14px;height:14px;border-radius:4px}
 
-/* ═══════════ SPILLS ═══════════ */
-.spills{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px}
+/* ═══════════════════════════════════════════════════════════
+   WHAT-IF
+   ═══════════════════════════════════════════════════════════ */
+.whatif{
+  background:linear-gradient(135deg,var(--navy),var(--navy-mid));
+  border-radius:var(--r-xl);padding:32px;color:#fff;
+  box-shadow:var(--sh-xl);
+}
+.whatif h3{font-size:1.3rem;margin-bottom:8px}
+.whatif .sub{
+  font-size:.85rem;color:rgba(255,255,255,.7);margin-bottom:24px;
+}
+.slider-g{margin-bottom:22px}
+.slider-h{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:8px;
+}
+.slider-l{font-size:.85rem;font-weight:700}
+.slider-v{
+  background:rgba(255,255,255,.1);padding:4px 12px;
+  border-radius:50px;font-size:.8rem;font-weight:800;
+  color:var(--teal-light);font-family:'JetBrains Mono',monospace;
+}
+.slider-i{
+  width:100%;height:8px;border-radius:10px;
+  background:rgba(255,255,255,.15);outline:none;
+  -webkit-appearance:none;appearance:none;cursor:pointer;
+}
+.slider-i::-webkit-slider-thumb{
+  -webkit-appearance:none;width:22px;height:22px;border-radius:50%;
+  background:var(--teal-light);cursor:pointer;
+  box-shadow:0 0 0 4px rgba(32,178,178,.3);
+}
+.slider-i::-moz-range-thumb{
+  width:22px;height:22px;border-radius:50%;
+  background:var(--teal-light);cursor:pointer;border:none;
+  box-shadow:0 0 0 4px rgba(32,178,178,.3);
+}
+.wi-results{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+  gap:12px;margin-top:24px;padding-top:24px;
+  border-top:1px solid rgba(255,255,255,.15);
+}
+.wi-r{
+  background:rgba(255,255,255,.06);border-radius:var(--r-md);
+  padding:16px;border:1px solid rgba(255,255,255,.1);
+}
+.wi-r .l{
+  font-size:.68rem;color:rgba(255,255,255,.6);
+  font-weight:700;text-transform:uppercase;
+  letter-spacing:.05em;margin-bottom:6px;
+}
+.wi-r .v{
+  font-size:1.4rem;font-weight:900;
+  color:var(--teal-light);font-variant-numeric:tabular-nums;
+}
+.wi-r .u{font-size:.72rem;color:rgba(255,255,255,.5)}
+.wi-formula{
+  margin-top:18px;padding:14px 18px;
+  background:rgba(0,0,0,.2);border-radius:var(--r-sm);
+  font-family:'JetBrains Mono',monospace;font-size:.72rem;
+  color:rgba(255,255,255,.7);border-left:3px solid var(--gold);
+  line-height:1.7;
+}
+body.ur .wi-formula{border-left:none;border-right:3px solid var(--gold)}
+
+/* ═══════════════════════════════════════════════════════════
+   SPILLS
+   ═══════════════════════════════════════════════════════════ */
+.spills{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+  gap:16px;
+}
 .spill{
   background:#fff;border-radius:var(--r-lg);overflow:hidden;
-  box-shadow:var(--sh-sm);border:1px solid var(--g200);transition:var(--t);
+  box-shadow:var(--sh-sm);border:1px solid var(--g200);
+  transition:var(--t);
 }
 .spill:hover{transform:translateY(-3px);box-shadow:var(--sh-md)}
-.spill-h{padding:16px 20px;color:#fff;display:flex;align-items:center;gap:12px;cursor:pointer}
+.spill-h{
+  padding:16px 20px;color:#fff;
+  display:flex;align-items:center;gap:12px;cursor:pointer;
+}
 .spill[data-spill="bio"] .spill-h{background:linear-gradient(135deg,var(--red),#d94a3a)}
 .spill[data-spill="chem"] .spill-h{background:linear-gradient(135deg,var(--purple),#7c3aed)}
 .spill[data-spill="mercury"] .spill-h{background:linear-gradient(135deg,var(--navy),#1e4468)}
 .spill[data-spill="surface"] .spill-h{background:linear-gradient(135deg,var(--teal),var(--teal-dark))}
+.spill[data-spill="needlestick"] .spill-h{background:linear-gradient(135deg,#be185d,#ec4899)}
 .spill-h h4{font-size:.92rem;flex:1}
+.spill-h .ic{font-size:1.35rem}
 .spill-h .chev{transition:transform .3s}
 .spill.open .spill-h .chev{transform:rotate(180deg)}
-.spill-b{padding:0 20px;max-height:0;overflow:hidden;transition:max-height .5s ease,padding .3s ease}
+.spill-b{
+  padding:0 20px;max-height:0;overflow:hidden;
+  transition:max-height .5s ease,padding .3s ease;
+}
 .spill.open .spill-b{max-height:900px;padding:20px}
 .spill-b ol{list-style:none;counter-reset:s}
 .spill-b li{
@@ -531,41 +976,74 @@ body.ur .sp-warn{border-left:none;border-right:3px solid var(--red)}
 }
 body.ur .sp-esc{border-left:none;border-right:3px solid var(--gold)}
 
-/* ═══════════ ROLES ═══════════ */
-.r-tabs{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap;justify-content:center}
+/* ═══════════════════════════════════════════════════════════
+   ROLES
+   ═══════════════════════════════════════════════════════════ */
+.r-tabs{
+  display:flex;gap:8px;margin-bottom:18px;
+  flex-wrap:wrap;justify-content:center;
+}
 .rt{
   padding:10px 20px;border-radius:50px;font-size:.8rem;font-weight:700;
-  background:#fff;color:var(--g600);border:2px solid var(--g200);transition:var(--t);
+  background:#fff;color:var(--g600);border:2px solid var(--g200);
+  transition:var(--t);
 }
 .rt:hover{border-color:var(--teal);color:var(--teal)}
 .rt.active{background:var(--navy);color:#fff;border-color:var(--navy)}
-.roles{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.roles{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:14px;
+}
 .rcard{
   background:#fff;border-radius:var(--r-lg);padding:20px;
-  box-shadow:var(--sh-sm);border:1px solid var(--g200);transition:var(--t);
+  box-shadow:var(--sh-sm);border:1px solid var(--g200);
+  transition:var(--t);animation:fadeUp .5s ease both;
 }
 .rcard:hover{transform:translateY(-3px);box-shadow:var(--sh-md)}
-.rcard h4{color:var(--navy);font-size:.95rem;margin-bottom:12px;padding-bottom:10px;border-bottom:2px solid var(--g100)}
+.rcard h4{
+  color:var(--navy);font-size:.95rem;margin-bottom:12px;
+  padding-bottom:10px;border-bottom:2px solid var(--g100);
+}
 .rcard ul{list-style:none}
 .rcard li{
   padding:6px 0 6px 22px;font-size:.81rem;color:var(--g700);
   position:relative;line-height:1.5;
 }
 body.ur .rcard li{padding:6px 22px 6px 0}
-.rcard li::before{content:'✓';position:absolute;left:0;color:var(--teal);font-weight:800}
+.rcard li::before{
+  content:'✓';position:absolute;left:0;color:var(--teal);font-weight:800;
+}
 body.ur .rcard li::before{left:auto;right:0}
 
-/* ═══════════ QUIZ ═══════════ */
+/* ═══════════════════════════════════════════════════════════
+   QUIZ
+   ═══════════════════════════════════════════════════════════ */
 .quiz{
   background:#fff;border-radius:var(--r-xl);padding:28px;
-  box-shadow:var(--sh-lg);border:1px solid var(--g200);max-width:820px;margin:0 auto;
+  box-shadow:var(--sh-lg);border:1px solid var(--g200);
+  max-width:820px;margin:0 auto;
 }
-.qprog{height:8px;background:var(--g100);border-radius:10px;margin-bottom:20px;overflow:hidden}
-.qprog-f{height:100%;background:linear-gradient(90deg,var(--teal),var(--gold));width:0;transition:width .5s ease;border-radius:10px}
-.qtop{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:10px}
-.qnum{font-size:.73rem;color:var(--g500);font-weight:800;text-transform:uppercase;letter-spacing:.05em}
+.qprog{
+  height:8px;background:var(--g100);border-radius:10px;
+  margin-bottom:20px;overflow:hidden;
+}
+.qprog-f{
+  height:100%;background:linear-gradient(90deg,var(--teal),var(--gold));
+  width:0;transition:width .5s ease;border-radius:10px;
+}
+.qtop{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:16px;flex-wrap:wrap;gap:10px;
+}
+.qnum{
+  font-size:.73rem;color:var(--g500);font-weight:800;
+  text-transform:uppercase;letter-spacing:.05em;
+}
 .qlive{font-size:.8rem;font-weight:800;color:var(--teal-dark)}
-.qq{font-size:1.05rem;font-weight:700;color:var(--navy);margin-bottom:18px;line-height:1.5}
+.qq{
+  font-size:1.05rem;font-weight:700;color:var(--navy);
+  margin-bottom:18px;line-height:1.5;
+}
 .qopts{display:flex;flex-direction:column;gap:10px}
 .qopt{
   padding:13px 17px;border-radius:var(--r-md);
@@ -594,7 +1072,10 @@ body.ur .qopt{text-align:right}
 body.ur .qexp{border-left:none;border-right:4px solid var(--teal)}
 .qexp.on{display:block;animation:fadeUp .35s}
 .qexp strong{color:var(--teal-dark)}
-.qfoot{display:flex;justify-content:space-between;align-items:center;margin-top:20px;gap:12px;flex-wrap:wrap}
+.qfoot{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-top:20px;gap:12px;flex-wrap:wrap;
+}
 .qfinal{text-align:center;padding:18px;animation:fadeUp .5s}
 .qfinal .big{
   font-size:3.2rem;font-weight:900;
@@ -609,31 +1090,54 @@ body.ur .qreview{text-align:right}
   margin-bottom:8px;font-size:.79rem;
 }
 
-/* ═══════════ GLOSSARY ═══════════ */
+/* ═══════════════════════════════════════════════════════════
+   GLOSSARY
+   ═══════════════════════════════════════════════════════════ */
 .gsearch{max-width:440px;margin:0 auto 22px;position:relative}
 .gsearch input{
   width:100%;padding:12px 18px 12px 44px;border-radius:50px;
-  border:2px solid var(--g200);font-size:.88rem;font-family:inherit;
+  border:2px solid var(--g200);font-size:.88rem;
   transition:var(--t);background:#fff;
 }
 body.ur .gsearch input{padding:12px 44px 12px 18px;text-align:right}
-.gsearch input:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 4px rgba(22,140,140,.1)}
-.gsearch .ic{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--g500);pointer-events:none}
+.gsearch input:focus{
+  outline:none;border-color:var(--teal);
+  box-shadow:0 0 0 4px rgba(22,140,140,.1);
+}
+.gsearch .ic{
+  position:absolute;left:16px;top:50%;transform:translateY(-50%);
+  color:var(--g500);pointer-events:none;
+}
 body.ur .gsearch .ic{left:auto;right:16px}
-.ggrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.ggrid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:12px;
+}
 .gitem{
   background:#fff;border-radius:var(--r-md);padding:14px 18px;
   border:1px solid var(--g200);transition:var(--t);
   cursor:pointer;position:relative;
 }
-.gitem:hover{border-color:var(--teal);box-shadow:var(--sh-sm);transform:translateY(-2px)}
-.gitem .en{font-weight:800;color:var(--navy);font-size:.88rem;margin-bottom:3px}
-.gitem .ur{font-family:'Noto Nastaliq Urdu',sans-serif;color:var(--teal-dark);font-size:.92rem;direction:rtl;text-align:right;line-height:1.9}
-.gitem .bm{position:absolute;top:11px;right:11px;font-size:.88rem;opacity:.3}
+.gitem:hover{
+  border-color:var(--teal);box-shadow:var(--sh-sm);
+  transform:translateY(-2px);
+}
+.gitem .en{
+  font-weight:800;color:var(--navy);font-size:.88rem;margin-bottom:3px;
+}
+.gitem .ur{
+  font-family:'Noto Nastaliq Urdu',sans-serif;color:var(--teal-dark);
+  font-size:.92rem;direction:rtl;text-align:right;line-height:1.9;
+}
+.gitem .bm{
+  position:absolute;top:11px;right:11px;font-size:.88rem;opacity:.3;
+}
 body.ur .gitem .bm{right:auto;left:11px}
 .gitem.marked .bm{opacity:1;color:var(--gold)}
 
-/* ═══════════ VERIFY ═══════════ */
+/* ═══════════════════════════════════════════════════════════
+   VERIFY
+   ═══════════════════════════════════════════════════════════ */
 .vtable{
   width:100%;border-collapse:separate;border-spacing:0;
   background:#fff;border-radius:var(--r-lg);overflow:hidden;
@@ -659,7 +1163,9 @@ body.ur .vtable th{text-align:right}
 .pill.pending{background:rgba(217,164,65,.2);color:#8a6414}
 .pill.source{background:rgba(22,140,140,.12);color:var(--teal-dark)}
 
-/* ═══════════ MODALS ═══════════ */
+/* ═══════════════════════════════════════════════════════════
+   MODALS
+   ═══════════════════════════════════════════════════════════ */
 .modal{
   position:fixed;inset:0;background:rgba(10,26,42,.85);
   backdrop-filter:blur(8px);z-index:2000;display:none;
@@ -677,10 +1183,12 @@ body.ur .vtable th{text-align:right}
   display:flex;justify-content:space-between;align-items:center;gap:12px;
 }
 .mhead h3{color:var(--navy);font-size:.98rem}
-.mclose{padding:6px 12px;border-radius:8px;background:var(--g100);font-size:.73rem;font-weight:700;color:var(--g600)}
+.mclose{
+  padding:6px 12px;border-radius:8px;background:var(--g100);
+  font-size:.73rem;font-weight:700;color:var(--g600);
+}
 .mbody{padding:18px;overflow-y:auto}
 
-/* PPT modal (fullscreen) */
 .pmodal{
   position:fixed;inset:0;background:rgba(10,26,42,.96);
   backdrop-filter:blur(10px);z-index:2500;display:none;flex-direction:column;
@@ -692,7 +1200,10 @@ body.ur .vtable th{text-align:right}
   border-bottom:1px solid rgba(255,255,255,.1);color:#fff;
   flex-wrap:wrap;gap:10px;
 }
-.pm-top .t{font-weight:700;font-size:.9rem;display:flex;align-items:center;gap:8px}
+.pm-top .t{
+  font-weight:700;font-size:.9rem;
+  display:flex;align-items:center;gap:8px;
+}
 .pm-top .a{display:flex;gap:8px;flex-wrap:wrap}
 .pbtn{
   padding:7px 13px;border-radius:8px;background:rgba(255,255,255,.1);
@@ -705,8 +1216,8 @@ body.ur .vtable th{text-align:right}
 .pbtn.red{background:var(--red)}
 .pm-body{flex:1;display:flex;overflow:hidden}
 .pm-main{
-  flex:1;display:flex;flex-direction:column;align-items:center;
-  justify-content:center;padding:20px;overflow:auto;
+  flex:1;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;padding:20px;overflow:auto;
 }
 .pm-view{
   width:100%;max-width:900px;background:rgba(255,255,255,.03);
@@ -717,20 +1228,28 @@ body.ur .vtable th{text-align:right}
 }
 .pm-view .ic{font-size:4rem;margin-bottom:16px;opacity:.6}
 .pm-view h3{font-size:1.3rem;margin-bottom:10px}
-.pm-view p{font-size:.88rem;color:rgba(255,255,255,.65);max-width:520px;line-height:1.6;margin-bottom:16px}
+.pm-view p{
+  font-size:.88rem;color:rgba(255,255,255,.65);
+  max-width:520px;line-height:1.6;margin-bottom:16px;
+}
 .pm-view .note{
   background:rgba(217,164,65,.15);border-left:3px solid var(--gold);
   padding:11px 15px;border-radius:8px;font-size:.76rem;
   color:var(--gold-light);text-align:left;max-width:520px;
 }
-body.ur .pm-view .note{border-left:none;border-right:3px solid var(--gold);text-align:right}
+body.ur .pm-view .note{
+  border-left:none;border-right:3px solid var(--gold);text-align:right;
+}
 .pm-side{
   width:240px;background:rgba(0,0,0,.3);
   border-left:1px solid rgba(255,255,255,.1);
   overflow-y:auto;padding:14px;
 }
 body.ur .pm-side{border-left:none;border-right:1px solid rgba(255,255,255,.1)}
-.pm-side .sl{font-size:.66rem;color:rgba(255,255,255,.5);font-weight:800;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px}
+.pm-side .sl{
+  font-size:.66rem;color:rgba(255,255,255,.5);font-weight:800;
+  text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;
+}
 .pthumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
 .pth{
   aspect-ratio:16/9;background:rgba(255,255,255,.05);
@@ -742,20 +1261,39 @@ body.ur .pm-side{border-left:none;border-right:1px solid rgba(255,255,255,.1)}
 .pth:hover{background:rgba(255,255,255,.1);border-color:var(--teal);color:#fff}
 .pth.active{background:var(--teal);border-color:var(--teal-light);color:#fff}
 
-/* ═══════════ FOOTER ═══════════ */
+/* ═══════════════════════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════════════════════ */
 .ftr{
   background:var(--navy-dark);color:rgba(255,255,255,.65);
-  padding:28px 24px 16px;margin-top:40px;
+  padding:36px 24px 20px;margin-top:40px;
 }
 .ftr-in{
   max-width:1500px;margin:0 auto;
+  display:grid;grid-template-columns:2fr 1fr 1fr;
+  gap:36px;margin-bottom:24px;
+}
+.ftr h4{
+  color:#fff;font-size:.88rem;margin-bottom:14px;font-weight:800;
+}
+.ftr p{font-size:.78rem;line-height:1.7}
+.ftr ul{list-style:none}
+.ftr li{margin-bottom:7px}
+.ftr a{color:rgba(255,255,255,.7);font-size:.78rem;cursor:pointer}
+.ftr a:hover{color:var(--teal-light)}
+.ftr-bot{
+  max-width:1500px;margin:0 auto;padding-top:20px;
+  border-top:1px solid rgba(255,255,255,.1);
   display:flex;justify-content:space-between;align-items:center;
-  flex-wrap:wrap;gap:14px;font-size:.75rem;
+  flex-wrap:wrap;gap:12px;font-size:.73rem;
 }
 
-/* ═══════════ TOAST ═══════════ */
+/* ═══════════════════════════════════════════════════════════
+   TOAST & BACK-TOP
+   ═══════════════════════════════════════════════════════════ */
 .toast{
-  position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(200px);
+  position:fixed;bottom:22px;left:50%;
+  transform:translateX(-50%) translateY(200px);
   background:var(--navy);color:#fff;padding:12px 22px;
   border-radius:var(--r-md);font-size:.83rem;font-weight:700;
   box-shadow:var(--sh-xl);z-index:9999;
@@ -763,25 +1301,50 @@ body.ur .pm-side{border-left:none;border-right:1px solid rgba(255,255,255,.1)}
   display:flex;align-items:center;gap:8px;max-width:90vw;
 }
 .toast.on{transform:translateX(-50%) translateY(0)}
+.back-top{
+  position:fixed;bottom:28px;right:28px;
+  width:46px;height:46px;border-radius:50%;
+  background:var(--navy);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.1rem;box-shadow:var(--sh-lg);
+  opacity:0;visibility:hidden;transition:var(--t);z-index:999;
+}
+.back-top.show{opacity:1;visibility:visible}
+.back-top:hover{background:var(--teal);transform:translateY(-4px)}
 
-/* ═══════════ RESPONSIVE ═══════════ */
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════ */
+@media (max-width:1200px){
+  .ftr-in{grid-template-columns:1fr 1fr}
+}
 @media (max-width:900px){
   .hdr-in{height:auto;padding:10px 14px;flex-wrap:wrap}
   .logo-tx .sub{display:none}
   .menu-btn{display:flex}
-  .nav{position:fixed;top:0;left:0;right:0;bottom:0;background:#fff;z-index:850;
-    transform:translateY(-110%);transition:transform .3s ease;overflow-y:auto;padding-top:72px}
+  .nav{
+    position:fixed;top:0;left:0;right:0;bottom:0;
+    background:#fff;z-index:850;
+    transform:translateY(-110%);transition:transform .3s ease;
+    overflow-y:auto;padding-top:80px;
+  }
   .nav.open{transform:translateY(0)}
-  .nav-in{flex-direction:column;align-items:stretch;padding:16px}
-  .tab{width:100%;padding:14px 16px;font-size:.88rem;border-bottom:1px solid var(--g100);border-radius:8px}
+  .nav-in{
+    flex-direction:column;align-items:stretch;padding:16px;gap:4px;
+  }
+  .tab{
+    width:100%;padding:14px 16px;font-size:.88rem;
+    border-bottom:1px solid var(--g100);border-radius:10px;
+  }
   .tab.active{background:rgba(22,140,140,.08);border-bottom:1px solid var(--g100)}
   .page-wrap{padding:18px 14px 60px}
   .hero{padding:36px 22px}
   .ppt-hero{padding:26px 20px}
-  .game,.dash,.jrn,.quiz{padding:20px 14px}
+  .game,.dash,.jrn,.quiz,.whatif,.exp-box{padding:20px 14px}
   .pm-side{display:none}
   .pm-view{min-height:250px;padding:20px}
   .pm-view .ic{font-size:3rem}
+  .ftr-in{grid-template-columns:1fr;gap:24px}
 }
 @media (max-width:520px){
   .bins{grid-template-columns:repeat(2,1fr)}
@@ -789,38 +1352,47 @@ body.ur .pm-side{border-left:none;border-right:1px solid rgba(255,255,255,.1)}
   .hero h1{font-size:1.5rem}
   .pm-top{padding:10px 12px}
   .pbtn{padding:6px 10px;font-size:.7rem}
+  .diff-tabs button{padding:6px 10px;font-size:.68rem}
+  .gstats{gap:6px}
+  .gstat{padding:6px 10px;min-width:56px}
 }
-body.ur .hero h1,body.ur .page-ttl,body.ur .card h3,body.ur .rcard h4{line-height:1.8}
+body.ur .hero h1,
+body.ur .page-ttl,
+body.ur .cat h3,
+body.ur .rcard h4{line-height:1.8}
 </style>
 </head>
 <body class="en">
 
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
 <!-- HEADER -->
-<header class="hdr">
+<header class="hdr" id="hdr">
   <div class="hdr-in">
     <div class="logo" onclick="goTo('home')">
       <div class="logo-ic">♻️</div>
       <div class="logo-tx">
         <div class="main" data-tr="logo_main">Hospital Waste Management</div>
-        <div class="sub" data-tr="logo_sub">Punjab Tertiary-Care Portal</div>
+        <div class="sub" data-tr="logo_sub">Punjab Tertiary-Care Digital Portal</div>
       </div>
     </div>
     <div class="hdr-act">
-      <button class="hbtn" id="btnSearch" title="Search (Ctrl+K)">🔍</button>
-      <button class="hbtn" id="btnFont" title="Font size">Aa</button>
-      <div class="lang-sw">
+      <button class="hbtn" id="btnSearch" title="Search (Ctrl+K)" aria-label="Search">🔍</button>
+      <button class="hbtn" id="btnBookmark" title="Bookmarks" aria-label="Bookmarks">🔖 <span class="badge" id="bmCount" style="display:none">0</span></button>
+      <button class="hbtn" id="btnFont" title="Font size" aria-label="Font size">Aa</button>
+      <div class="lang-sw" role="group" aria-label="Language">
         <button class="active" data-lang="en">EN</button>
         <button data-lang="ur">اردو</button>
       </div>
-      <button class="menu-btn" id="menuBtn" aria-label="Menu">
+      <button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
   </div>
 </header>
 
-<!-- NAV -->
-<nav class="nav" id="nav">
+<!-- MAIN NAV -->
+<nav class="nav" id="nav" aria-label="Main navigation">
   <div class="nav-in" id="navIn">
     <button class="tab active" data-page="home"><span>🏠</span><span data-tr="nav_home">Home</span></button>
     <button class="tab ppt-tab" data-page="ppt"><span>📊</span><span data-tr="nav_ppt">Original PPT</span></button>
@@ -830,6 +1402,7 @@ body.ur .hero h1,body.ur .page-ttl,body.ur .card h3,body.ur .rcard h4{line-heigh
     <button class="tab" data-page="segregation"><span>🎮</span><span data-tr="nav_seg">Segregation</span></button>
     <button class="tab" data-page="journey"><span>🗺️</span><span data-tr="nav_j">Journey</span></button>
     <button class="tab" data-page="dashboard"><span>📈</span><span data-tr="nav_d">Dashboard</span></button>
+    <button class="tab" data-page="whatif"><span>🧪</span><span data-tr="nav_w">What-If</span></button>
     <button class="tab" data-page="spills"><span>🚨</span><span data-tr="nav_s">Spills</span></button>
     <button class="tab" data-page="roles"><span>👥</span><span data-tr="nav_r">Roles</span></button>
     <button class="tab" data-page="quiz"><span>📝</span><span data-tr="nav_q">Quiz</span></button>
@@ -838,299 +1411,539 @@ body.ur .hero h1,body.ur .page-ttl,body.ur .card h3,body.ur .rcard h4{line-heigh
   </div>
 </nav>
 
-<!-- PAGES -->
-<main class="page-wrap">
+<!-- PAGE CONTAINER -->
+<main class="page-wrap" id="main-content">
 
-<!-- HOME -->
-<div class="page active" id="pg-home">
-  <div class="hero">
-    <div class="hero-c">
-      <div class="hero-bdg"><span class="dot"></span><span data-tr="hero_bdg">Punjab HWM Rules, 2014 · WHO Guidance</span></div>
-      <h1><span data-tr="hero_t1">Hospital Infectious Waste Management</span> <span class="hl" data-tr="hero_t2">Digital Learning Portal</span></h1>
-      <p data-tr="hero_p">An advanced, interactive platform for tertiary-care and teaching hospitals of Punjab. Original presentation integrated with simulations, dashboards, and traceability.</p>
-      <div class="hero-cta">
-        <button class="btn btn-p" onclick="goTo('segregation')">🎯 <span data-tr="cta_seg">Segregation Lab</span></button>
-        <button class="btn btn-g" onclick="goTo('ppt')">📊 <span data-tr="cta_ppt">Original PPT</span></button>
+  <!-- HOME -->
+  <div class="page active" id="pg-home">
+    <div class="hero">
+      <div class="hero-grid"></div>
+      <div class="hero-particles" id="heroParticles"></div>
+      <div class="hero-c">
+        <div class="hero-bdg">
+          <span class="dot"></span>
+          <span data-tr="hero_bdg">Punjab HWM Rules, 2014 · WHO Guidance</span>
+        </div>
+        <h1>
+          <span data-tr="hero_t1">Hospital Infectious Waste Management</span>
+          <span class="hl" data-tr="hero_t2">Digital Learning Portal</span>
+        </h1>
+        <p data-tr="hero_p">An advanced, cinematic, interactive platform for tertiary-care and teaching hospitals of Punjab, Pakistan. Original presentation integrated with simulations, dashboards, decision trees, and traceability.</p>
+        <div class="hero-cta">
+          <button class="btn btn-p" onclick="goTo('segregation')">🎯 <span data-tr="cta_seg">Segregation Lab</span></button>
+          <button class="btn btn-g" onclick="goTo('ppt')">📊 <span data-tr="cta_ppt">Original PPT</span></button>
+          <button class="btn btn-o" onclick="openPresenter()" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:#fff">🎬 <span data-tr="cta_present">Presenter Mode</span></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo-bn">
+      <span>⚠️</span>
+      <span data-tr="demo_bn">DEMO DATA — NOT LIVE HOSPITAL RECORDS · Educational simulation only</span>
+    </div>
+
+    <div class="stats-strip">
+      <div class="stat">
+        <div class="n" data-count="52">0</div>
+        <div class="l" data-tr="s1">Slides Traced</div>
+      </div>
+      <div class="stat">
+        <div class="n" data-count="14">0</div>
+        <div class="l" data-tr="s2">Learning Modules</div>
+      </div>
+      <div class="stat">
+        <div class="n" data-count="8">0</div>
+        <div class="l" data-tr="s3">Waste Categories</div>
+      </div>
+      <div class="stat">
+        <div class="n" data-count="100">0</div>
+        <div class="l" data-tr="s4">% Interactive</div>
+      </div>
+    </div>
+
+    <div class="tiles">
+      <div class="tile" onclick="goTo('ppt')">
+        <div class="tile-ic">📊</div>
+        <h3 data-tr="ti1_t">Original Presentation</h3>
+        <p data-tr="ti1_d">View, download, or open the complete original PPTX that this portal is based on.</p>
+      </div>
+      <div class="tile" onclick="goTo('trace')">
+        <div class="tile-ic">🔗</div>
+        <h3 data-tr="ti2_t">Slide Traceability</h3>
+        <p data-tr="ti2_d">All 52 original slides mapped to website modules with verification status.</p>
+      </div>
+      <div class="tile" onclick="goTo('categories')">
+        <div class="tile-ic">📋</div>
+        <h3 data-tr="ti7_t">Waste Categories</h3>
+        <p data-tr="ti7_d">Explore all hospital waste categories with examples and hazards.</p>
+      </div>
+      <div class="tile" onclick="goTo('explorer')">
+        <div class="tile-ic">🏥</div>
+        <h3 data-tr="ti8_t">Hospital Explorer</h3>
+        <p data-tr="ti8_d">Interactive hospital areas with waste types and responsibilities.</p>
+      </div>
+      <div class="tile" onclick="goTo('segregation')">
+        <div class="tile-ic">🎮</div>
+        <h3 data-tr="ti3_t">Segregation Lab</h3>
+        <p data-tr="ti3_d">Interactive waste-sorting game with three difficulty levels.</p>
+      </div>
+      <div class="tile" onclick="goTo('journey')">
+        <div class="tile-ic">🗺️</div>
+        <h3 data-tr="ti4_t">Waste Journey</h3>
+        <p data-tr="ti4_d">Step-by-step simulator of the complete waste handling process.</p>
+      </div>
+      <div class="tile" onclick="goTo('dashboard')">
+        <div class="tile-ic">📈</div>
+        <h3 data-tr="ti5_t">Dashboard</h3>
+        <p data-tr="ti5_d">Interactive demonstration dashboard with synthetic data.</p>
+      </div>
+      <div class="tile" onclick="goTo('whatif')">
+        <div class="tile-ic">🧪</div>
+        <h3 data-tr="ti9_t">What-If</h3>
+        <p data-tr="ti9_d">Adjust assumptions and see calculated scenario outcomes.</p>
+      </div>
+      <div class="tile" onclick="goTo('spills')">
+        <div class="tile-ic">🚨</div>
+        <h3 data-tr="ti10_t">Spill Response</h3>
+        <p data-tr="ti10_d">Biological, chemical, and mercury spill procedures.</p>
+      </div>
+      <div class="tile" onclick="goTo('quiz')">
+        <div class="tile-ic">📝</div>
+        <h3 data-tr="ti6_t">Knowledge Quiz</h3>
+        <p data-tr="ti6_d">Test your understanding with 10 scenario-based questions.</p>
       </div>
     </div>
   </div>
-  <div class="demo-bn"><span>⚠️</span><span data-tr="demo_bn">DEMO DATA — NOT LIVE HOSPITAL RECORDS · Educational simulation only</span></div>
-  <div class="tiles">
-    <div class="tile" onclick="goTo('ppt')"><div class="tile-ic">📊</div><h3 data-tr="ti1_t">Original Presentation</h3><p data-tr="ti1_d">View, download, or open the complete original PPTX.</p></div>
-    <div class="tile" onclick="goTo('trace')"><div class="tile-ic">🔗</div><h3 data-tr="ti2_t">Slide Traceability</h3><p data-tr="ti2_d">All slides mapped to website modules.</p></div>
-    <div class="tile" onclick="goTo('segregation')"><div class="tile-ic">🎮</div><h3 data-tr="ti3_t">Segregation Lab</h3><p data-tr="ti3_d">Interactive game with difficulty levels.</p></div>
-    <div class="tile" onclick="goTo('journey')"><div class="tile-ic">🗺️</div><h3 data-tr="ti4_t">Waste Journey</h3><p data-tr="ti4_d">Step-by-step process simulator.</p></div>
-    <div class="tile" onclick="goTo('dashboard')"><div class="tile-ic">📈</div><h3 data-tr="ti5_t">Dashboard</h3><p data-tr="ti5_d">Demo dashboard with synthetic data.</p></div>
-    <div class="tile" onclick="goTo('quiz')"><div class="tile-ic">📝</div><h3 data-tr="ti6_t">Quiz</h3><p data-tr="ti6_d">Test your understanding with 10 questions.</p></div>
-  </div>
-</div>
 
-<!-- PPT -->
-<div class="page" id="pg-ppt">
-  <div class="page-hdr">
-    <div class="page-lbl">📊 <span data-tr="ppt_lbl">Original Source</span></div>
-    <h2 class="page-ttl" data-tr="ppt_ttl">Original Presentation</h2>
-    <p class="page-desc" data-tr="ppt_dsc">The complete original PowerPoint file that this portal is based on.</p>
-  </div>
-  <div class="cfg-note">
-    <h4>⚙️ <span data-tr="cfg_t">Configuration</span></h4>
-    <p data-tr="cfg_p">Place your file <code>Hospital Waste Managment PPT.pptx</code> in the same folder as this HTML, or edit the CONFIG variable in the script.</p>
-    <p><strong data-tr="cfg_path">Expected path:</strong> <code id="cfgPath">Hospital Waste Managment PPT.pptx</code></p>
-  </div>
-  <div class="ppt-hero">
-    <div class="ppt-hero-ic">📊</div>
-    <h2 data-tr="ppt_h">Hospital Waste Managment PPT</h2>
-    <p data-tr="ppt_p">Hospital Infectious Waste Management Services in Tertiary-Care / Teaching Hospitals of Punjab.</p>
-    <div class="ppt-meta">
-      <div class="ppt-meta-i"><div class="l" data-tr="ppt_sl">Slides</div><div class="v" id="pptSlideCount">52</div></div>
-      <div class="ppt-meta-i"><div class="l" data-tr="ppt_fm">Format</div><div class="v">PPTX</div></div>
-      <div class="ppt-meta-i"><div class="l" data-tr="ppt_st">Status</div><div class="v" id="pptStatus">Checking…</div></div>
+  <!-- PPT PAGE -->
+  <div class="page" id="pg-ppt">
+    <div class="page-hdr">
+      <div class="page-lbl">📊 <span data-tr="ppt_lbl">Original Source</span></div>
+      <h2 class="page-ttl" data-tr="ppt_ttl">Original Presentation</h2>
+      <p class="page-desc" data-tr="ppt_dsc">The complete original PowerPoint file that this portal is based on. View, download, or open in a new tab.</p>
     </div>
-    <div class="ppt-actions">
-      <button class="btn btn-g" id="pptOpen">📊 <span data-tr="ppt_open">Open Viewer</span></button>
-      <button class="btn btn-p" id="pptDl">⬇️ <span data-tr="ppt_dl">Download PPT</span></button>
-      <button class="btn btn-o" id="pptNew" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:#fff">🔗 <span data-tr="ppt_new">Open in New Tab</span></button>
+
+    <div class="cfg-note">
+      <h4>⚙️ <span data-tr="cfg_t">Configuration</span></h4>
+      <p data-tr="cfg_p">Place your file <code>Hospital Waste Managment PPT.pptx</code> in the same folder as this HTML, or edit the CONFIG variable at the top of the script.</p>
+      <p><strong data-tr="cfg_path">Expected path:</strong> <code id="cfgPath">Hospital Waste Managment PPT.pptx</code></p>
+      <p><strong data-tr="cfg_status">Status:</strong> <span id="cfgStatus">Checking…</span></p>
     </div>
-  </div>
-</div>
 
-<!-- TRACE -->
-<div class="page" id="pg-trace">
-  <div class="page-hdr">
-    <div class="page-lbl">🔗 <span data-tr="tr_lbl">Slide Mapping</span></div>
-    <h2 class="page-ttl" data-tr="tr_ttl">Slide Traceability</h2>
-    <p class="page-desc" data-tr="tr_dsc">Every slide mapped to its website module. Click any card to jump.</p>
-  </div>
-  <div class="tr-top">
-    <div class="tr-search"><span class="ic">🔍</span><input type="text" id="trSearch" placeholder="Search slides..." data-tr-ph="tr_ph"></div>
-    <button class="tf active" data-tf="all" data-tr="tf_a">All</button>
-    <button class="tf" data-tf="digitized" data-tr="tf_d">Digitized</button>
-    <button class="tf" data-tf="partial" data-tr="tf_p">Partial</button>
-    <button class="tf" data-tf="pending" data-tr="tf_pd">Pending</button>
-  </div>
-  <div class="tr-grid" id="trGrid"></div>
-</div>
-
-<!-- CATEGORIES -->
-<div class="page" id="pg-categories">
-  <div class="page-hdr">
-    <div class="page-lbl">📋 <span data-tr="cat_lbl">Module 02</span></div>
-    <h2 class="page-ttl" data-tr="cat_ttl">Hospital Waste Categories</h2>
-    <p class="page-desc" data-tr="cat_dsc">Not all hospital waste is infectious. Correct classification is foundational.</p>
-  </div>
-  <div class="grid" id="catGrid"></div>
-</div>
-
-<!-- EXPLORER -->
-<div class="page" id="pg-explorer">
-  <div class="page-hdr">
-    <div class="page-lbl">🏥 <span data-tr="exp_lbl">Module 06</span></div>
-    <h2 class="page-ttl" data-tr="exp_ttl">Hospital Environment Explorer</h2>
-    <p class="page-desc" data-tr="exp_dsc">Select any hospital area. Illustrative layout — not a real facility plan.</p>
-  </div>
-  <div class="dash">
-    <div id="hospMap" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-bottom:22px"></div>
-    <div id="roomDetail" style="background:linear-gradient(135deg,var(--g50),#fff);border-radius:var(--r-lg);padding:22px;border:1px solid var(--g200);min-height:160px"></div>
-  </div>
-</div>
-
-<!-- SEGREGATION -->
-<div class="page" id="pg-segregation">
-  <div class="page-hdr">
-    <div class="page-lbl">🎮 <span data-tr="seg_lbl">Module 03</span></div>
-    <h2 class="page-ttl" data-tr="seg_ttl">Segregation Learning Lab</h2>
-    <p class="page-desc" data-tr="seg_dsc">Choose difficulty, sort waste items, learn from immediate feedback.</p>
-  </div>
-  <div class="game">
-    <div class="game-top">
-      <div class="diff-tabs">
-        <button class="active" data-diff="beginner" data-tr="df_b">Beginner</button>
-        <button data-diff="intermediate" data-tr="df_i">Intermediate</button>
-        <button data-diff="advanced" data-tr="df_a">Advanced</button>
+    <div class="ppt-hero">
+      <div class="ppt-hero-ic">📊</div>
+      <h2 data-tr="ppt_h">Hospital Waste Managment PPT</h2>
+      <p data-tr="ppt_p">Hospital Infectious Waste Management Services in Tertiary-Care / Teaching Hospitals of Punjab. Complete slide-by-slide source of the portal content.</p>
+      <div class="ppt-meta">
+        <div class="ppt-meta-i">
+          <div class="l" data-tr="ppt_sl">Slides</div>
+          <div class="v" id="pptSlideCount">52</div>
+        </div>
+        <div class="ppt-meta-i">
+          <div class="l" data-tr="ppt_fm">Format</div>
+          <div class="v">PPTX</div>
+        </div>
+        <div class="ppt-meta-i">
+          <div class="l" data-tr="ppt_st">Status</div>
+          <div class="v" id="pptStatus">Ready</div>
+        </div>
       </div>
-      <div class="gstats">
-        <div class="gstat ok"><div class="n" id="gOk">0</div><div class="l" data-tr="g_ok">Correct</div></div>
-        <div class="gstat no"><div class="n" id="gNo">0</div><div class="l" data-tr="g_no">Wrong</div></div>
-        <div class="gstat st"><div class="n" id="gSt">0</div><div class="l" data-tr="g_st">Streak</div></div>
-      </div>
-      <button class="btn btn-o btn-sm" id="gReset">🔄 <span data-tr="g_reset">Reset</span></button>
-    </div>
-    <div class="timer-wrap" id="timerWrap"><div class="timer-fill" id="timerFill"></div></div>
-    <div class="item-area">
-      <div class="item-c">
-        <div class="em" id="itemEm">💉</div>
-        <div class="nm" id="itemNm">Used Needle</div>
-        <div class="hn" id="itemHint">Contaminated sharp instrument</div>
+      <div class="ppt-actions">
+        <button class="btn btn-g" id="pptOpen">📊 <span data-tr="ppt_open">Open Viewer</span></button>
+        <button class="btn btn-p" id="pptDl">⬇️ <span data-tr="ppt_dl">Download PPT</span></button>
+        <button class="btn btn-o" id="pptNew" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:#fff">🔗 <span data-tr="ppt_new">Open in New Tab</span></button>
       </div>
     </div>
-    <div class="bins" id="binsRow"></div>
-    <div class="fb" id="fbBox"><h4 id="fbT"></h4><p id="fbP"></p></div>
-    <div class="cent-act"><button class="btn btn-p" id="gNext">➡️ <span data-tr="g_next">Next Item</span></button></div>
-  </div>
-</div>
 
-<!-- JOURNEY -->
-<div class="page" id="pg-journey">
-  <div class="page-hdr">
-    <div class="page-lbl">🗺️ <span data-tr="jr_lbl">Module 06</span></div>
-    <h2 class="page-ttl" data-tr="jr_ttl">Waste Journey Simulator</h2>
-    <p class="page-desc" data-tr="jr_dsc">Step through the complete waste handling process.</p>
-  </div>
-  <div class="jrn">
-    <div class="jrn-steps" id="jSteps"></div>
-    <div class="jrn-det" id="jDetail"></div>
-    <div class="cent-act" style="margin-top:22px">
-      <button class="btn btn-o" id="jPrev">← <span data-tr="j_prev">Previous</span></button>
-      <button class="btn btn-p" id="jNext"><span data-tr="j_next">Next</span> →</button>
-    </div>
-  </div>
-</div>
-
-<!-- DASHBOARD -->
-<div class="page" id="pg-dashboard">
-  <div class="page-hdr">
-    <div class="page-lbl">📈 <span data-tr="d_lbl">Module 11</span></div>
-    <h2 class="page-ttl" data-tr="d_ttl">Demonstration Dashboard</h2>
-    <p class="page-desc" data-tr="d_dsc">Conceptual dashboard with synthetic demonstration data. Not connected to any live hospital system.</p>
-  </div>
-  <div class="dash">
-    <div class="dash-top">
-      <h3 data-tr="d_sub">Waste Collection & Disposal</h3>
-      <div class="dash-fl">
-        <button class="df active" data-r="daily" data-tr="d_d">Daily</button>
-        <button class="df" data-r="weekly" data-tr="d_w">Weekly</button>
-        <button class="df" data-r="monthly" data-tr="d_m">Monthly</button>
-        <button class="df" data-r="yearly" data-tr="d_y">Yearly</button>
+    <div class="ppt-info-grid">
+      <div class="ppt-info-card">
+        <div class="ic">📄</div>
+        <h4 data-tr="ppt_ic1">Format</h4>
+        <p data-tr="ppt_ic1d">Native PowerPoint PPTX format — the original file, unmodified.</p>
+      </div>
+      <div class="ppt-info-card">
+        <div class="ic">🔍</div>
+        <h4 data-tr="ppt_ic2">Viewer</h4>
+        <p data-tr="ppt_ic2d">In-browser viewer with slide thumbnails, or download for full visual fidelity.</p>
+      </div>
+      <div class="ppt-info-card">
+        <div class="ic">🔒</div>
+        <h4 data-tr="ppt_ic3">Integrity</h4>
+        <p data-tr="ppt_ic3d">Source presentation preserved unmodified. Text, figures, and slide order unchanged.</p>
+      </div>
+      <div class="ppt-info-card">
+        <div class="ic">📚</div>
+        <h4 data-tr="ppt_ic4">Traceability</h4>
+        <p data-tr="ppt_ic4d">Every slide mapped to its corresponding website learning module.</p>
       </div>
     </div>
-    <div class="kpis">
-      <div class="kpi"><div class="l" data-tr="k1">Total Collected (kg)</div><div class="v" id="kpiC">0</div><div class="c up">▲ 8.4%</div></div>
-      <div class="kpi"><div class="l" data-tr="k2">Total Disposed (kg)</div><div class="v" id="kpiD">0</div><div class="c up">▲ 6.1%</div></div>
-      <div class="kpi"><div class="l" data-tr="k3">Pending Handover</div><div class="v" id="kpiP">0</div><div class="c down">▼ 2.3%</div></div>
-      <div class="kpi"><div class="l" data-tr="k4">Data Quality Issues</div><div class="v" id="kpiM">0</div><div class="c down">▼ 1.0%</div></div>
+  </div>
+
+  <!-- TRACEABILITY -->
+  <div class="page" id="pg-trace">
+    <div class="page-hdr">
+      <div class="page-lbl">🔗 <span data-tr="tr_lbl">Slide Mapping</span></div>
+      <h2 class="page-ttl" data-tr="tr_ttl">52-Slide Traceability System</h2>
+      <p class="page-desc" data-tr="tr_dsc">Every original slide mapped to its website module. Click any card to jump to the corresponding page.</p>
     </div>
-    <div class="chart"><div class="bar-chart" id="barChart"></div></div>
-    <div class="legend">
-      <div class="legend-i"><div class="legend-d" style="background:var(--teal)"></div><span data-tr="lg_c">Collected (kg)</span></div>
-      <div class="legend-i"><div class="legend-d" style="background:var(--gold)"></div><span data-tr="lg_d">Disposed (kg)</span></div>
-    </div>
-  </div>
-</div>
-
-<!-- SPILLS -->
-<div class="page" id="pg-spills">
-  <div class="page-hdr">
-    <div class="page-lbl">🚨 <span data-tr="sp_lbl">Module 09</span></div>
-    <h2 class="page-ttl" data-tr="sp_ttl">Spill Management</h2>
-    <p class="page-desc" data-tr="sp_dsc">Different spills require different responses. Click any card to expand.</p>
-  </div>
-  <div class="spills" id="spillGrid"></div>
-</div>
-
-<!-- ROLES -->
-<div class="page" id="pg-roles">
-  <div class="page-hdr">
-    <div class="page-lbl">👥 <span data-tr="r_lbl">Module 12</span></div>
-    <h2 class="page-ttl" data-tr="r_ttl">Roles & Responsibilities</h2>
-    <p class="page-desc" data-tr="r_dsc">Division of responsibilities between hospital and provider.</p>
-  </div>
-  <div class="r-tabs">
-    <button class="rt active" data-role="hospital" data-tr="rt_h">🏥 Hospital</button>
-    <button class="rt" data-role="provider" data-tr="rt_p">🚛 Provider</button>
-    <button class="rt" data-role="shared" data-tr="rt_s">🤝 Shared</button>
-  </div>
-  <div class="roles" id="rolesGrid"></div>
-</div>
-
-<!-- QUIZ -->
-<div class="page" id="pg-quiz">
-  <div class="page-hdr">
-    <div class="page-lbl">📝 <span data-tr="q_lbl">Module 13</span></div>
-    <h2 class="page-ttl" data-tr="q_ttl">Knowledge Check</h2>
-    <p class="page-desc" data-tr="q_dsc">Test your understanding with immediate feedback.</p>
-  </div>
-  <div class="quiz">
-    <div class="qprog"><div class="qprog-f" id="qProg"></div></div>
-    <div id="qContent">
-      <div class="qtop">
-        <div class="qnum" id="qNum">Question 1 of 10</div>
-        <div class="qlive" id="qLive">Score: 0</div>
+    <div class="tr-top">
+      <div class="tr-search">
+        <span class="ic">🔍</span>
+        <input type="text" id="trSearch" placeholder="Search slides..." data-tr-ph="tr_ph">
       </div>
-      <div class="qq" id="qQ"></div>
-      <div class="qopts" id="qOpts"></div>
-      <div class="qexp" id="qExp"></div>
-      <div class="qfoot">
-        <button class="btn btn-o btn-sm" id="qPrev" disabled>← <span data-tr="q_prev">Previous</span></button>
-        <button class="btn btn-p btn-sm" id="qNext" disabled><span data-tr="q_next">Next</span> →</button>
+      <button class="tf active" data-tf="all" data-tr="tf_a">All</button>
+      <button class="tf" data-tf="digitized" data-tr="tf_d">Digitized</button>
+      <button class="tf" data-tf="partial" data-tr="tf_p">Partial</button>
+      <button class="tf" data-tf="pending" data-tr="tf_pd">Pending</button>
+    </div>
+    <div class="tr-grid" id="trGrid"></div>
+  </div>
+
+  <!-- CATEGORIES -->
+  <div class="page" id="pg-categories">
+    <div class="page-hdr">
+      <div class="page-lbl">📋 <span data-tr="cat_lbl">Module 02</span></div>
+      <h2 class="page-ttl" data-tr="cat_ttl">Understanding Hospital Waste Categories</h2>
+      <p class="page-desc" data-tr="cat_dsc">Not all hospital waste is infectious. Correct classification at the point of generation is the foundation of safe waste management.</p>
+    </div>
+    <div class="cat-grid" id="catGrid"></div>
+  </div>
+
+  <!-- HOSPITAL EXPLORER -->
+  <div class="page" id="pg-explorer">
+    <div class="page-hdr">
+      <div class="page-lbl">🏥 <span data-tr="exp_lbl">Module 06</span></div>
+      <h2 class="page-ttl" data-tr="exp_ttl">Hospital Environment Explorer</h2>
+      <p class="page-desc" data-tr="exp_dsc">Select any hospital area to discover its typical waste types, responsibilities, and common mistakes. Illustrative layout — not a real facility plan.</p>
+    </div>
+    <div class="exp-box">
+      <div class="exp-map" id="expMap"></div>
+      <div class="room-detail" id="roomDetail"></div>
+    </div>
+  </div>
+
+  <!-- SEGREGATION -->
+  <div class="page" id="pg-segregation">
+    <div class="page-hdr">
+      <div class="page-lbl">🎮 <span data-tr="seg_lbl">Module 03</span></div>
+      <h2 class="page-ttl" data-tr="seg_ttl">Advanced Segregation Learning Lab</h2>
+      <p class="page-desc" data-tr="seg_dsc">Choose difficulty, sort waste items into correct bins, learn from immediate feedback. Never rewarded for unsafe disposal.</p>
+    </div>
+    <div class="game">
+      <div class="game-top">
+        <div class="diff-tabs">
+          <button class="active" data-diff="beginner" data-tr="df_b">Beginner</button>
+          <button data-diff="intermediate" data-tr="df_i">Intermediate</button>
+          <button data-diff="advanced" data-tr="df_a">Advanced</button>
+        </div>
+        <div class="gstats">
+          <div class="gstat ok"><div class="n" id="gOk">0</div><div class="l" data-tr="g_ok">Correct</div></div>
+          <div class="gstat no"><div class="n" id="gNo">0</div><div class="l" data-tr="g_no">Wrong</div></div>
+          <div class="gstat st"><div class="n" id="gSt">0</div><div class="l" data-tr="g_st">Streak</div></div>
+        </div>
+        <button class="btn btn-o btn-sm" id="gReset">🔄 <span data-tr="g_reset">Reset</span></button>
+      </div>
+      <div class="timer-wrap" id="timerWrap">
+        <div class="timer-fill" id="timerFill"></div>
+      </div>
+      <div class="item-area">
+        <div class="item-c" id="itemC">
+          <div class="em" id="itemEm">💉</div>
+          <div class="nm" id="itemNm">Used Needle</div>
+          <div class="hn" id="itemHint">Contaminated sharp instrument</div>
+        </div>
+      </div>
+      <div class="bins" id="binsRow"></div>
+      <div class="fb" id="fbBox">
+        <h4 id="fbT"></h4>
+        <p id="fbP"></p>
+      </div>
+      <div class="cent-act">
+        <button class="btn btn-p" id="gNext">➡️ <span data-tr="g_next">Next Item</span></button>
       </div>
     </div>
-    <div id="qResult" class="qfinal" style="display:none">
-      <div class="big" id="qScore">0%</div>
-      <h3 style="color:var(--navy);margin-bottom:8px" data-tr="q_done">Assessment Complete!</h3>
-      <p style="color:var(--g500);margin-bottom:16px" id="qMsg"></p>
-      <div class="qreview" id="qReview"></div>
-      <button class="btn btn-p" id="qRetry">🔄 <span data-tr="q_retry">Retry Quiz</span></button>
+  </div>
+
+  <!-- JOURNEY -->
+  <div class="page" id="pg-journey">
+    <div class="page-hdr">
+      <div class="page-lbl">🗺️ <span data-tr="jr_lbl">Module 06</span></div>
+      <h2 class="page-ttl" data-tr="jr_ttl">Guided Waste Journey Simulator</h2>
+      <p class="page-desc" data-tr="jr_dsc">Step through the complete waste handling process. Each stage shows purpose, responsibility, documentation, safety, and failure points.</p>
+    </div>
+    <div class="jrn">
+      <div class="jrn-steps" id="jSteps"></div>
+      <div class="jrn-det" id="jDetail"></div>
+      <div class="cent-act" style="margin-top:22px">
+        <button class="btn btn-o" id="jPrev">← <span data-tr="j_prev">Previous Stage</span></button>
+        <button class="btn btn-p" id="jNext"><span data-tr="j_next">Next Stage</span> →</button>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- GLOSSARY -->
-<div class="page" id="pg-glossary">
-  <div class="page-hdr">
-    <div class="page-lbl">📖 <span data-tr="g_lbl">Module 14</span></div>
-    <h2 class="page-ttl" data-tr="g_ttl">English–Urdu Glossary</h2>
-    <p class="page-desc" data-tr="g_dsc">Bilingual terminology. Click any term to bookmark.</p>
+  <!-- DASHBOARD -->
+  <div class="page" id="pg-dashboard">
+    <div class="page-hdr">
+      <div class="page-lbl">📈 <span data-tr="d_lbl">Module 11</span></div>
+      <h2 class="page-ttl" data-tr="d_ttl">Digital Monitoring Dashboard</h2>
+      <p class="page-desc" data-tr="d_dsc">Conceptual dashboard showing how hospital waste metrics could be visualized. All data is synthetic demonstration data.</p>
+    </div>
+    <div class="dash">
+      <div class="dash-top">
+        <h3 data-tr="d_sub">Waste Collection & Disposal Overview</h3>
+        <div class="dash-fl">
+          <button class="df active" data-r="daily" data-tr="d_d">Daily</button>
+          <button class="df" data-r="weekly" data-tr="d_w">Weekly</button>
+          <button class="df" data-r="monthly" data-tr="d_m">Monthly</button>
+          <button class="df" data-r="yearly" data-tr="d_y">Yearly</button>
+        </div>
+      </div>
+      <div class="kpis">
+        <div class="kpi">
+          <div class="l" data-tr="k1">Total Collected (kg)</div>
+          <div class="v" id="kpiC">0</div>
+          <div class="c up">▲ 8.4%</div>
+        </div>
+        <div class="kpi">
+          <div class="l" data-tr="k2">Total Disposed (kg)</div>
+          <div class="v" id="kpiD">0</div>
+          <div class="c up">▲ 6.1%</div>
+        </div>
+        <div class="kpi">
+          <div class="l" data-tr="k3">Pending Handover</div>
+          <div class="v" id="kpiP">0</div>
+          <div class="c down">▼ 2.3%</div>
+        </div>
+        <div class="kpi">
+          <div class="l" data-tr="k4">Data Quality Issues</div>
+          <div class="v" id="kpiM">0</div>
+          <div class="c down">▼ 1.0%</div>
+        </div>
+      </div>
+      <div class="chart">
+        <div class="bar-chart" id="barChart"></div>
+      </div>
+      <div class="legend">
+        <div class="legend-i">
+          <div class="legend-d" style="background:var(--teal)"></div>
+          <span data-tr="lg_c">Collected (kg)</span>
+        </div>
+        <div class="legend-i">
+          <div class="legend-d" style="background:var(--gold)"></div>
+          <span data-tr="lg_d">Disposed (kg)</span>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="gsearch"><span class="ic">🔍</span><input type="text" id="gSearch" placeholder="Search terms..." data-tr-ph="g_ph"></div>
-  <div class="ggrid" id="glossGrid"></div>
-</div>
 
-<!-- VERIFY -->
-<div class="page" id="pg-verify">
-  <div class="page-hdr">
-    <div class="page-lbl">✅ <span data-tr="v_lbl">Module 15</span></div>
-    <h2 class="page-ttl" data-tr="v_ttl">Source Verification Register</h2>
-    <p class="page-desc" data-tr="v_dsc">Transparency about claim verification status.</p>
+  <!-- WHAT-IF -->
+  <div class="page" id="pg-whatif">
+    <div class="page-hdr">
+      <div class="page-lbl">🧪 <span data-tr="w_lbl">Module 08</span></div>
+      <h2 class="page-ttl" data-tr="w_ttl">What-If Scenario Explorer</h2>
+      <p class="page-desc" data-tr="w_dsc">Adjust assumptions and see how segregation errors affect calculated demonstration indicators. Formula and units shown for every value.</p>
+    </div>
+    <div class="whatif">
+      <h3 data-tr="w_sub">Scenario Assumptions</h3>
+      <p class="sub" data-tr="w_sub2">Move the sliders to change the scenario. All values are calculated from your assumptions — not measured hospital data.</p>
+
+      <div class="slider-g">
+        <div class="slider-h">
+          <span class="slider-l" data-tr="w_s1">Incorrectly Segregated Waste</span>
+          <span class="slider-v" id="v1">15%</span>
+        </div>
+        <input type="range" class="slider-i" id="sl1" min="0" max="50" value="15">
+      </div>
+
+      <div class="slider-g">
+        <div class="slider-h">
+          <span class="slider-l" data-tr="w_s2">Total Waste Generated (kg/day)</span>
+          <span class="slider-v" id="v2">500 kg</span>
+        </div>
+        <input type="range" class="slider-i" id="sl2" min="100" max="2000" value="500" step="50">
+      </div>
+
+      <div class="slider-g">
+        <div class="slider-h">
+          <span class="slider-l" data-tr="w_s3">Unrecorded Collections / day</span>
+          <span class="slider-v" id="v3">3</span>
+        </div>
+        <input type="range" class="slider-i" id="sl3" min="0" max="20" value="3">
+      </div>
+
+      <div class="wi-results">
+        <div class="wi-r">
+          <div class="l" data-tr="w_r1">Hazardous Waste Load</div>
+          <div class="v" id="r1">100</div>
+          <div class="u">kg/day</div>
+        </div>
+        <div class="wi-r">
+          <div class="l" data-tr="w_r2">Missegregated Amount</div>
+          <div class="v" id="r2">75</div>
+          <div class="u">kg/day</div>
+        </div>
+        <div class="wi-r">
+          <div class="l" data-tr="w_r3">Record Completeness</div>
+          <div class="v" id="r3">70</div>
+          <div class="u">%</div>
+        </div>
+        <div class="wi-r">
+          <div class="l" data-tr="w_r4">Extra Treatment Load</div>
+          <div class="v" id="r4">75</div>
+          <div class="u">kg/day</div>
+        </div>
+      </div>
+
+      <div class="wi-formula">
+        Hazardous = Total × 20% (baseline) + Missegregated<br>
+        Completeness = (1 − Unrecorded / Total Collections) × 100
+      </div>
+    </div>
   </div>
-  <div style="overflow-x:auto">
-    <table class="vtable">
-      <thead><tr>
-        <th data-tr="v_claim">Claim</th>
-        <th data-tr="v_source">Source</th>
-        <th data-tr="v_status">Status</th>
-        <th data-tr="v_notes">Notes</th>
-      </tr></thead>
-      <tbody id="verBody"></tbody>
-    </table>
+
+  <!-- SPILLS -->
+  <div class="page" id="pg-spills">
+    <div class="page-hdr">
+      <div class="page-lbl">🚨 <span data-tr="sp_lbl">Module 09</span></div>
+      <h2 class="page-ttl" data-tr="sp_ttl">Spill Management & Emergency Response</h2>
+      <p class="page-desc" data-tr="sp_dsc">Different spills require different responses. Click any card to expand the step-by-step procedure. Always follow your hospital's approved SOP.</p>
+    </div>
+    <div class="spills" id="spillGrid"></div>
   </div>
-</div>
+
+  <!-- ROLES -->
+  <div class="page" id="pg-roles">
+    <div class="page-hdr">
+      <div class="page-lbl">👥 <span data-tr="r_lbl">Module 12</span></div>
+      <h2 class="page-ttl" data-tr="r_ttl">Roles & Responsibilities Matrix</h2>
+      <p class="page-desc" data-tr="r_dsc">Clear division of responsibilities between hospital and service provider. Source-derived — confirm against applicable contracts.</p>
+    </div>
+    <div class="r-tabs">
+      <button class="rt active" data-role="hospital" data-tr="rt_h">🏥 Hospital</button>
+      <button class="rt" data-role="provider" data-tr="rt_p">🚛 Service Provider</button>
+      <button class="rt" data-role="shared" data-tr="rt_s">🤝 Shared</button>
+    </div>
+    <div class="roles" id="rolesGrid"></div>
+  </div>
+
+  <!-- QUIZ -->
+  <div class="page" id="pg-quiz">
+    <div class="page-hdr">
+      <div class="page-lbl">📝 <span data-tr="q_lbl">Module 13</span></div>
+      <h2 class="page-ttl" data-tr="q_ttl">Knowledge Check Assessment</h2>
+      <p class="page-desc" data-tr="q_dsc">Test your understanding with immediate feedback and detailed explanations.</p>
+    </div>
+    <div class="quiz">
+      <div class="qprog"><div class="qprog-f" id="qProg"></div></div>
+      <div id="qContent">
+        <div class="qtop">
+          <div class="qnum" id="qNum">Question 1 of 10</div>
+          <div class="qlive" id="qLive">Score: 0</div>
+        </div>
+        <div class="qq" id="qQ"></div>
+        <div class="qopts" id="qOpts"></div>
+        <div class="qexp" id="qExp"></div>
+        <div class="qfoot">
+          <button class="btn btn-o btn-sm" id="qPrev" disabled>← <span data-tr="q_prev">Previous</span></button>
+          <button class="btn btn-p btn-sm" id="qNext" disabled><span data-tr="q_next">Next</span> →</button>
+        </div>
+      </div>
+      <div id="qResult" class="qfinal" style="display:none">
+        <div class="big" id="qScoreBig">0%</div>
+        <h3 style="color:var(--navy);margin-bottom:8px" data-tr="q_done">Assessment Complete!</h3>
+        <p style="color:var(--g500);margin-bottom:16px" id="qMsg"></p>
+        <div class="qreview" id="qReview"></div>
+        <button class="btn btn-p" id="qRetry">🔄 <span data-tr="q_retry">Retry Quiz</span></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- GLOSSARY -->
+  <div class="page" id="pg-glossary">
+    <div class="page-hdr">
+      <div class="page-lbl">📖 <span data-tr="g_lbl">Module 14</span></div>
+      <h2 class="page-ttl" data-tr="g_ttl">English–Urdu Glossary</h2>
+      <p class="page-desc" data-tr="g_dsc">Bilingual terminology for hospital infectious waste management. Click any term to bookmark it for review.</p>
+    </div>
+    <div class="gsearch">
+      <span class="ic">🔍</span>
+      <input type="text" id="gSearch" placeholder="Search terms..." data-tr-ph="g_ph">
+    </div>
+    <div class="ggrid" id="glossGrid"></div>
+  </div>
+
+  <!-- VERIFY -->
+  <div class="page" id="pg-verify">
+    <div class="page-hdr">
+      <div class="page-lbl">✅ <span data-tr="v_lbl">Module 15</span></div>
+      <h2 class="page-ttl" data-tr="v_ttl">Source Verification Register</h2>
+      <p class="page-desc" data-tr="v_dsc">Transparency about which claims are verified, pending verification, or source-only. Always confirm against applicable official rules and hospital SOPs.</p>
+    </div>
+    <div style="overflow-x:auto">
+      <table class="vtable">
+        <thead>
+          <tr>
+            <th data-tr="v_claim">Claim / Instruction</th>
+            <th data-tr="v_source">Source</th>
+            <th data-tr="v_status">Status</th>
+            <th data-tr="v_notes">Notes</th>
+          </tr>
+        </thead>
+        <tbody id="verBody"></tbody>
+      </table>
+    </div>
+  </div>
 
 </main>
 
 <!-- FOOTER -->
 <footer class="ftr">
   <div class="ftr-in">
-    <span data-tr="ftr_c">© 2025 Hospital Infectious Waste Management Portal · Educational Use</span>
-    <span data-tr="ftr_d">All dashboard data is synthetic demonstration data.</span>
+    <div>
+      <h4 data-tr="ftr_about">About This Portal</h4>
+      <p data-tr="ftr_about_d">An advanced educational digital learning portal for hospital infectious waste management in tertiary-care and teaching hospitals of Punjab, Pakistan. Built to support training, compliance awareness, and safe practices.</p>
+    </div>
+    <div>
+      <h4 data-tr="ftr_modules">Learning Modules</h4>
+      <ul>
+        <li><a onclick="goTo('ppt')" data-tr="fm1">Original Presentation</a></li>
+        <li><a onclick="goTo('trace')" data-tr="fm2">Slide Traceability</a></li>
+        <li><a onclick="goTo('segregation')" data-tr="fm3">Segregation Lab</a></li>
+        <li><a onclick="goTo('journey')" data-tr="fm4">Journey Simulator</a></li>
+        <li><a onclick="goTo('dashboard')" data-tr="fm5">Dashboard</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 data-tr="ftr_refs">Key References</h4>
+      <ul>
+        <li><a>Punjab HWM Rules, 2014</a></li>
+        <li><a>WHO Safe Management of Wastes</a></li>
+        <li><a onclick="goTo('verify')" data-tr="fr3">Verification Register</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ftr-bot">
+    <span data-tr="ftr_c">© 2025 Hospital Infectious Waste Management Digital Portal · Educational Use</span>
+    <span data-tr="ftr_d">All dashboard data is synthetic demonstration data — not live hospital records.</span>
   </div>
 </footer>
 
 <!-- SEARCH MODAL -->
-<div class="modal" id="searchModal">
+<div class="modal" id="searchModal" role="dialog" aria-labelledby="searchTitle">
   <div class="mpanel">
     <div class="mhead">
-      <h3 data-tr="search_t">🔍 Search</h3>
-      <button class="mclose" onclick="closeModal('searchModal')">✕</button>
+      <h3 id="searchTitle" data-tr="search_t">🔍 Search</h3>
+      <button class="mclose" onclick="closeModal('searchModal')" aria-label="Close">✕</button>
     </div>
     <div class="mbody">
-      <input type="text" id="searchInput" placeholder="Search..." data-tr-ph="search_ph" style="width:100%;padding:12px 16px;border-radius:var(--r-md);border:2px solid var(--g200);font-size:.9rem;font-family:inherit;margin-bottom:14px">
+      <input type="text" id="searchInput" placeholder="Search..." data-tr-ph="search_ph" style="width:100%;padding:12px 16px;border-radius:var(--r-md);border:2px solid var(--g200);font-size:.9rem;margin-bottom:14px">
       <div id="searchResults"></div>
     </div>
   </div>
 </div>
 
 <!-- PPT VIEWER MODAL -->
-<div class="pmodal" id="pptModal">
+<div class="pmodal" id="pptModal" role="dialog" aria-labelledby="pptModalTitle">
   <div class="pm-top">
     <div class="t">📊 <span id="pptModalTitle" data-tr="ppt_modal_t">Original Presentation</span></div>
     <div class="a">
@@ -1157,1073 +1970,225 @@ body.ur .hero h1,body.ur .page-ttl,body.ur .card h3,body.ur .rcard h4{line-heigh
   </div>
 </div>
 
-<!-- TOAST -->
-<div class="toast" id="toast"></div>
+<!-- PRESENTER MODE MODAL -->
+<div class="pmodal" id="presenterModal" role="dialog" aria-labelledby="presenterTitle">
+  <div class="pm-top">
+    <div class="t">🎬 <span id="presenterTitle" data-tr="pres_title">Presenter Mode</span> · <span id="presCounter">1 / 10</span></div>
+    <div class="a">
+      <button class="pbtn" id="presPrev">← <span data-tr="pres_prev">Prev</span></button>
+      <button class="pbtn" id="presNext"><span data-tr="pres_next">Next</span> →</button>
+      <button class="pbtn red" onclick="closePresenter()">✕ <span data-tr="pres_exit">Exit</span></button>
+    </div>
+  </div>
+  <div class="pm-body">
+    <div class="pm-main" id="presContent"></div>
+  </div>
+</div>
+
+<!-- BACK TOP & TOAST -->
+<button class="back-top" id="backTop" aria-label="Back to top">↑</button>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
-/* ═══════════════════════════════════════════════════════════
-   ⚙️  CONFIG — EDIT THIS FOR YOUR PPT
-   ═══════════════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════════════
+   ⚙️ CONFIG — EDIT THIS FOR YOUR PPT
+   ═══════════════════════════════════════════════════════════════ */
 const CONFIG = {
-  // OPTION 1: Local file (same folder as this HTML)
   pptFile: 'Hospital Waste Managment PPT.pptx',
-
-  // OPTION 2: External hosted URL (for files > 100 MB)
-  // Set this to a direct-download URL. Leave empty to use local file.
-  // Example: 'https://example.com/presentation.pptx'
   pptHostedUrl: '',
-
-  // Number of slides in your PPTX
   slideCount: 52
 };
 
-/* ═══════════════════════════════════════════════════════════
+/* ═══════════════════════════════════════════════════════════════
    TRANSLATIONS
-   ═══════════════════════════════════════════════════════════ */
+   ═══════════════════════════════════════════════════════════════ */
 const TR = {
   en: {
-    logo_main:"Hospital Waste Management", logo_sub:"Punjab Tertiary-Care Portal",
+    logo_main:"Hospital Waste Management", logo_sub:"Punjab Tertiary-Care Digital Portal",
     nav_home:"Home", nav_ppt:"Original PPT", nav_trace:"Slide Map", nav_cat:"Categories",
     nav_exp:"Hospital Map", nav_seg:"Segregation", nav_j:"Journey", nav_d:"Dashboard",
-    nav_s:"Spills", nav_r:"Roles", nav_q:"Quiz", nav_g:"Glossary", nav_v:"Verify",
+    nav_w:"What-If", nav_s:"Spills", nav_r:"Roles", nav_q:"Quiz", nav_g:"Glossary", nav_v:"Verify",
     hero_bdg:"Punjab HWM Rules, 2014 · WHO Guidance",
     hero_t1:"Hospital Infectious Waste Management", hero_t2:"Digital Learning Portal",
-    hero_p:"An advanced, interactive platform for tertiary-care and teaching hospitals of Punjab. Original presentation integrated with simulations, dashboards, and traceability.",
-    cta_seg:"Segregation Lab", cta_ppt:"Original PPT",
+    hero_p:"An advanced, cinematic, interactive platform for tertiary-care and teaching hospitals of Punjab, Pakistan. Original presentation integrated with simulations, dashboards, decision trees, and traceability.",
+    cta_seg:"Segregation Lab", cta_ppt:"Original PPT", cta_present:"Presenter Mode",
     demo_bn:"DEMO DATA — NOT LIVE HOSPITAL RECORDS · Educational simulation only",
-    ti1_t:"Original Presentation", ti1_d:"View, download, or open the complete original PPTX.",
-    ti2_t:"Slide Traceability", ti2_d:"All slides mapped to website modules.",
-    ti3_t:"Segregation Lab", ti3_d:"Interactive game with difficulty levels.",
-    ti4_t:"Waste Journey", ti4_d:"Step-by-step process simulator.",
-    ti5_t:"Dashboard", ti5_d:"Demo dashboard with synthetic data.",
-    ti6_t:"Quiz", ti6_d:"Test your understanding with 10 questions.",
+    s1:"Slides Traced", s2:"Learning Modules", s3:"Waste Categories", s4:"% Interactive",
+    ti1_t:"Original Presentation", ti1_d:"View, download, or open the complete original PPTX that this portal is based on.",
+    ti2_t:"Slide Traceability", ti2_d:"All 52 original slides mapped to website modules with verification status.",
+    ti3_t:"Segregation Lab", ti3_d:"Interactive waste-sorting game with three difficulty levels.",
+    ti4_t:"Waste Journey", ti4_d:"Step-by-step simulator of the complete waste handling process.",
+    ti5_t:"Dashboard", ti5_d:"Interactive demonstration dashboard with synthetic data.",
+    ti6_t:"Knowledge Quiz", ti6_d:"Test your understanding with 10 scenario-based questions.",
+    ti7_t:"Waste Categories", ti7_d:"Explore all hospital waste categories with examples and hazards.",
+    ti8_t:"Hospital Explorer", ti8_d:"Interactive hospital areas with waste types and responsibilities.",
+    ti9_t:"What-If", ti9_d:"Adjust assumptions and see calculated scenario outcomes.",
+    ti10_t:"Spill Response", ti10_d:"Biological, chemical, and mercury spill procedures.",
     ppt_lbl:"Original Source", ppt_ttl:"Original Presentation",
-    ppt_dsc:"The complete original PowerPoint file that this portal is based on.",
-    cfg_t:"Configuration", cfg_p:"Place your file Hospital Waste Managment PPT.pptx in the same folder as this HTML, or edit the CONFIG variable in the script.", cfg_path:"Expected path:",
+    ppt_dsc:"The complete original PowerPoint file that this portal is based on. View, download, or open in a new tab.",
+    cfg_t:"Configuration", cfg_p:"Place your file Hospital Waste Managment PPT.pptx in the same folder as this HTML, or edit the CONFIG variable at the top of the script.",
+    cfg_path:"Expected path:", cfg_status:"Status:",
     ppt_h:"Hospital Waste Managment PPT",
-    ppt_p:"Hospital Infectious Waste Management Services in Tertiary-Care / Teaching Hospitals of Punjab.",
+    ppt_p:"Hospital Infectious Waste Management Services in Tertiary-Care / Teaching Hospitals of Punjab. Complete slide-by-slide source of the portal content.",
     ppt_sl:"Slides", ppt_fm:"Format", ppt_st:"Status",
     ppt_open:"Open Viewer", ppt_dl:"Download PPT", ppt_new:"Open in New Tab",
+    ppt_ic1:"Format", ppt_ic1d:"Native PowerPoint PPTX format — the original file, unmodified.",
+    ppt_ic2:"Viewer", ppt_ic2d:"In-browser viewer with slide thumbnails, or download for full visual fidelity.",
+    ppt_ic3:"Integrity", ppt_ic3d:"Source presentation preserved unmodified. Text, figures, and slide order unchanged.",
+    ppt_ic4:"Traceability", ppt_ic4d:"Every slide mapped to its corresponding website learning module.",
     ppt_modal_t:"Original Presentation", ppt_new2:"New Tab", ppt_close:"Close",
     pm_view_t:"Presentation Viewer", pm_view_p:"Click any slide thumbnail on the right to preview, or use the buttons above to download or open the full file.",
     pm_note_t:"Note:", pm_note:"For full visual fidelity, download the PPTX or open it in PowerPoint, Google Slides, or LibreOffice Impress.",
     slides_nav:"Slide Navigation",
-    tr_lbl:"Slide Mapping", tr_ttl:"Slide Traceability",
-    tr_dsc:"Every slide mapped to its website module. Click any card to jump.",
+    pres_title:"Presenter Mode", pres_prev:"Prev", pres_next:"Next", pres_exit:"Exit",
+    tr_lbl:"Slide Mapping", tr_ttl:"52-Slide Traceability System",
+    tr_dsc:"Every original slide mapped to its website module. Click any card to jump to the corresponding page.",
     tr_ph:"Search slides...", tf_a:"All", tf_d:"Digitized", tf_p:"Partial", tf_pd:"Pending",
-    cat_lbl:"Module 02", cat_ttl:"Hospital Waste Categories",
-    cat_dsc:"Not all hospital waste is infectious. Correct classification is foundational.",
+    cat_lbl:"Module 02", cat_ttl:"Understanding Hospital Waste Categories",
+    cat_dsc:"Not all hospital waste is infectious. Correct classification at the point of generation is the foundation of safe waste management.",
     exp_lbl:"Module 06", exp_ttl:"Hospital Environment Explorer",
-    exp_dsc:"Select any hospital area. Illustrative layout — not a real facility plan.",
-    seg_lbl:"Module 03", seg_ttl:"Segregation Learning Lab",
-    seg_dsc:"Choose difficulty, sort waste items, learn from immediate feedback.",
+    exp_dsc:"Select any hospital area to discover its typical waste types, responsibilities, and common mistakes. Illustrative layout — not a real facility plan.",
+    seg_lbl:"Module 03", seg_ttl:"Advanced Segregation Learning Lab",
+    seg_dsc:"Choose difficulty, sort waste items into correct bins, learn from immediate feedback. Never rewarded for unsafe disposal.",
     df_b:"Beginner", df_i:"Intermediate", df_a:"Advanced",
     g_ok:"Correct", g_no:"Wrong", g_st:"Streak", g_reset:"Reset", g_next:"Next Item",
-    jr_lbl:"Module 06", jr_ttl:"Waste Journey Simulator",
-    jr_dsc:"Step through the complete waste handling process.",
-    j_prev:"Previous", j_next:"Next",
-    d_lbl:"Module 11", d_ttl:"Demonstration Dashboard",
-    d_dsc:"Conceptual dashboard with synthetic demonstration data. Not connected to any live hospital system.",
-    d_sub:"Waste Collection & Disposal",
+    jr_lbl:"Module 06", jr_ttl:"Guided Waste Journey Simulator",
+    jr_dsc:"Step through the complete waste handling process. Each stage shows purpose, responsibility, documentation, safety, and failure points.",
+    j_prev:"Previous Stage", j_next:"Next Stage",
+    d_lbl:"Module 11", d_ttl:"Digital Monitoring Dashboard",
+    d_dsc:"Conceptual dashboard showing how hospital waste metrics could be visualized. All data is synthetic demonstration data.",
+    d_sub:"Waste Collection & Disposal Overview",
     d_d:"Daily", d_w:"Weekly", d_m:"Monthly", d_y:"Yearly",
     k1:"Total Collected (kg)", k2:"Total Disposed (kg)", k3:"Pending Handover", k4:"Data Quality Issues",
     lg_c:"Collected (kg)", lg_d:"Disposed (kg)",
-    sp_lbl:"Module 09", sp_ttl:"Spill Management",
-    sp_dsc:"Different spills require different responses. Click any card to expand.",
-    r_lbl:"Module 12", r_ttl:"Roles & Responsibilities",
-    r_dsc:"Division of responsibilities between hospital and provider.",
-    rt_h:"🏥 Hospital", rt_p:"🚛 Provider", rt_s:"🤝 Shared",
-    q_lbl:"Module 13", q_ttl:"Knowledge Check",
-    q_dsc:"Test your understanding with immediate feedback.",
+    w_lbl:"Module 08", w_ttl:"What-If Scenario Explorer",
+    w_dsc:"Adjust assumptions and see how segregation errors affect calculated demonstration indicators. Formula and units shown for every value.",
+    w_sub:"Scenario Assumptions", w_sub2:"Move the sliders to change the scenario. All values are calculated from your assumptions — not measured hospital data.",
+    w_s1:"Incorrectly Segregated Waste", w_s2:"Total Waste Generated (kg/day)", w_s3:"Unrecorded Collections / day",
+    w_r1:"Hazardous Waste Load", w_r2:"Missegregated Amount", w_r3:"Record Completeness", w_r4:"Extra Treatment Load",
+    sp_lbl:"Module 09", sp_ttl:"Spill Management & Emergency Response",
+    sp_dsc:"Different spills require different responses. Click any card to expand the step-by-step procedure. Always follow your hospital's approved SOP.",
+    r_lbl:"Module 12", r_ttl:"Roles & Responsibilities Matrix",
+    r_dsc:"Clear division of responsibilities between hospital and service provider. Source-derived — confirm against applicable contracts.",
+    rt_h:"🏥 Hospital", rt_p:"🚛 Service Provider", rt_s:"🤝 Shared",
+    q_lbl:"Module 13", q_ttl:"Knowledge Check Assessment",
+    q_dsc:"Test your understanding with immediate feedback and detailed explanations.",
     q_prev:"Previous", q_next:"Next", q_done:"Assessment Complete!", q_retry:"Retry Quiz",
     g_lbl:"Module 14", g_ttl:"English–Urdu Glossary",
-    g_dsc:"Bilingual terminology. Click any term to bookmark.",
+    g_dsc:"Bilingual terminology for hospital infectious waste management. Click any term to bookmark it for review.",
     g_ph:"Search terms...",
     v_lbl:"Module 15", v_ttl:"Source Verification Register",
-    v_dsc:"Transparency about claim verification status.",
-    v_claim:"Claim", v_source:"Source", v_status:"Status", v_notes:"Notes",
-    ftr_c:"© 2025 Hospital Infectious Waste Management Portal · Educational Use",
-    ftr_d:"All dashboard data is synthetic demonstration data.",
+    v_dsc:"Transparency about which claims are verified, pending verification, or source-only. Always confirm against applicable official rules and hospital SOPs.",
+    v_claim:"Claim / Instruction", v_source:"Source", v_status:"Status", v_notes:"Notes",
+    ftr_about:"About This Portal",
+    ftr_about_d:"An advanced educational digital learning portal for hospital infectious waste management in tertiary-care and teaching hospitals of Punjab, Pakistan. Built to support training, compliance awareness, and safe practices.",
+    ftr_modules:"Learning Modules", fm1:"Original Presentation", fm2:"Slide Traceability", fm3:"Segregation Lab", fm4:"Journey Simulator", fm5:"Dashboard",
+    ftr_refs:"Key References", fr3:"Verification Register",
+    ftr_c:"© 2025 Hospital Infectious Waste Management Digital Portal · Educational Use",
+    ftr_d:"All dashboard data is synthetic demonstration data — not live hospital records.",
     search_t:"🔍 Search", search_ph:"Search slides, modules, terms...",
     toast_bm:"Bookmarked!", toast_bmr:"Bookmark removed",
     toast_ppt_miss:"PPT file not found. See Configuration.",
     toast_ppt_op:"Opening presentation...", toast_dl:"Download starting...",
-    toast_status_ready:"Ready", toast_status_missing:"Not configured"
+    toast_ready:"Ready", toast_missing:"Not configured"
   },
   ur: {
-    logo_main:"ہسپتال ویسٹ مینجمنٹ", logo_sub:"پنجاب ترتیری کیئر پورٹل",
+    logo_main:"ہسپتال ویسٹ مینجمنٹ", logo_sub:"پنجاب ترتیری کیئر ڈیجیٹل پورٹل",
     nav_home:"ہوم", nav_ppt:"اصل PPT", nav_trace:"سلائیڈ نقشہ", nav_cat:"اقسام",
     nav_exp:"ہسپتال نقشہ", nav_seg:"علیحدگی", nav_j:"سفر", nav_d:"ڈیش بورڈ",
-    nav_s:"اسپل", nav_r:"ذمہ داریاں", nav_q:"کوئز", nav_g:"اصطلاحات", nav_v:"تصدیق",
+    nav_w:"کیا ہو اگر", nav_s:"اسپل", nav_r:"ذمہ داریاں", nav_q:"کوئز", nav_g:"اصطلاحات", nav_v:"تصدیق",
     hero_bdg:"پنجاب HWM رولز 2014 · WHO رہنمائی",
     hero_t1:"ہسپتال متعدی ویسٹ مینجمنٹ", hero_t2:"ڈیجیٹل لرننگ پورٹل",
-    hero_p:"پنجاب کے ترتیری کیئر اور تدریسی ہسپتالوں کے لیے ایک جدید انٹرایکٹو پلیٹ فارم۔ اصل پریزنٹیشن سمیولیشن، ڈیش بورڈ اور ٹریس ایبلٹی کے ساتھ شامل ہے۔",
-    cta_seg:"علیحدگی لیب", cta_ppt:"اصل PPT",
+    hero_p:"پنجاب، پاکستان کے ترتیری کیئر اور تدریسی ہسپتالوں کے لیے ایک جدید، سنیماٹک، انٹرایکٹو پلیٹ فارم۔ اصل پریزنٹیشن سمیولیشن، ڈیش بورڈ، فیصلہ درخت اور ٹریس ایبلٹی کے ساتھ شامل ہے۔",
+    cta_seg:"علیحدگی لیب", cta_ppt:"اصل PPT", cta_present:"پریزنٹر موڈ",
     demo_bn:"ڈیمو ڈیٹا — لائیو ہسپتال ریکارڈ نہیں · صرف تعلیمی سمیولیشن",
-    ti1_t:"اصل پریزنٹیشن", ti1_d:"مکمل اصل PPTX دیکھیں، ڈاؤن لوڈ کریں یا کھولیں۔",
-    ti2_t:"سلائیڈ ٹریس ایبلٹی", ti2_d:"تمام سلائیڈز ویب سائٹ ماڈیولز سے منسلک۔",
-    ti3_t:"علیحدگی لیب", ti3_d:"مشکل کی سطحوں کے ساتھ انٹرایکٹو گیم۔",
-    ti4_t:"ویسٹ سفر", ti4_d:"مرحلہ وار عمل سمیولیٹر۔",
-    ti5_t:"ڈیش بورڈ", ti5_d:"مصنوعی ڈیٹا کے ساتھ ڈیمو ڈیش بورڈ۔",
-    ti6_t:"کوئز", ti6_d:"10 سوالات کے ساتھ اپنی سمجھ آزمائیں۔",
+    s1:"ٹریس شدہ سلائیڈز", s2:"لرننگ ماڈیولز", s3:"ویسٹ اقسام", s4:"% انٹرایکٹو",
+    ti1_t:"اصل پریزنٹیشن", ti1_d:"مکمل اصل PPTX دیکھیں، ڈاؤن لوڈ کریں یا نئی ٹیب میں کھولیں۔",
+    ti2_t:"سلائیڈ ٹریس ایبلٹی", ti2_d:"تمام 52 اصل سلائیڈز ویب سائٹ ماڈیولز سے منسلک، تصدیق کی حالت کے ساتھ۔",
+    ti3_t:"علیحدگی لیب", ti3_d:"تین مشکل کی سطحوں کے ساتھ انٹرایکٹو ویسٹ ترتیب گیم۔",
+    ti4_t:"ویسٹ سفر", ti4_d:"مکمل ویسٹ ہینڈلنگ عمل کا مرحلہ وار سمیولیٹر۔",
+    ti5_t:"ڈیش بورڈ", ti5_d:"مصنوعی ڈیٹا کے ساتھ انٹرایکٹو ڈیمو ڈیش بورڈ۔",
+    ti6_t:"علمی کوئز", ti6_d:"10 منظر نامہ سوالات کے ساتھ اپنی سمجھ آزمائیں۔",
+    ti7_t:"ویسٹ اقسام", ti7_d:"مثالوں اور خطرات کے ساتھ تمام ہسپتال ویسٹ اقسام۔",
+    ti8_t:"ہسپتال ایکسپلورر", ti8_d:"ویسٹ اقسام اور ذمہ داریوں کے ساتھ ہسپتال کے علاقے۔",
+    ti9_t:"کیا ہو اگر", ti9_d:"مفروضات ایڈجسٹ کریں اور شمار شدہ نتائج دیکھیں۔",
+    ti10_t:"اسپل ردعمل", ti10_d:"حیاتیاتی، کیمیائی اور مرکری اسپل طریقہ کار۔",
     ppt_lbl:"اصل ماخذ", ppt_ttl:"اصل پریزنٹیشن",
-    ppt_dsc:"مکمل اصل پاورپوائنٹ فائل جس پر یہ پورٹل مبنی ہے۔",
-    cfg_t:"ترتیب", cfg_p:"اپنی فائل Hospital Waste Managment PPT.pptx کو اسی فولڈر میں رکھیں جہاں یہ HTML ہے، یا اسکرپٹ میں CONFIG متغیر ایڈٹ کریں۔", cfg_path:"متوقع راستہ:",
+    ppt_dsc:"مکمل اصل پاورپوائنٹ فائل جس پر یہ پورٹل مبنی ہے۔ دیکھیں، ڈاؤن لوڈ کریں یا نئی ٹیب میں کھولیں۔",
+    cfg_t:"ترتیب", cfg_p:"اپنی فائل Hospital Waste Managment PPT.pptx کو اسی فولڈر میں رکھیں جہاں یہ HTML ہے، یا اسکرپٹ کے اوپر CONFIG متغیر ایڈٹ کریں۔",
+    cfg_path:"متوقع راستہ:", cfg_status:"حالت:",
     ppt_h:"ہسپتال ویسٹ مینجمنٹ PPT",
     ppt_p:"پنجاب کے ترتیری کیئر اور تدریسی ہسپتالوں میں ہسپتال متعدی ویسٹ مینجمنٹ خدمات۔",
     ppt_sl:"سلائیڈز", ppt_fm:"فارمیٹ", ppt_st:"حالت",
     ppt_open:"ویور کھولیں", ppt_dl:"PPT ڈاؤن لوڈ", ppt_new:"نئی ٹیب میں",
+    ppt_ic1:"فارمیٹ", ppt_ic1d:"نیٹو پاورپوائنٹ PPTX فارمیٹ — اصل فائل، غیر تبدیل شدہ۔",
+    ppt_ic2:"ویور", ppt_ic2d:"سلائیڈ تھمب نیلز کے ساتھ براؤزر ویور، یا مکمل بصری معیار کے لیے ڈاؤن لوڈ کریں۔",
+    ppt_ic3:"سالمیت", ppt_ic3d:"ماخذ پریزنٹیشن غیر تبدیل شدہ محفوظ۔ متن، اعداد و شمار اور سلائیڈ ترتیب میں کوئی تبدیلی نہیں۔",
+    ppt_ic4:"ٹریس ایبلٹی", ppt_ic4d:"ہر سلائیڈ اپنے ویب سائٹ لرننگ ماڈیول سے منسلک۔",
     ppt_modal_t:"اصل پریزنٹیشن", ppt_new2:"نئی ٹیب", ppt_close:"بند کریں",
     pm_view_t:"پریزنٹیشن ویور", pm_view_p:"پیش نظارہ کے لیے دائیں طرف کوئی سلائیڈ تھمب نیل پر کلک کریں، یا اوپر بٹنوں سے مکمل فائل ڈاؤن لوڈ یا کھولیں۔",
     pm_note_t:"نوٹ:", pm_note:"مکمل بصری معیار کے لیے PPTX ڈاؤن لوڈ کریں یا PowerPoint، Google Slides یا LibreOffice Impress میں کھولیں۔",
     slides_nav:"سلائیڈ نیویگیشن",
-    tr_lbl:"سلائیڈ نقشہ", tr_ttl:"سلائیڈ ٹریس ایبلٹی",
-    tr_dsc:"ہر سلائیڈ اپنے ویب سائٹ ماڈیول سے منسلک۔ کسی بھی کارڈ پر کلک کریں۔",
+    pres_title:"پریزنٹر موڈ", pres_prev:"پچھلا", pres_next:"اگلا", pres_exit:"باہر",
+    tr_lbl:"سلائیڈ نقشہ", tr_ttl:"52-سلائیڈ ٹریس ایبلٹی سسٹم",
+    tr_dsc:"ہر اصل سلائیڈ اپنے ویب سائٹ ماڈیول سے منسلک۔ کسی بھی کارڈ پر کلک کریں۔",
     tr_ph:"سلائیڈز تلاش کریں...", tf_a:"تمام", tf_d:"ڈیجیٹائزڈ", tf_p:"جزوی", tf_pd:"زیر التواء",
-    cat_lbl:"ماڈیول 02", cat_ttl:"ہسپتال ویسٹ کی اقسام",
-    cat_dsc:"تمام ہسپتال ویسٹ متعدی نہیں ہوتا۔ درست درجہ بندی بنیادی ہے۔",
+    cat_lbl:"ماڈیول 02", cat_ttl:"ہسپتال ویسٹ کی اقسام کو سمجھنا",
+    cat_dsc:"تمام ہسپتال ویسٹ متعدی نہیں ہوتا۔ پیداوار کے مقام پر درست درجہ بندی محفوظ ویسٹ مینجمنٹ کی بنیاد ہے۔",
     exp_lbl:"ماڈیول 06", exp_ttl:"ہسپتال ماحول ایکسپلورر",
-    exp_dsc:"ہسپتال کا کوئی بھی علاقہ منتخب کریں۔ مثالی ترتیب — حقیقی منصوبہ نہیں۔",
-    seg_lbl:"ماڈیول 03", seg_ttl:"علیحدگی لرننگ لیب",
-    seg_dsc:"مشکل منتخب کریں، ویسٹ آئٹمز ترتیب دیں، فوری فیڈبیک سے سیکھیں۔",
+    exp_dsc:"کسی بھی ہسپتال کے علاقے کو منتخب کریں تاکہ اس کی عام ویسٹ اقسام، ذمہ داریاں اور عام غلطیاں معلوم ہوں۔ مثالی ترتیب — حقیقی منصوبہ نہیں۔",
+    seg_lbl:"ماڈیول 03", seg_ttl:"جدید علیحدگی لرننگ لیب",
+    seg_dsc:"مشکل منتخب کریں، ویسٹ آئٹمز کو درست بنوں میں ڈالیں، فوری فیڈبیک سے سیکھیں۔ غیر محفوظ تلفی کے لیے کبھی انعام نہیں۔",
     df_b:"ابتدائی", df_i:"درمیانی", df_a:"اعلیٰ",
     g_ok:"درست", g_no:"غلط", g_st:"سلسلہ", g_reset:"ری سیٹ", g_next:"اگلا آئٹم",
-    jr_lbl:"ماڈیول 06", jr_ttl:"ویسٹ سفر سمیولیٹر",
-    jr_dsc:"مکمل ویسٹ ہینڈلنگ عمل کے مراحل سے گزریں۔",
-    j_prev:"پچھلا", j_next:"اگلا",
-    d_lbl:"ماڈیول 11", d_ttl:"ڈیمو ڈیش بورڈ",
-    d_dsc:"مصنوعی ڈیمو ڈیٹا کے ساتھ تصوراتی ڈیش بورڈ۔ کسی لائیو ہسپتال سسٹم سے منسلک نہیں۔",
-    d_sub:"ویسٹ جمع اور تلفی",
+    jr_lbl:"ماڈیول 06", jr_ttl:"گائیڈڈ ویسٹ سفر سمیولیٹر",
+    jr_dsc:"مکمل ویسٹ ہینڈلنگ عمل کے مراحل سے گزریں۔ ہر مرحلہ مقصد، ذمہ داری، دستاویزات، حفاظت اور ناکامی کے مقامات دکھاتا ہے۔",
+    j_prev:"پچھلا مرحلہ", j_next:"اگلا مرحلہ",
+    d_lbl:"ماڈیول 11", d_ttl:"ڈیجیٹل مانیٹرنگ ڈیش بورڈ",
+    d_dsc:"تصوراتی ڈیش بورڈ جو دکھاتا ہے کہ ہسپتال ویسٹ میٹرکس کیسے دیکھے جا سکتے ہیں۔ تمام ڈیٹا مصنوعی مظاہرہ ڈیٹا ہے۔",
+    d_sub:"ویسٹ جمع اور تلفی کا جائزہ",
     d_d:"روزانہ", d_w:"ہفتہ وار", d_m:"ماہانہ", d_y:"سالانہ",
-    k1:"کل جمع (کلو)", k2:"کل تلف (کلو)", k3:"زیر التواء حوالگی", k4:"ڈیٹا مسائل",
+    k1:"کل جمع (کلو)", k2:"کل تلف (کلو)", k3:"زیر التواء حوالگی", k4:"ڈیٹا کے مسائل",
     lg_c:"جمع (کلو)", lg_d:"تلف (کلو)",
-    sp_lbl:"ماڈیول 09", sp_ttl:"اسپل مینجمنٹ",
-    sp_dsc:"مختلف اسپلز کے لیے مختلف ردعمل درکار ہے۔ تفصیل کے لیے کسی کارڈ پر کلک کریں۔",
-    r_lbl:"ماڈیول 12", r_ttl:"کردار اور ذمہ داریاں",
-    r_dsc:"ہسپتال اور فراہم کنندہ کے درمیان ذمہ داریوں کی تقسیم۔",
-    rt_h:"🏥 ہسپتال", rt_p:"🚛 فراہم کنندہ", rt_s:"🤝 مشترکہ",
-    q_lbl:"ماڈیول 13", q_ttl:"علمی جانچ",
-    q_dsc:"فوری فیڈبیک کے ساتھ اپنی سمجھ آزمائیں۔",
+    w_lbl:"ماڈیول 08", w_ttl:"کیا ہو اگر منظر نامہ ایکسپلورر",
+    w_dsc:"مفروضات ایڈجسٹ کریں اور دیکھیں کہ علیحدگی کی غلطیاں شمار شدہ مظاہرہ اشاروں کو کیسے متاثر کرتی ہیں۔ ہر قدر کے لیے فارمولہ اور یونٹ دکھایا گیا ہے۔",
+    w_sub:"منظر نامہ مفروضات", w_sub2:"منظر نامہ بدلنے کے لیے سلائیڈر منتقل کریں۔ تمام اقدار آپ کی مفروضات سے شمار کی جاتی ہیں — ماپا ہوا ہسپتال ڈیٹا نہیں۔",
+    w_s1:"غلط علیحدہ شدہ ویسٹ", w_s2:"کل پیدا شدہ ویسٹ (کلو/دن)", w_s3:"غیر ریکارڈ شدہ جمع / دن",
+    w_r1:"خطرناک ویسٹ بوجھ", w_r2:"غلط علیحدہ مقدار", w_r3:"ریکارڈ مکملیت", w_r4:"اضافی علاج بوجھ",
+    sp_lbl:"ماڈیول 09", sp_ttl:"اسپل مینجمنٹ اور ہنگامی ردعمل",
+    sp_dsc:"مختلف اسپلز کے لیے مختلف ردعمل درکار ہے۔ مرحلہ وار طریقہ کار کے لیے کسی بھی کارڈ پر کلک کریں۔ ہمیشہ ہسپتال کے منظور شدہ SOP کی پیروی کریں۔",
+    r_lbl:"ماڈیول 12", r_ttl:"کردار اور ذمہ داریاں میٹرکس",
+    r_dsc:"ہسپتال اور سروس فراہم کنندہ کے درمیان ذمہ داریوں کی واضح تقسیم۔ ماخذ سے ماخوذ — قابل اطلاق معاہدوں سے تصدیق کریں۔",
+    rt_h:"🏥 ہسپتال", rt_p:"🚛 سروس فراہم کنندہ", rt_s:"🤝 مشترکہ",
+    q_lbl:"ماڈیول 13", q_ttl:"علم کی جانچ جائزہ",
+    q_dsc:"فوری فیڈبیک اور تفصیلی وضاحتوں کے ساتھ اپنی سمجھ آزمائیں۔",
     q_prev:"پچھلا", q_next:"اگلا", q_done:"جائزہ مکمل!", q_retry:"دوبارہ کوشش",
     g_lbl:"ماڈیول 14", g_ttl:"انگریزی–اردو اصطلاحات",
-    g_dsc:"دو لسانی اصطلاحات۔ بک مارک کے لیے کسی اصطلاح پر کلک کریں۔",
+    g_dsc:"ہسپتال متعدی ویسٹ مینجمنٹ کے لیے دو لسانی اصطلاحات۔ جائزے کے لیے کسی بھی اصطلاح پر کلک کریں۔",
     g_ph:"اصطلاحات تلاش کریں...",
-    v_lbl:"ماڈیول 15", v_ttl:"تصدیق رجسٹر",
-    v_dsc:"دعووں کی تصدیق کی حالت کے بارے میں شفافیت۔",
-    v_claim:"دعوی", v_source:"ماخذ", v_status:"حالت", v_notes:"نوٹس",
-    ftr_c:"© 2025 ہسپتال متعدی ویسٹ مینجمنٹ پورٹل · تعلیمی استعمال",
-    ftr_d:"تمام ڈیش بورڈ ڈیٹا مصنوعی ڈیمو ڈیٹا ہے۔",
-    search_t:"🔍 تلاش", search_ph:"سلائیڈز، ماڈیولز، اصطلاحات...",
+    v_lbl:"ماڈیول 15", v_ttl:"ماخذ تصدیق رجسٹر",
+    v_dsc:"اس بارے میں شفافیت کہ کون سے دعوے تصدیق شدہ، زیر التواء تصدیق یا صرف ماخذ ہیں۔ ہمیشہ قابل اطلاق سرکاری قواعد اور ہسپتال SOPs سے تصدیق کریں۔",
+    v_claim:"دعوی / ہدایت", v_source:"ماخذ", v_status:"حالت", v_notes:"نوٹس",
+    ftr_about:"اس پورٹل کے بارے میں",
+    ftr_about_d:"پنجاب، پاکستان کے ترتیری کیئر اور تدریسی ہسپتالوں میں ہسپتال متعدی ویسٹ مینجمنٹ کے لیے ایک جدید تعلیمی ڈیجیٹل لرننگ پورٹل۔ تربیت، تعمیل آگاہی اور محفوظ طریقوں کی حمایت کے لیے بنایا گیا۔",
+    ftr_modules:"لرننگ ماڈیولز", fm1:"اصل پریزنٹیشن", fm2:"سلائیڈ ٹریس ایبلٹی", fm3:"علیحدگی لیب", fm4:"سفر سمیولیٹر", fm5:"ڈیش بورڈ",
+    ftr_refs:"اہم حوالہ جات", fr3:"تصدیق رجسٹر",
+    ftr_c:"© 2025 ہسپتال متعدی ویسٹ مینجمنٹ ڈیجیٹل پورٹل · تعلیمی استعمال",
+    ftr_d:"تمام ڈیش بورڈ ڈیٹا مصنوعی مظاہرہ ڈیٹا ہے — لائیو ہسپتال ریکارڈ نہیں۔",
+    search_t:"🔍 تلاش", search_ph:"سلائیڈز، ماڈیولز، اصطلاحات تلاش کریں...",
     toast_bm:"بک مارک!", toast_bmr:"بک مارک ہٹا دیا",
-    toast_ppt_miss:"PPT فائل نہیں ملی۔",
+    toast_ppt_miss:"PPT فائل نہیں ملی۔ ترتیب دیکھیں۔",
     toast_ppt_op:"پریزنٹیشن کھل رہی ہے...", toast_dl:"ڈاؤن لوڈ شروع...",
-    toast_status_ready:"تیار", toast_status_missing:"ترتیب نہیں"
+    toast_ready:"تیار", toast_missing:"ترتیب نہیں"
   }
 };
 
-/* ═══════════════════════════════════════════════════════════
-   STATE
-   ═══════════════════════════════════════════════════════════ */
-const S = {
-  lang: localStorage.getItem('hwm_lang') || 'en',
-  fs: parseFloat(localStorage.getItem('hwm_fs')) || 1,
-  bm: JSON.parse(localStorage.getItem('hwm_bm') || '[]'),
-  page: 'home',
-  diff: 'beginner',
-  curItem: 0,
-  gOk: 0, gNo: 0, gSt: 0,
-  usedIdx: [], answered: false,
-  timer: null, tLeft: 15,
-  jStage: 0,
-  role: 'hospital',
-  room: 'ward',
-  qIdx: 0, qScore: 0, qAns: [], qAnswered: false,
-  trFilter: 'all', trQuery: ''
-};
-function saveBm(){ localStorage.setItem('hwm_bm', JSON.stringify(S.bm)); }
-function t(k){ return (TR[S.lang] && TR[S.lang][k]) || k; }
-
-/* ═══════════════════════════════════════════════════════════
-   NAVIGATION — PAGE SWITCHING
-   ═══════════════════════════════════════════════════════════ */
-function goTo(page){
-  S.page = page;
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  const el = document.getElementById('pg-' + page);
-  if (el) el.classList.add('active');
-  document.querySelectorAll('.tab').forEach(tab => {
-    tab.classList.toggle('active', tab.dataset.page === page);
-  });
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-  // Close mobile menu
-  document.getElementById('nav').classList.remove('open');
-  document.getElementById('menuBtn').classList.remove('open');
-}
-document.querySelectorAll('.tab').forEach(tab => {
-  tab.addEventListener('click', () => goTo(tab.dataset.page));
-});
-document.getElementById('menuBtn').addEventListener('click', () => {
-  document.getElementById('nav').classList.toggle('open');
-  document.getElementById('menuBtn').classList.toggle('open');
-});
-
-/* ═══════════════════════════════════════════════════════════
-   LANGUAGE
-   ═══════════════════════════════════════════════════════════ */
-function setLang(lang){
-  S.lang = lang;
-  localStorage.setItem('hwm_lang', lang);
-  document.body.classList.toggle('ur', lang === 'ur');
-  document.body.classList.toggle('en', lang === 'en');
-  document.documentElement.lang = lang;
-  // Translate data-tr
-  document.querySelectorAll('[data-tr]').forEach(el => {
-    const k = el.dataset.tr;
-    if (TR[lang] && TR[lang][k]) el.innerHTML = TR[lang][k];
-  });
-  // Placeholders
-  document.querySelectorAll('[data-tr-ph]').forEach(el => {
-    const k = el.dataset.trPh;
-    if (TR[lang] && TR[lang][k]) el.placeholder = TR[lang][k];
-  });
-  // Lang buttons
-  document.querySelectorAll('.lang-sw button').forEach(b => {
-    b.classList.toggle('active', b.dataset.lang === lang);
-  });
-  // Re-render dynamic content
-  renderCategories();
-  renderHospMap();
-  renderRoomDetail();
-  renderBins();
-  renderJSteps();
-  renderJDetail();
-  renderRoles();
-  renderSpills();
-  renderGlossary();
-  renderVerify();
-  renderTrace();
-  renderQuiz();
-  renderDash();
-  checkPptStatus();
-}
-document.querySelectorAll('.lang-sw button').forEach(b => {
-  b.addEventListener('click', () => setLang(b.dataset.lang));
-});
-
-/* ═══════════════════════════════════════════════════════════
-   FONT SIZE
-   ═══════════════════════════════════════════════════════════ */
-function applyFs(){
-  document.documentElement.style.setProperty('--fs', S.fs);
-  localStorage.setItem('hwm_fs', S.fs);
-}
-document.getElementById('btnFont').addEventListener('click', () => {
-  S.fs = S.fs >= 1.25 ? 0.9 : S.fs + 0.1;
-  if (S.fs < 0.9) S.fs = 0.9;
-  applyFs();
-  toast(`Font: ${Math.round(S.fs*100)}%`, 'Aa');
-});
-
-/* ═══════════════════════════════════════════════════════════
-   TOAST & MODALS
-   ═══════════════════════════════════════════════════════════ */
-function toast(msg, icon='✓'){
-  const el = document.getElementById('toast');
-  el.innerHTML = `<span>${icon}</span><span>${msg}</span>`;
-  el.classList.add('on');
-  clearTimeout(el._t);
-  el._t = setTimeout(() => el.classList.remove('on'), 2400);
-}
-function openModal(id){
-  document.getElementById(id).classList.add('on');
-  document.body.style.overflow = 'hidden';
-}
-function closeModal(id){
-  document.getElementById(id).classList.remove('on');
-  document.body.style.overflow = '';
-}
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape'){
-    document.querySelectorAll('.modal.on, .pmodal.on').forEach(m => {
-      m.classList.remove('on');
-      document.body.style.overflow = '';
-    });
-  }
-  if ((e.ctrlKey || e.metaKey) && e.key === 'k'){
-    e.preventDefault();
-    openModal('searchModal');
-    setTimeout(() => document.getElementById('searchInput').focus(), 100);
-  }
-});
-
-/* ═══════════════════════════════════════════════════════════
-   PPT INTEGRATION
-   ═══════════════════════════════════════════════════════════ */
-function getPptUrl(){ return CONFIG.pptHostedUrl || CONFIG.pptFile; }
-function getPptName(){ return getPptUrl().split('/').pop(); }
-
-function checkPptStatus(){
-  const statusEl = document.getElementById('pptStatus');
-  if (!statusEl) return;
-  fetch(getPptUrl(), { method: 'HEAD' })
-    .then(r => {
-      if (r.ok) statusEl.textContent = t('toast_status_ready');
-      else statusEl.textContent = t('toast_status_missing');
-    })
-    .catch(() => { statusEl.textContent = t('toast_status_missing'); });
-}
-function openPptViewer(){
-  openModal('pptModal');
-  document.getElementById('pptModalTitle').textContent = getPptName() || 'Presentation';
-  renderPThumbs();
-}
-function renderPThumbs(){
-  const c = document.getElementById('pthumbs');
-  if (!c) return;
-  c.innerHTML = '';
-  const n = CONFIG.slideCount || 52;
-  for (let i = 1; i <= n; i++){
-    const b = document.createElement('button');
-    b.className = 'pth';
-    b.textContent = i;
-    b.addEventListener('click', () => {
-      c.querySelectorAll('.pth').forEach(x => x.classList.remove('active'));
-      b.classList.add('active');
-      const s = traceData.find(x => x.slide === i);
-      document.getElementById('pmVT').textContent = `Slide ${i}${s ? ': ' + s.title : ''}`;
-      document.getElementById('pmVP').textContent = s ? s.summary : 'Original slide. Download the PPTX for full visual fidelity.';
-      if (s) document.getElementById('pmVN').innerHTML = `<strong>Module:</strong> ${s.module} · <strong>Status:</strong> ${s.status}`;
-    });
-    c.appendChild(b);
-  }
-}
-function openPptNewTab(){
-  const u = getPptUrl();
-  if (!u){ toast(t('toast_ppt_miss'), '⚠️'); return; }
-  window.open(u, '_blank', 'noopener');
-  toast(t('toast_ppt_op'), '🔗');
-}
-function downloadPpt(){
-  const u = getPptUrl();
-  if (!u){ toast(t('toast_ppt_miss'), '⚠️'); return; }
-  const a = document.createElement('a');
-  a.href = u;
-  a.download = getPptName();
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  toast(t('toast_dl'), '⬇️');
-}
-document.getElementById('pptOpen').addEventListener('click', openPptViewer);
-document.getElementById('pptDl').addEventListener('click', downloadPpt);
-document.getElementById('pptNew').addEventListener('click', openPptNewTab);
-document.getElementById('pptDl2').addEventListener('click', downloadPpt);
-document.getElementById('pptNew2').addEventListener('click', openPptNewTab);
-document.getElementById('cfgPath').textContent = CONFIG.pptFile;
-document.getElementById('pptSlideCount').textContent = CONFIG.slideCount;
-
-/* ═══════════════════════════════════════════════════════════
-   TRACEABILITY
-   ═══════════════════════════════════════════════════════════ */
-const traceData = [
-  {slide:1,title:'Title Slide',summary:'Presentation title and context.',module:'Home',page:'home',status:'digitized'},
-  {slide:2,title:'Introduction & Scope',summary:'Overview of hospital waste management.',module:'Home',page:'home',status:'digitized'},
-  {slide:3,title:'Learning Objectives',summary:'Training objectives.',module:'Home',page:'home',status:'digitized'},
-  {slide:4,title:'Why Waste Management Matters',summary:'Importance and environmental impact.',module:'Home',page:'home',status:'digitized'},
-  {slide:5,title:'Healthcare Waste Definitions',summary:'Definitions of hospital waste.',module:'Categories',page:'categories',status:'digitized'},
-  {slide:6,title:'Waste Categories Overview',summary:'General, infectious, sharps, glass, pharma, chemical.',module:'Categories',page:'categories',status:'digitized'},
-  {slide:7,title:'General / Municipal Waste',summary:'White bin — paper, food, packaging.',module:'Categories',page:'categories',status:'digitized'},
-  {slide:8,title:'Infectious Waste',summary:'Yellow bin — gloves, bandages, infusion sets.',module:'Categories',page:'categories',status:'digitized'},
-  {slide:9,title:'Sharps Waste',summary:'Dedicated sharps containers.',module:'Categories',page:'categories',status:'digitized'},
-  {slide:10,title:'Glass Waste',summary:'Red bin — flasks, test tubes.',module:'Categories',page:'categories',status:'digitized'},
-  {slide:11,title:'Color-Coded Segregation',summary:'White/Yellow/Red/Sharps color coding.',module:'Segregation',page:'segregation',status:'digitized'},
-  {slide:12,title:'Segregation at Source',summary:'Point of generation is critical.',module:'Segregation',page:'segregation',status:'digitized'},
-  {slide:13,title:'Common Segregation Errors',summary:'Typical mistakes.',module:'Segregation',page:'segregation',status:'digitized'},
-  {slide:14,title:'Waste Composition Estimates',summary:'15–25% hazardous estimate.',module:'Categories',page:'categories',status:'partial'},
-  {slide:15,title:'Containment & Sealing',summary:'Bag sealing at ¾ capacity.',module:'Journey',page:'journey',status:'digitized'},
-  {slide:16,title:'Collection Procedures',summary:'Authorized personnel, trolleys.',module:'Journey',page:'journey',status:'digitized'},
-  {slide:17,title:'Weighing & Labeling',summary:'Weight and facility ID.',module:'Journey',page:'journey',status:'digitized'},
-  {slide:18,title:'Barcode/QR Identification',summary:'Traceability through scanning.',module:'Journey',page:'journey',status:'digitized'},
-  {slide:19,title:'Internal Transportation',summary:'Within-facility movement.',module:'Journey',page:'journey',status:'digitized'},
-  {slide:20,title:'Temporary Storage',summary:'Designated storage areas.',module:'Journey',page:'journey',status:'digitized'},
-  {slide:21,title:'External Transport',summary:'Dedicated vehicle.',module:'Journey',page:'journey',status:'digitized'},
-  {slide:22,title:'Treatment Methods',summary:'Incineration, autoclaving.',module:'Journey',page:'journey',status:'digitized'},
-  {slide:23,title:'Final Disposal',summary:'Documented final disposal.',module:'Journey',page:'journey',status:'digitized'},
-  {slide:24,title:'Monitoring & Reporting',summary:'Digital monitoring overview.',module:'Dashboard',page:'dashboard',status:'digitized'},
-  {slide:25,title:'Dashboard Overview',summary:'Hospital monitoring dashboard.',module:'Dashboard',page:'dashboard',status:'digitized'},
-  {slide:26,title:'Dashboard Metrics',summary:'KPIs: collected, disposed, pending.',module:'Dashboard',page:'dashboard',status:'digitized'},
-  {slide:27,title:'Report Views',summary:'Date-wise, weekly, monthly, quarterly, yearly.',module:'Dashboard',page:'dashboard',status:'digitized'},
-  {slide:28,title:'Data Quality Indicators',summary:'Missing records, pending handovers.',module:'Dashboard',page:'dashboard',status:'digitized'},
-  {slide:29,title:'Occupational Hazards',summary:'Needlestick, exposure risks.',module:'Spills',page:'spills',status:'digitized'},
-  {slide:30,title:'PPE Requirements',summary:'Gloves, gowns, masks.',module:'Spills',page:'spills',status:'digitized'},
-  {slide:31,title:'Biological Spill Response',summary:'Bio spill procedure.',module:'Spills',page:'spills',status:'digitized'},
-  {slide:32,title:'Chemical Spill Response',summary:'Chemical spill per SDS.',module:'Spills',page:'spills',status:'digitized'},
-  {slide:33,title:'Mercury Spill Response',summary:'Never use broom/brush/vacuum.',module:'Spills',page:'spills',status:'verified'},
-  {slide:34,title:'Contaminated Surfaces',summary:'Surface decontamination.',module:'Spills',page:'spills',status:'digitized'},
-  {slide:35,title:'Contaminated Clothing',summary:'Contaminated clothing management.',module:'Spills',page:'spills',status:'partial'},
-  {slide:36,title:'Needlestick Injury Protocol',summary:'Post-exposure procedure.',module:'Spills',page:'spills',status:'pending'},
-  {slide:37,title:'Pilferage Prevention',summary:'Unauthorized removal prevention.',module:'Roles',page:'roles',status:'digitized'},
-  {slide:38,title:'Roles Overview',summary:'Hospital vs service provider.',module:'Roles',page:'roles',status:'digitized'},
-  {slide:39,title:'Hospital Responsibilities',summary:'Bin placement, segregation, registers.',module:'Roles',page:'roles',status:'digitized'},
-  {slide:40,title:'Service Provider Responsibilities',summary:'Collection, transport, treatment.',module:'Roles',page:'roles',status:'digitized'},
-  {slide:41,title:'Staff Training Requirements',summary:'Training and supervision.',module:'Roles',page:'roles',status:'partial'},
-  {slide:42,title:'Documentation & Reporting',summary:'Handover records.',module:'Roles',page:'roles',status:'digitized'},
-  {slide:43,title:'Regulatory Framework',summary:'Punjab HWM Rules 2014, WHO.',module:'Verify',page:'verify',status:'pending'},
-  {slide:44,title:'Compliance Monitoring',summary:'Audits, inspections.',module:'Verify',page:'verify',status:'partial'},
-  {slide:45,title:'Anatomical Waste Disposal',summary:'Tissues, organs handling.',module:'Categories',page:'categories',status:'pending'},
-  {slide:46,title:'Pharmaceutical Waste',summary:'Expired medicines disposal.',module:'Categories',page:'categories',status:'pending'},
-  {slide:47,title:'Cytotoxic Waste',summary:'Chemo drugs handling.',module:'Categories',page:'categories',status:'pending'},
-  {slide:48,title:'Liquid Waste Management',summary:'Blood, body fluids, sewer.',module:'Categories',page:'categories',status:'pending'},
-  {slide:49,title:'Chemical Concentration Guidelines',summary:'Disinfectant concentrations.',module:'Verify',page:'verify',status:'pending'},
-  {slide:50,title:'Incident Reporting',summary:'Incident documentation.',module:'Spills',page:'spills',status:'digitized'},
-  {slide:51,title:'Case Studies',summary:'Real-world scenarios.',module:'Home',page:'home',status:'partial'},
-  {slide:52,title:'Conclusion & References',summary:'Summary and references.',module:'Verify',page:'verify',status:'digitized'}
-];
-function renderTrace(){
-  const g = document.getElementById('trGrid');
-  if (!g) return;
-  g.innerHTML = '';
-  const filtered = traceData.filter(s => {
-    if (S.trFilter !== 'all' && s.status !== S.trFilter) return false;
-    if (S.trQuery){
-      const q = S.trQuery.toLowerCase();
-      return s.title.toLowerCase().includes(q) || s.summary.toLowerCase().includes(q) || s.module.toLowerCase().includes(q);
-    }
-    return true;
-  });
-  if (!filtered.length){
-    g.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--g500)"><div style="font-size:2rem;margin-bottom:10px">🔍</div><p>No slides match</p></div>`;
-    return;
-  }
-  filtered.forEach(s => {
-    const c = document.createElement('div');
-    c.className = 'tr-c';
-    c.innerHTML = `
-      <div class="n">Slide ${s.slide}</div>
-      <div class="t">${s.title}</div>
-      <div class="s ${s.status}">${s.status}</div>
-      <div class="m">📍 ${s.module}</div>
-    `;
-    c.addEventListener('click', () => { goTo(s.page); if (s.page === 'ppt') setTimeout(openPptViewer, 250); });
-    g.appendChild(c);
-  });
-}
-document.getElementById('trSearch').addEventListener('input', e => { S.trQuery = e.target.value; renderTrace(); });
-document.querySelectorAll('.tf').forEach(b => {
-  b.addEventListener('click', () => {
-    document.querySelectorAll('.tf').forEach(x => x.classList.remove('active'));
-    b.classList.add('active');
-    S.trFilter = b.dataset.tf;
-    renderTrace();
-  });
-});
-
-/* ═══════════════════════════════════════════════════════════
-   CATEGORIES
-   ═══════════════════════════════════════════════════════════ */
-const cats = [
-  {em:'🗑️',en:'General / Municipal',ur:'عام / میونسپل',d:'Paper, food, cardboard, cans, bottles, wrappers.',du:'کاغذ، کھانا، گتا، ڈبے، بوتلیں۔',tg:'White Bin',tgu:'سفید بن'},
-  {em:'☣️',en:'Infectious / Biomedical',ur:'متعدی / بائیو میڈیکل',d:'Used gloves, bandages, infusion sets, cotton swabs.',du:'دستانے، پٹیاں، انفیوژن سیٹ۔',tg:'Yellow Bin',tgu:'پیلا بن'},
-  {em:'🔴',en:'Glass Waste',ur:'شیشے کا ویسٹ',d:'Glass flasks, test tubes, broken glass.',du:'فلاسک، ٹیسٹ ٹیوب، ٹوٹا شیشہ۔',tg:'Red Bin',tgu:'سرخ بن'},
-  {em:'💉',en:'Sharps',ur:'شارپس',d:'Needles, blades, scalpels — puncture-proof containers only.',du:'سوئیاں، بلیڈ، اسکیلپل۔',tg:'Dedicated Container',tgu:'مخصوص کنٹینر',cls:'d'},
-  {em:'🫀',en:'Pathological / Anatomical',ur:'پیتھولوجیکل',d:'Human tissues, organs, body parts.',du:'انسانی ٹشوز، اعضاء۔',tg:'Verify SOP',tgu:'تصدیق کریں',cls:'w'},
-  {em:'💊',en:'Pharmaceutical',ur:'دواسازی',d:'Expired or unused medicines and vaccines.',du:'میعاد ختم دوائیں۔',tg:'Verify SOP',tgu:'تصدیق کریں',cls:'w'}
-];
-function renderCategories(){
-  const g = document.getElementById('catGrid');
-  if (!g) return;
-  g.innerHTML = '';
-  cats.forEach(c => {
-    const d = document.createElement('div');
-    d.className = 'card';
-    d.innerHTML = `
-      <div class="ic">${c.em}</div>
-      <h3>${S.lang==='ur'?c.ur:c.en}</h3>
-      <p>${S.lang==='ur'?c.du:c.d}</p>
-      <span class="tag ${c.cls||''}">${S.lang==='ur'?c.tgu:c.tg}</span>
-    `;
-    g.appendChild(d);
-  });
-}
-
-/* ═══════════════════════════════════════════════════════════
-   HOSPITAL EXPLORER
-   ═══════════════════════════════════════════════════════════ */
-const rooms = [
-  {id:'ward',em:'🛏️',en:'Ward / Patient Room',ur:'وارڈ',wt:'General, infectious, sharps.',wtu:'عام، متعدی، شارپس۔',resp:'Nursing staff segregate at bedside.',respu:'نرسنگ عملہ بستر پر علیحدگی۔',mis:'Mixing infectious with general.',misu:'متعدی کو عام میں ملانا۔'},
-  {id:'lab',em:'🔬',en:'Laboratory',ur:'لیبارٹری',wt:'Glass, infectious, chemical, sharps.',wtu:'شیشہ، متعدی، کیمیائی، شارپس۔',resp:'Lab technician segregates.',respu:'لیب ٹیکنیشن علیحدگی۔',mis:'Blood tubes in general waste.',misu:'خون کی ٹیوبیں عام میں۔'},
-  {id:'ot',em:'🏥',en:'Operation Theatre',ur:'آپریشن تھیٹر',wt:'Infectious, sharps, pathological.',wtu:'متعدی، شارپس، پیتھولوجیکل۔',resp:'OT staff segregate after procedure.',respu:'OT عملہ بعد علیحدگی۔',mis:'Tissues in general waste.',misu:'ٹشوز عام میں۔'},
-  {id:'nursing',em:'👩‍⚕️',en:'Nursing Station',ur:'نرسنگ اسٹیشن',wt:'General, pharmaceutical, sharps.',wtu:'عام، دواسازی، شارپس۔',resp:'Manage medication waste.',respu:'دواسازی کا انتظام۔',mis:'Expired meds in general.',misu:'میعاد ختم دوائیں عام میں۔'},
-  {id:'storage',em:'📦',en:'Temporary Storage',ur:'عارضی ذخیرہ',wt:'All collected categories.',wtu:'تمام جمع اقسام۔',resp:'Organize and label bags.',respu:'بیگ ترتیب اور لیبل۔',mis:'Mixing bags, exceeding time.',misu:'بیگ ملانا، وقت سے تجاوز۔'},
-  {id:'collection',em:'🛒',en:'Collection Point',ur:'جمع مقام',wt:'Segregated bags for transport.',wtu:'علیحدہ بیگ۔',resp:'Use designated trolleys.',respu:'مقررہ ٹرالیاں۔',mis:'Compressing bags by hand.',misu:'بیگ دبانا۔'}
-];
-function renderHospMap(){
-  const m = document.getElementById('hospMap');
-  if (!m) return;
-  m.innerHTML = '';
-  rooms.forEach(r => {
-    const b = document.createElement('button');
-    b.className = 'rt' + (S.room === r.id ? ' active' : '');
-    b.style.cssText = 'padding:14px 10px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:4px';
-    b.innerHTML = `<div style="font-size:1.5rem">${r.em}</div><div style="font-size:.75rem;font-weight:700">${S.lang==='ur'?r.ur:r.en}</div>`;
-    b.addEventListener('click', () => { S.room = r.id; renderHospMap(); renderRoomDetail(); });
-    m.appendChild(b);
-  });
-}
-function renderRoomDetail(){
-  const r = rooms.find(x => x.id === S.room);
-  if (!r) return;
-  const d = document.getElementById('roomDetail');
-  d.innerHTML = `
-    <h4 style="color:var(--navy);font-size:1.05rem;margin-bottom:14px">${r.em} ${S.lang==='ur'?r.ur:r.en}</h4>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px">
-      <div class="jcard"><div class="l">${S.lang==='ur'?'ویسٹ اقسام':'Waste Types'}</div><div class="v">${S.lang==='ur'?r.wtu:r.wt}</div></div>
-      <div class="jcard"><div class="l">${S.lang==='ur'?'ذمہ داری':'Responsibility'}</div><div class="v">${S.lang==='ur'?r.respu:r.resp}</div></div>
-      <div class="jcard risk"><div class="l">${S.lang==='ur'?'عام غلطیاں':'Common Mistakes'}</div><div class="v">${S.lang==='ur'?r.misu:r.mis}</div></div>
-    </div>
-  `;
-}
-
-/* ═══════════════════════════════════════════════════════════
-   SEGREGATION GAME
-   ═══════════════════════════════════════════════════════════ */
-const items = [
-  {em:'💉',en:'Used Needle',ur:'استعمال شدہ سوئی',h:'Contaminated sharp',hu:'آلودہ نوکیلا',c:'sharps',d:'beginner',r:'Needles are sharps. Use dedicated puncture-proof container.'},
-  {em:'🧤',en:'Used Gloves',ur:'استعمال شدہ دستانے',h:'Contaminated PPE',hu:'آلودہ PPE',c:'yellow',d:'beginner',r:'Used gloves are infectious — yellow bin.'},
-  {em:'🥤',en:'Plastic Bottle',ur:'پلاسٹک بوتل',h:'Clean bottle',hu:'صاف بوتل',c:'white',d:'beginner',r:'Clean bottles = general waste.'},
-  {em:'🔬',en:'Broken Test Tube',ur:'ٹوٹی ٹیوب',h:'Glass lab equipment',hu:'شیشے کا سامان',c:'red',d:'beginner',r:'Glass items go into red bin.'},
-  {em:'🩹',en:'Blood-Stained Bandage',ur:'خون آلود پٹی',h:'Blood-contaminated',hu:'خون سے آلودہ',c:'yellow',d:'beginner',r:'Blood-contaminated = infectious waste.'},
-  {em:'🍎',en:'Apple Core',ur:'سیب کا گودا',h:'Food waste',hu:'کھانے کا فضلہ',c:'white',d:'beginner',r:'Food waste = general/municipal.'},
-  {em:'🔪',en:'Scalpel Blade',ur:'اسکیلپل بلیڈ',h:'Surgical blade',hu:'سرجیکل بلیڈ',c:'sharps',d:'beginner',r:'Scalpel blades are sharps.'},
-  {em:'📦',en:'Cardboard Box',ur:'گتے کا ڈبہ',h:'Clean packaging',hu:'صاف پیکنگ',c:'white',d:'beginner',r:'Clean cardboard = general waste.'},
-  {em:'💊',en:'Expired Tablets',ur:'میعاد ختم گولیاں',h:'Unused pharma',hu:'غیر استعمال دوائی',c:'pharma',d:'intermediate',r:'Pharmaceutical waste — verify SOP.'},
-  {em:'🩸',en:'Blood Bag',ur:'خون کا تھیلا',h:'Used blood bag',hu:'خون کا تھیلا',c:'yellow',d:'intermediate',r:'Blood bags are infectious — yellow.'},
-  {em:'🧪',en:'Chemical Reagent',ur:'کیمیائی ری ایجنٹ',h:'Lab reagent',hu:'لیب ری ایجنٹ',c:'chem',d:'intermediate',r:'Chemical waste — follow SOP.'},
-  {em:'💉',en:'Syringe with needle',ur:'سوئی کے ساتھ سرنج',h:'Attached needle',hu:'سوئی کے ساتھ',c:'sharps',d:'intermediate',r:'Never recap. Place whole unit in sharps container.'},
-  {em:'🧴',en:'Disinfectant Bottle',ur:'جراثیم کش بوتل',h:'Empty disinfectant',hu:'خالی جراثیم کش',c:'chem',d:'intermediate',r:'Chemical disinfectant = chemical waste.'},
-  {em:'🫀',en:'Surgical Specimen',ur:'سرجیکل نمونہ',h:'Human tissue',hu:'انسانی ٹشو',c:'yellow',d:'intermediate',r:'Pathological waste — verify SOP.'},
-  {em:'🧬',en:'Chemo Drug Vial',ur:'کیمو شیشی',h:'Cytotoxic',hu:'سائٹوٹوکسک',c:'chem',d:'intermediate',r:'Cytotoxic waste — specialized handling.'},
-  {em:'💉',en:'Recapped Needle',ur:'دوبارہ ڈھکی سوئی',h:'Recapped',hu:'دوبارہ ڈھکی',c:'sharps',d:'advanced',r:'NEVER recap. If recapped, place whole unit in sharps.'},
-  {em:'🩺',en:'Contaminated Stethoscope',ur:'آلودہ اسٹیتھوسکوپ',h:'Blood contact',hu:'خون سے رابطہ',c:'yellow',d:'advanced',r:'Decontaminate per SOP. If single-use, infectious.'},
-  {em:'🧴',en:'Empty Saline Bottle',ur:'خالی سیلائن بوتل',h:'No contamination',hu:'آلودگی نہیں',c:'white',d:'advanced',r:'If clean → general waste. If contaminated → infectious.'},
-  {em:'🧪',en:'Blood Sample Tube',ur:'خون کا نمونہ ٹیوب',h:'Sealed with blood',hu:'خون سے بھری',c:'yellow',d:'advanced',r:'Contamination dictates category — yellow, not glass.'}
-];
-const bins = [
-  {id:'white',em:'⚪',en:'White Bin',ur:'سفید بن',d:'General',du:'عام'},
-  {id:'yellow',em:'🟡',en:'Yellow Bin',ur:'پیلا بن',d:'Infectious',du:'متعدی'},
-  {id:'red',em:'🔴',en:'Red Bin',ur:'سرخ بن',d:'Glass',du:'شیشہ'},
-  {id:'sharps',em:'📦',en:'Sharps Container',ur:'شارپس کنٹینر',d:'Needles',du:'سوئیاں'},
-  {id:'pharma',em:'💊',en:'Pharma Bin',ur:'دواسازی بن',d:'Medicines',du:'دوائیں'},
-  {id:'chem',em:'⚗️',en:'Chemical Bin',ur:'کیمیائی بن',d:'Chemicals',du:'کیمیائی'}
-];
-function renderBins(){
-  const g = document.getElementById('binsRow');
-  if (!g) return;
-  g.innerHTML = '';
-  bins.forEach(b => {
-    const el = document.createElement('div');
-    el.className = 'bin';
-    el.dataset.bin = b.id;
-    el.tabIndex = 0;
-    el.setAttribute('role', 'button');
-    el.innerHTML = `<div class="be">${b.em}</div><div class="bn">${S.lang==='ur'?b.ur:b.en}</div><div class="bd">${S.lang==='ur'?b.du:b.d}</div>`;
-    el.addEventListener('click', () => answerBin(el));
-    el.addEventListener('keydown', e => { if (e.key==='Enter'||e.key===' '){ e.preventDefault(); answerBin(el); }});
-    g.appendChild(el);
-  });
-}
-function filteredItems(){ return items.filter(i => i.d === S.diff); }
-function loadItem(){
-  const fi = filteredItems();
-  if (!fi.length) return;
-  if (S.usedIdx.length >= fi.length) S.usedIdx = [];
-  let idx;
-  do { idx = Math.floor(Math.random() * fi.length); } while (S.usedIdx.includes(idx));
-  S.usedIdx.push(idx);
-  S.curItem = items.indexOf(fi[idx]);
-  const it = items[S.curItem];
-  document.getElementById('itemEm').textContent = it.em;
-  document.getElementById('itemNm').textContent = S.lang==='ur'?it.ur:it.en;
-  document.getElementById('itemHint').textContent = S.lang==='ur'?it.hu:it.h;
-  const card = document.querySelector('.item-c');
-  card.style.animation = 'none';
-  void card.offsetWidth;
-  card.style.animation = 'itemPop .5s cubic-bezier(.34,1.56,.64,1)';
-  document.getElementById('fbBox').classList.remove('on');
-  S.answered = false;
-  document.querySelectorAll('.bin').forEach(b => b.classList.remove('correct','wrong'));
-  if (S.diff === 'advanced') startTimer();
-}
-function startTimer(){
-  const w = document.getElementById('timerWrap');
-  const f = document.getElementById('timerFill');
-  w.classList.add('on');
-  S.tLeft = 15;
-  f.style.width = '100%';
-  clearInterval(S.timer);
-  S.timer = setInterval(() => {
-    S.tLeft -= 0.1;
-    f.style.width = (S.tLeft/15*100) + '%';
-    if (S.tLeft <= 0){ clearInterval(S.timer); if (!S.answered) answerBin(null, true); }
-  }, 100);
-}
-function answerBin(el, timedOut){
-  if (S.answered) return;
-  S.answered = true;
-  clearInterval(S.timer);
-  document.getElementById('timerWrap').classList.remove('on');
-  const it = items[S.curItem];
-  const chosen = el ? el.dataset.bin : null;
-  const box = document.getElementById('fbBox');
-  const title = document.getElementById('fbT');
-  const text = document.getElementById('fbP');
-  if (chosen === it.c){
-    S.gOk++; S.gSt++;
-    document.getElementById('gOk').textContent = S.gOk;
-    document.getElementById('gSt').textContent = S.gSt;
-    if (el) el.classList.add('correct');
-    box.className = 'fb on ok';
-    title.textContent = S.lang==='ur' ? '✓ درست!' : '✓ Correct!';
-    text.textContent = it.r;
-  } else {
-    S.gNo++; S.gSt = 0;
-    document.getElementById('gNo').textContent = S.gNo;
-    document.getElementById('gSt').textContent = 0;
-    if (el) el.classList.add('wrong');
-    const correct = document.querySelector(`.bin[data-bin="${it.c}"]`);
-    if (correct) correct.classList.add('correct');
-    box.className = 'fb on bd';
-    title.textContent = timedOut ? (S.lang==='ur'?'⏰ وقت ختم':'⏰ Time expired') : (S.lang==='ur'?'✗ غلط':'✗ Not quite');
-    text.textContent = it.r;
-  }
-}
-document.getElementById('gNext').addEventListener('click', loadItem);
-document.getElementById('gReset').addEventListener('click', () => {
-  S.gOk = 0; S.gNo = 0; S.gSt = 0; S.usedIdx = [];
-  document.getElementById('gOk').textContent = '0';
-  document.getElementById('gNo').textContent = '0';
-  document.getElementById('gSt').textContent = '0';
-  loadItem();
-});
-document.querySelectorAll('.diff-tabs button').forEach(b => {
-  b.addEventListener('click', () => {
-    document.querySelectorAll('.diff-tabs button').forEach(x => x.classList.remove('active'));
-    b.classList.add('active');
-    S.diff = b.dataset.diff;
-    S.usedIdx = [];
-    loadItem();
-  });
-});
-
-/* ═══════════════════════════════════════════════════════════
-   JOURNEY
-   ═══════════════════════════════════════════════════════════ */
-const jSteps = [
-  {ic:'🏥',en:'Generation',ur:'پیداوار',d:'Waste generated at point of care.',du:'دیکھ بھال کے مقام پر ویسٹ۔',f:{'Responsible':'Clinical staff','Record':'Point-of-generation log','Safety':'Segregate immediately','Failure':'Mixed collection at source'}},
-  {ic:'🗂️',en:'Segregation',ur:'علیحدگی',d:'Waste into correct color-coded container.',du:'درست رنگ کوڈ کنٹینر میں۔',f:{'Responsible':'Nursing staff','Record':'Bin label','Safety':'Never mix','Failure':'Wrong bin'}},
-  {ic:'🔒',en:'Containment',ur:'کنٹینمنٹ',d:'Bags sealed at ~¾ capacity.',du:'بیگ ¾ پر سیل۔',f:{'Responsible':'Ward staff','Record':'Seal tag','Safety':'No compression','Failure':'Overfilled bags'}},
-  {ic:'🛒',en:'Collection',ur:'جمع آوری',d:'Authorized collection via trolleys.',du:'مجاز ٹرالیوں سے جمع۔',f:{'Responsible':'Waste staff','Record':'Collection log','Safety':'Designated trolleys','Failure':'Missed collection'}},
-  {ic:'⚖️',en:'Weighing',ur:'وزن',d:'Waste weighed; facility ID recorded.',du:'وزن، سہولت ID ریکارڈ۔',f:{'Responsible':'Waste staff','Record':'Weight record','Safety':'Calibrated equipment','Failure':'Inaccurate weights'}},
-  {ic:'📱',en:'QR / Barcode',ur:'QR / بارکوڈ',d:'Barcode or QR where implemented.',du:'جہاں نافذ ہو۔',f:{'Responsible':'Waste staff','Record':'Scan event','Safety':'No live tracking without backend','Failure':'Unscanned bags'}},
-  {ic:'🚛',en:'Transport',ur:'نقل و حمل',d:'Designated vehicle to facility.',du:'مجاز گاڑی سے سہولت تک۔',f:{'Responsible':'Service provider','Record':'Vehicle manifest','Safety':'Dedicated vehicle','Failure':'Mixed loads'}},
-  {ic:'🔥',en:'Treatment',ur:'علاج',d:'Approved treatment — incineration, autoclaving.',du:'منظور شدہ علاج۔',f:{'Responsible':'Treatment facility','Record':'Treatment certificate','Safety':'Approved parameters','Failure':'Unapproved methods'}},
-  {ic:'📊',en:'Reporting',ur:'رپورٹنگ',d:'Final quantities and outcomes documented.',du:'حتمی مقدار اور نتائج۔',f:{'Responsible':'Hospital & provider','Record':'Monthly/annual report','Safety':'Audit trail','Failure':'Missing records'}}
-];
-function renderJSteps(){
-  const g = document.getElementById('jSteps');
-  if (!g) return;
-  g.innerHTML = '';
-  jSteps.forEach((s, i) => {
-    const b = document.createElement('div');
-    b.className = 'jstep' + (i === S.jStage ? ' active' : '') + (i < S.jStage ? ' done' : '');
-    b.textContent = `${i+1}. ${S.lang==='ur'?s.ur:s.en}`;
-    b.addEventListener('click', () => { S.jStage = i; renderJSteps(); renderJDetail(); });
-    g.appendChild(b);
-  });
-}
-function renderJDetail(){
-  const s = jSteps[S.jStage];
-  const d = document.getElementById('jDetail');
-  if (!d) return;
-  d.innerHTML = `
-    <div class="jhead">
-      <div class="jnum">${S.jStage + 1}</div>
-      <div>
-        <div class="jttl">${s.ic} ${S.lang==='ur'?s.ur:s.en}</div>
-        <div class="jsub">${S.lang==='ur'?s.du:s.d}</div>
-      </div>
-    </div>
-    <div class="jgrid">
-      ${Object.entries(s.f).map(([k, v]) => `<div class="jcard ${k==='Failure'?'risk':''}"><div class="l">${k}</div><div class="v">${v}</div></div>`).join('')}
-    </div>
-  `;
-}
-document.getElementById('jPrev').addEventListener('click', () => { if (S.jStage > 0){ S.jStage--; renderJSteps(); renderJDetail(); }});
-document.getElementById('jNext').addEventListener('click', () => { if (S.jStage < jSteps.length-1){ S.jStage++; renderJSteps(); renderJDetail(); }});
-
-/* ═══════════════════════════════════════════════════════════
-   DASHBOARD
-   ═══════════════════════════════════════════════════════════ */
-const dData = {
-  daily:{l:['6a','9a','12p','3p','6p','9p'],c:[45,80,120,95,70,40],d:[40,75,115,90,65,38]},
-  weekly:{l:['M','T','W','Th','F','Sa','Su'],c:[420,480,510,490,460,290,220],d:[410,470,500,485,455,285,215]},
-  monthly:{l:['W1','W2','W3','W4'],c:[2850,3120,2980,3050],d:[2800,3080,2940,3010]},
-  yearly:{l:['20','21','22','23','24'],c:[31000,32500,33800,35200,36400],d:[30500,32000,33200,34600,35800]}
-};
-let dR = 'daily';
-function renderDash(){
-  const data = dData[dR];
-  const max = Math.max(...data.c);
-  const chart = document.getElementById('barChart');
-  if (!chart) return;
-  chart.innerHTML = '';
-  data.l.forEach((l, i) => {
-    const w = document.createElement('div');
-    w.className = 'bw';
-    w.innerHTML = `
-      <div style="display:flex;gap:3px;align-items:flex-end;width:100%;height:100%;justify-content:center">
-        <div class="bar" style="height:${(data.c[i]/max)*100}%;background:linear-gradient(180deg,var(--teal),var(--teal-dark))" data-val="${data.c[i]} kg"></div>
-        <div class="bar" style="height:${(data.d[i]/max)*100}%;background:linear-gradient(180deg,var(--gold),var(--gold-dark))" data-val="${data.d[i]} kg"></div>
-      </div>
-      <div class="blbl">${l}</div>
-    `;
-    chart.appendChild(w);
-  });
-  const tC = data.c.reduce((a,b)=>a+b,0);
-  const tD = data.d.reduce((a,b)=>a+b,0);
-  animNum(document.getElementById('kpiC'), tC);
-  animNum(document.getElementById('kpiD'), tD);
-  animNum(document.getElementById('kpiP'), Math.floor(tC * 0.04));
-  animNum(document.getElementById('kpiM'), Math.floor(tC * 0.015));
-}
-function animNum(el, target){
-  if (!el) return;
-  let cur = 0;
-  const step = target / 25;
-  const timer = setInterval(() => {
-    cur += step;
-    if (cur >= target){ cur = target; clearInterval(timer); }
-    el.textContent = Math.floor(cur).toLocaleString();
-  }, 25);
-}
-document.querySelectorAll('.df').forEach(b => {
-  b.addEventListener('click', () => {
-    document.querySelectorAll('.df').forEach(x => x.classList.remove('active'));
-    b.classList.add('active');
-    dR = b.dataset.r;
-    renderDash();
-  });
-});
-
-/* ═══════════════════════════════════════════════════════════
-   SPILLS
-   ═══════════════════════════════════════════════════════════ */
-const spills = [
-  {id:'bio',em:'🩸',en:'Biological / Body Fluid',ur:'حیاتیاتی / جسمانی سیال',s:['Alert staff, restrict access','Wear PPE: gloves, gown, mask, eye protection','Contain with absorbent — edge inward','Apply approved disinfectant per SOP','Collect into yellow infectious-waste bag','Decontaminate surface & equipment','Remove PPE, hand hygiene','Report & document'],su:['عملے کو آگاہ، رسائی محدود','PPE پہنیں','جاذب سے روکیں','منظور شدہ جراثیم کش','پیلے بیگ میں جمع','سطح صاف','PPE اتاریں، ہاتھ دھوئیں','اطلاع اور دستاویز'],w:'⚠️ Do not use broom or dry sweep — aerosolizes infectious material.',wu:'⚠️ جھاڑو یا خشک صفائی نہ کریں۔',e:'🚨 Escalate to Infection Control for large volumes.',eu:'🚨 بڑی مقدار کے لیے انفیکشن کنٹرول سے رجوع۔'},
-  {id:'chem',em:'⚗️',en:'Chemical Spill',ur:'کیمیائی اسپل',s:['Evacuate area, ventilate','Identify chemical from label/SDS','Wear chemical-resistant PPE','Contain using absorbent per SDS','Collect residue in compatible container','Decontaminate per SDS','Report & document'],su:['علاقہ خالی','SDS سے شناخت','کیمیکل مزاحم PPE','SDS کے مطابق روکیں','موافق کنٹینر','SDS کے مطابق صفائی','اطلاع'],w:'⚠️ Never mix cleaning chemicals. Follow specific SDS.',wu:'⚠️ صفائی کیمیکل نہ ملائیں۔',e:'🚨 Escalate to Safety Officer for unknown substances.',eu:'🚨 نامعلوم مادوں کے لیے سیفٹی آفیسر۔'},
-  {id:'mercury',em:'🌡️',en:'Mercury Spill',ur:'مرکری اسپل',s:['Evacuate & ventilate','Wear appropriate PPE including respiratory','Use mercury spill kit — never bare hands','Collect droplets into sealed labeled container','Decontaminate per SOP','Dispose as hazardous chemical waste','Report & document'],su:['خالی کریں، ہوا دیں','مناسب PPE بشمول سانس','مرکری اسپل کٹ','قطرے سیل کنٹینر','SOP کے مطابق صفائی','خطرناک ویسٹ تلفی','اطلاع'],w:'⚠️ Do NOT use broom, brush, or vacuum — spreads mercury vapors.',wu:'⚠️ جھاڑو، برش یا ویکیوم نہ استعمال کریں۔',e:'🚨 Escalate to specialist hazmat team.',eu:'🚨 ہزمیٹ ٹیم سے رجوع۔'},
-  {id:'surface',em:'🧽',en:'Contaminated Surface',ur:'آلودہ سطح',s:['Restrict access','Wear appropriate PPE','Remove visible contamination','Apply approved disinfectant with contact time','Allow to dry per SOP','Dispose cleaning materials as infectious waste','Document procedure'],su:['رسائی محدود','PPE پہنیں','آلودگی ہٹائیں','منظور شدہ جراثیم کش','SOP کے مطابق خشک','صفائی کا سامان متعدی ویسٹ','دستاویز'],w:'⚠️ Follow approved disinfectant concentration and contact time.',wu:'⚠️ منظور شدہ ارتکاز اور وقت پر عمل۔',e:'🚨 Escalate for high-risk areas.',eu:'🚨 زیادہ خطرے والے علاقوں کے لیے رجوع۔'}
-];
-function renderSpills(){
-  const g = document.getElementById('spillGrid');
-  if (!g) return;
-  g.innerHTML = '';
-  spills.forEach(s => {
-    const c = document.createElement('div');
-    c.className = 'spill';
-    c.dataset.spill = s.id;
-    const steps = S.lang==='ur' ? s.su : s.s;
-    c.innerHTML = `
-      <div class="spill-h">
-        <span style="font-size:1.35rem">${s.em}</span>
-        <h4>${S.lang==='ur'?s.ur:s.en}</h4>
-        <span class="chev">▼</span>
-      </div>
-      <div class="spill-b">
-        <ol>${steps.map(x=>`<li>${x}</li>`).join('')}</ol>
-        <div class="sp-warn">${S.lang==='ur'?s.wu:s.w}</div>
-        <div class="sp-esc">${S.lang==='ur'?s.eu:s.e}</div>
-      </div>
-    `;
-    c.querySelector('.spill-h').addEventListener('click', () => c.classList.toggle('open'));
-    g.appendChild(c);
-  });
-}
-
-/* ═══════════════════════════════════════════════════════════
-   ROLES
-   ═══════════════════════════════════════════════════════════ */
-const rolesData = {
-  hospital: [
-    {t:'Segregation at Source',tu:'ماخذ پر علیحدگی',i:['Place correct bins & sharps containers','Segregate at point of generation','Train clinical staff','Monitor bin fill levels'],iu:['درست بن اور شارپس کنٹینر رکھیں','پیداوار کے مقام پر علیحدگی','عملے کو تربیت','بن لیول مانیٹر']},
-    {t:'Internal Procedures',tu:'داخلی طریقہ کار',i:['Follow internal transfer procedures','Maintain waste registers','Separate non-infectious waste','Maintain waste-handling rooms'],iu:['داخلی منتقلی کے طریقہ کار','ویسٹ رجسٹر برقرار','غیر متعدی ویسٹ الگ','ہینڈلنگ روم برقرار']},
-    {t:'Compliance',tu:'تعمیل',i:['Ensure staff awareness','Conduct internal audits','Report incidents','Coordinate with provider'],iu:['عملے کی آگاہی','داخلی آڈٹ','واقعات کی اطلاع','فراہم کنندہ سے رابطہ']}
-  ],
-  provider: [
-    {t:'Collection & Handling',tu:'جمع اور ہینڈلنگ',i:['Collect segregated waste','Provide designated trolleys','Weigh & label consignments','Temporary storage'],iu:['علیحدہ ویسٹ جمع','مقررہ ٹرالیاں','وزن اور لیبل','عارضی ذخیرہ']},
-    {t:'Transport & Treatment',tu:'نقل و حمل اور علاج',i:['Use designated vehicles','Transport to authorized facility','Treat/dispose waste','Provide treatment documentation'],iu:['مقررہ گاڑیاں','مجاز سہولت تک','علاج/تلفی','علاج دستاویز']},
-    {t:'Resources & Staff',tu:'وسائل اور عملہ',i:['Deploy trained staff','Manage shifts','Provide bags, seals, PPE','Maintain weighing equipment'],iu:['تربیت یافتہ عملہ','شفٹیں','بیگ، سیل، PPE','وزن کا سامان']}
-  ],
-  shared: [
-    {t:'Documentation & Reporting',tu:'دستاویزات اور رپورٹنگ',i:['Maintain handover records','Share monthly reports','Track collection vs disposal','Report missing records'],iu:['حوالگی ریکارڈ','ماہانہ رپورٹس','جمع بمقابلہ تلفی','گمشدہ ریکارڈ کی اطلاع']},
-    {t:'Training & Awareness',tu:'تربیت اور آگاہی',i:['Joint training sessions','Update SOPs collaboratively','Share best practices','Review incidents'],iu:['مشترکہ تربیت','SOPs مشترکہ اپ ڈیٹ','بہترین طریقے','واقعات کا جائزہ']},
-    {t:'Monitoring & Improvement',tu:'نگرانی اور بہتری',i:['Joint audits','Data quality checks','Corrective action plans','Continuous improvement'],iu:['مشترکہ آڈٹ','ڈیٹا معیار چیک','اصلاحی منصوبے','مسلسل بہتری']}
-  ]
-};
-function renderRoles(){
-  const g = document.getElementById('rolesGrid');
-  if (!g) return;
-  g.innerHTML = '';
-  rolesData[S.role].forEach(card => {
-    const el = document.createElement('div');
-    el.className = 'rcard';
-    const its = S.lang==='ur' ? card.iu : card.i;
-    el.innerHTML = `<h4>${S.lang==='ur'?card.tu:card.t}</h4><ul>${its.map(x=>`<li>${x}</li>`).join('')}</ul>`;
-    g.appendChild(el);
-  });
-}
-document.querySelectorAll('.rt[data-role]').forEach(t => {
-  t.addEventListener('click', () => {
-    document.querySelectorAll('.rt[data-role]').forEach(x => x.classList.remove('active'));
-    t.classList.add('active');
-    S.role = t.dataset.role;
-    renderRoles();
-  });
-});
-
-/* ═══════════════════════════════════════════════════════════
-   QUIZ
-   ═══════════════════════════════════════════════════════════ */
-const qs = [
-  {q:'Which color bin is used for infectious/biomedical waste?',o:['White bin','Yellow bin','Red bin','Blue bin'],c:1,e:'Yellow is the infectious/biomedical waste color.'},
-  {q:'Where should used needles be disposed of?',o:['White bin','Yellow bag','Dedicated sharps container','Red bin'],c:2,e:'Needles are sharps — dedicated puncture-proof container.'},
-  {q:'What is the most critical step in hospital waste management?',o:['Incineration','Segregation at point of generation','Transportation','Final disposal'],c:1,e:'Correct segregation at point of generation is foundational.'},
-  {q:'Approximately what percentage of hospital waste is potentially hazardous?',o:['1–5%','15–25%','50–60%','80–90%'],c:1,e:'Presentation estimates 15–25% potentially hazardous.'},
-  {q:'What should you do during a biological spill?',o:['Sweep with broom','Contain with absorbent, disinfect per SOP, report','Wash down drain','Ignore'],c:1,e:'Contain, disinfect, report. Never dry-sweep.'},
-  {q:'For a mercury spill, which method must NEVER be used?',o:['Mercury spill kit','Rigid collection','Broom, brush, or vacuum','Sealed container'],c:2,e:'Never use broom, brush, or vacuum on mercury spills.'},
-  {q:'What is the purpose of QR/barcode identification?',o:['Decoration','Traceability and documentation','Faster incineration','Reducing weight'],c:1,e:'Supports traceability. Real traceability needs backend.'},
-  {q:'Who is responsible for segregating waste at point of generation?',o:['Only waste company','Clinical/nursing staff','Hospital admins','External auditors'],c:1,e:'Clinical/nursing staff segregate at source.'},
-  {q:'At what capacity should an infectious-waste bag be collected?',o:['100% full','About ¾ capacity','Only when overflowing','Every 48h'],c:1,e:'Source states ~¾ capacity or within 24 hours.'},
-  {q:'What if a sharps container is half full but needs replacement?',o:['Transfer by hand','Close and replace — never by hand','Leave until full','Empty into regular waste'],c:1,e:'Never transfer sharps by hand. Close and replace.'}
-];
-function renderQuiz(){
-  if (!qs.length) return;
-  const q = qs[S.qIdx];
-  const qn = document.getElementById('qNum');
-  if (!qn) return;
-  qn.textContent = `${S.lang==='ur'?'سوال':'Question'} ${S.qIdx+1} ${S.lang==='ur'?'از':'of'} ${qs.length}`;
-  document.getElementById('qLive').textContent = `${S.lang==='ur'?'اسکور':'Score'}: ${S.qScore}`;
-  document.getElementById('qQ').textContent = q.q;
-  document.getElementById('qProg').style.width = (S.qIdx / qs.length * 100) + '%';
-  const o = document.getElementById('qOpts');
-  o.innerHTML = '';
-  q.o.forEach((op, i) => {
-    const b = document.createElement('button');
-    b.className = 'qopt';
-    b.innerHTML = `<span class="lt">${String.fromCharCode(65+i)}</span><span>${op}</span>`;
-    b.addEventListener('click', () => ansQ(i));
-    o.appendChild(b);
-  });
-  document.getElementById('qExp').classList.remove('on');
-  document.getElementById('qExp').innerHTML = '';
-  S.qAnswered = false;
-  document.getElementById('qPrev').disabled = S.qIdx === 0;
-  document.getElementById('qNext').disabled = true;
-  document.getElementById('qNext').innerHTML = S.qIdx === qs.length-1 ? (S.lang==='ur'?'🏁 نتائج دیکھیں':'🏁 See Results') : (S.lang==='ur'?'اگلا →':'Next →');
-  if (S.qAns[S.qIdx] !== undefined){
-    S.qAnswered = true;
-    const sel = S.qAns[S.qIdx];
-    document.querySelectorAll('#qOpts .qopt').forEach((el, i) => {
-      el.classList.add('dis');
-      if (i === q.c) el.classList.add('correct');
-      else if (i === sel) el.classList.add('wrong');
-    });
-    document.getElementById('qExp').innerHTML = `<strong>${S.lang==='ur'?'وضاحت':'Explanation'}:</strong> ${q.e}`;
-    document.getElementById('qExp').classList.add('on');
-    document.getElementById('qNext').disabled = false;
-  }
-}
-function ansQ(sel){
-  if (S.qAnswered) return;
-  S.qAnswered = true;
-  S.qAns[S.qIdx] = sel;
-  const q = qs[S.qIdx];
-  document.querySelectorAll('#qOpts .qopt').forEach((el, i) => {
-    el.classList.add('dis');
-    if (i === q.c) el.classList.add('correct');
-    else if (i === sel) el.classList.add('wrong');
-  });
-  if (sel === q.c) S.qScore++;
-  document.getElementById('qLive').textContent = `${S.lang==='ur'?'اسکور':'Score'}: ${S.qScore}`;
-  document.getElementById('qExp').innerHTML = `<strong>${S.lang==='ur'?'وضاحت':'Explanation'}:</strong> ${q.e}`;
-  document.getElementById('qExp').classList.add('on');
-  document.getElementById('qNext').disabled = false;
-}
-document.getElementById('qPrev').addEventListener('click', () => { if (S.qIdx > 0){ S.qIdx--; renderQuiz(); }});
-document.getElementById('qNext').addEventListener('click', () => {
-  if (S.qIdx < qs.length-1){ S.qIdx++; renderQuiz(); }
-  else { showQResult(); }
-});
-function showQResult(){
-  document.getElementById('qContent').style.display = 'none';
-  document.getElementById('qResult').style.display = 'block';
-  const pct = Math.round((S.qScore/qs.length)*100);
-  document.getElementById('qScore').textContent = pct + '%';
-  document.getElementById('qMsg').textContent = `${S.qScore} ${S.lang==='ur'?'از':'of'} ${qs.length} ${S.lang==='ur'?'درست':'correct'}`;
-  const wrong = S.qAns.map((a, i) => a !== qs[i].c ? i : -1).filter(x => x >= 0);
-  const rev = document.getElementById('qReview');
-  if (wrong.length){
-    rev.innerHTML = `<h4 style="color:var(--navy);margin-bottom:8px;font-size:.88rem">${S.lang==='ur'?'غلط جوابات':'Review Incorrect'}:</h4>` +
-      wrong.map(i => `<div class="ri"><strong>Q${i+1}:</strong> ${qs[i].q}<br><span style="color:var(--green)">✓ ${qs[i].o[qs[i].c]}</span></div>`).join('');
-  } else {
-    rev.innerHTML = `<p style="color:var(--green);font-weight:700">🎉 ${S.lang==='ur'?'مکمل اسکور!':'Perfect score!'}</p>`;
-  }
-}
-document.getElementById('qRetry').addEventListener('click', () => {
-  S.qIdx = 0; S.qScore = 0; S.qAns = []; S.qAnswered = false;
-  document.getElementById('qContent').style.display = 'block';
-  document.getElementById('qResult').style.display = 'none';
-  renderQuiz();
-});
-
-/* ═══════════════════════════════════════════════════════════
-   GLOSSARY
-   ═══════════════════════════════════════════════════════════ */
-const gloss = [
-  {en:'Infectious Waste',ur:'متعدی ویسٹ'},{en:'Segregation',ur:'علیحدگی'},
-  {en:'Sharps',ur:'شارپس'},{en:'Anatomical Waste',ur:'اناٹومیکل ویسٹ'},
-  {en:'Pharmaceutical Waste',ur:'دواسازی کا ویسٹ'},{en:'Cross-contamination',ur:'کراس آلودگی'},
-  {en:'Disinfection',ur:'جراثیم کشی'},{en:'Decontamination',ur:'آلودگی سے پاک'},
-  {en:'Temporary Storage',ur:'عارضی ذخیرہ'},{en:'Traceability',ur:'ٹریس ایبلٹی'},
-  {en:'Barcode Identification',ur:'بارکوڈ شناخت'},{en:'QR Identification',ur:'QR شناخت'},
-  {en:'Handover',ur:'حوالگی'},{en:'Occupational Exposure',ur:'پیشہ ورانہ نمائش'},
-  {en:'Personal Protective Equipment',ur:'ذاتی حفاظتی سامان'},{en:'Waste Treatment',ur:'ویسٹ علاج'},
-  {en:'Final Disposal',ur:'حتمی تلفی'},{en:'Incineration',ur:'انسینریشن'},
-  {en:'Autoclaving',ur:'آٹوکلیونگ'},{en:'Puncture-proof Container',ur:'پنکچر پروف کنٹینر'},
-  {en:'Cytotoxic Waste',ur:'سائٹوٹوکسک ویسٹ'},{en:'Chemical Waste',ur:'کیمیائی ویسٹ'},
-  {en:'Biological Spill',ur:'حیاتیاتی اسپل'},{en:'Mercury Spill',ur:'مرکری اسپل'}
-];
-function renderGlossary(filter=''){
-  const g = document.getElementById('glossGrid');
-  if (!g) return;
-  g.innerHTML = '';
-  const f = filter.toLowerCase();
-  gloss.filter(x => x.en.toLowerCase().includes(f) || x.ur.includes(filter)).forEach(x => {
-    const el = document.createElement('div');
-    el.className = 'gitem' + (S.bm.includes('gl_'+x.en) ? ' marked' : '');
-    el.innerHTML = `<span class="bm">🔖</span><div class="en">${x.en}</div><div class="ur">${x.ur}</div>`;
-    el.addEventListener('click', () => {
-      const k = 'gl_' + x.en;
-      if (S.bm.includes(k)){
-        S.bm = S.bm.filter(b => b !== k);
-        toast(t('toast_bmr'), '🔖');
-      } else {
-        S.bm.push(k);
-        toast(t('toast_bm'), '🔖');
-      }
-      saveBm();
-      renderGlossary(filter);
-    });
-    g.appendChild(el);
-  });
-}
-document.getElementById('gSearch').addEventListener('input', e => renderGlossary(e.target.value));
-
-/* ═══════════════════════════════════════════════════════════
-   VERIFY
-   ═══════════════════════════════════════════════════════════ */
-const verData = [
-  {c:'White bin = general/municipal waste',s:'Presentation',st:'source',n:'Confirm against hospital SOP'},
-  {c:'Yellow bin = infectious/biomedical waste',s:'Presentation',st:'source',n:'Confirm against Punjab HWM Rules 2014'},
-  {c:'Red bin = glass waste',s:'Presentation',st:'source',n:'Confirm against hospital SOP'},
-  {c:'Sharps in dedicated puncture-proof containers',s:'Presentation',st:'pending',n:'Verify container specs against WHO guidance'},
-  {c:'15–25% hazardous, 75–85% non-risk',s:'Presentation',st:'pending',n:'Estimate — not universal'},
-  {c:'Collection at ¾ capacity or within 24 hours',s:'Presentation',st:'pending',n:'Verify against applicable rules'},
-  {c:'Mercury: never use broom, brush, or vacuum',s:'Presentation',st:'verified',n:'Aligned with WHO/UNEP guidance'},
-  {c:'Punjab Hospital Waste Management Rules, 2014',s:'Presentation',st:'pending',n:'Verify exact clauses'},
-  {c:'Barcode/QR traceability via HWMIS',s:'Presentation',st:'pending',n:'Requires backend — front-end demo only'},
-  {c:'Anatomical waste disposal method',s:'Presentation',st:'pending',n:'Verify against applicable rules'},
-  {c:'Liquid waste sewer disposal',s:'Presentation',st:'pending',n:'Verify against regulations'},
-  {c:'Chemical concentration & contact times',s:'Presentation',st:'pending',n:'Verify against approved SOPs'}
-];
-function renderVerify(){
-  const b = document.getElementById('verBody');
-  if (!b) return;
-  b.innerHTML = verData.map(v => `
-    <tr>
-      <td>${v.c}</td>
-      <td>${v.s}</td>
-      <td><span class="pill ${v.st}">${v.st==='source'?'Source':v.st==='pending'?'Pending':'Verified'}</span></td>
-      <td>${v.n}</td>
-    </tr>
-  `).join('');
-}
-
-/* ═══════════════════════════════════════════════════════════
-   SEARCH
-   ═══════════════════════════════════════════════════════════ */
-function buildSearchIdx(){
-  return [
-    ...traceData.map(s => ({i:'📊',t:`Slide ${s.slide}: ${s.title}`,p:s.page})),
-    ...cats.map(c => ({i:c.em,t:S.lang==='ur'?c.ur:c.en,p:'categories'})),
-    ...rooms.map(r => ({i:r.em,t:S.lang==='ur'?r.ur:r.en,p:'explorer'})),
-    ...items.map(x => ({i:x.em,t:S.lang==='ur'?x.ur:x.en,p:'segregation'})),
-    ...jSteps.map((s,i) => ({i:s.ic,t:`${i+1}. ${S.lang==='ur'?s.ur:s.en}`,p:'journey'})),
-    ...spills.map(s => ({i:s.em,t:S.lang==='ur'?s.ur:s.en,p:'spills'})),
-    ...gloss.map(g => ({i:'📖',t:g.en,p:'glossary'}))
-  ];
-}
-document.getElementById('btnSearch').addEventListener('click', () => {
-  openModal('searchModal');
-  setTimeout(() => document.getElementById('searchInput').focus(), 100);
-  doSearch('');
-});
-document.getElementById('searchInput').addEventListener('input', e => doSearch(e.target.value));
-function doSearch(q){
-  const r = document.getElementById('searchResults');
-  if (!q.trim()){
-    r.innerHTML = `<div style="text-align:center;padding:30px;color:var(--g500)"><div style="font-size:2rem;margin-bottom:10px">🔍</div><p>${S.lang==='ur'?'تلاش کرنے کے لیے ٹائپ کریں':'Type to search across all content'}</p></div>`;
-    return;
-  }
-  const ql = q.toLowerCase();
-  const idx = buildSearchIdx();
-  const m = idx.filter(x => x.t.toLowerCase().includes(ql)).slice(0, 15);
-  if (!m.length){
-    r.innerHTML = `<div style="text-align:center;padding:30px;color:var(--g500)"><div style="font-size:2rem;margin-bottom:10px">😕</div><p>${S.lang==='ur'?'کوئی نتیجہ نہیں':'No results for'} "${q}"</p></div>`;
-    return;
-  }
-  r.innerHTML = m.map(x => `
-    <div class="sresult" data-p="${x.p}" style="padding:11px;border-radius:10px;cursor:pointer;display:flex;gap:10px;align-items:center;transition:.15s">
-      <span style="font-size:1.15rem">${x.i}</span>
-      <span style="font-weight:600;color:var(--navy);font-size:.86rem">${x.t}</span>
-    </div>
-  `).join('');
-  r.querySelectorAll('.sresult').forEach(el => {
-    el.addEventListener('mouseover', () => el.style.background = 'var(--g100)');
-    el.addEventListener('mouseout', () => el.style.background = '');
-    el.addEventListener('click', () => {
-      closeModal('searchModal');
-      goTo(el.dataset.p);
-      if (el.dataset.p === 'ppt') setTimeout(openPptViewer, 250);
-    });
-  });
-}
-
-/* ═══════════════════════════════════════════════════════════
-   INIT
-   ═══════════════════════════════════════════════════════════ */
-applyFs();
-setLang(S.lang);
-loadItem();
-renderDash();
-checkPptStatus();
-
-console.log('%c🏥 Hospital Infectious Waste Management — Multi-Page Portal', 'font-size:15px;font-weight:bold;color:#168C8C');
-console.log('%cConfigure CONFIG.pptFile at the top of the script for your PPTX.', 'font-size:12px;color:#6b7c8c');
+/* ============ END OF PART 1 ============ */
+/* PART 2 and PART 3 continue below — paste them here */
 </script>
 </body>
 </html>
-   /* ═══════════════════════════════════════════════════════════════
+/* ═══════════════════════════════════════════════════════════════
    STATE
    ═══════════════════════════════════════════════════════════════ */
 const S = {
@@ -3117,7 +3082,7 @@ if (jNext){
     }
   });
 }
-/* ═══════════════════════════════════════════════════════════════
+                   /* ═══════════════════════════════════════════════════════════════
    DASHBOARD
    ═══════════════════════════════════════════════════════════════ */
 const dData = {
